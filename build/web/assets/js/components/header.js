@@ -28,3 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
     updateHeader();
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+});
+

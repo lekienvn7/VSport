@@ -24,7 +24,7 @@
         <div class="voucher-topbar">
             <div>
                 <span class="voucher-topbar-label">TRUNG TÂM MÃ GIẢM GIÁ</span>
-                <h1>Mã giảm giá của bạn</h1>
+                <h1>MÃ GIẢM GIÁ CỦA BẠN</h1>
                 <p>Nơi mã ngon trú ngụ, nơi xu hóa thành lợi thế.</p>
             </div>
 

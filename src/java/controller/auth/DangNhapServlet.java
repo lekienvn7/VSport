@@ -48,6 +48,10 @@ public class DangNhapServlet extends HttpServlet {
         redirect = redirect != null ? redirect.trim() : "";
 
         HttpSession session = request.getSession();
+        session.setAttribute("nguoiDung", nguoiDung);
+        session.setAttribute("loginSuccess", true);
+
+        response.sendRedirect(request.getContextPath() + "/trang_chu");
 
         if (dangNhap.isEmpty() || matKhau.isEmpty()) {
             session.setAttribute("loginError", "Vui lòng nhập đầy đủ thông tin.");

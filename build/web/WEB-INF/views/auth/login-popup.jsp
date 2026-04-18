@@ -63,11 +63,14 @@
     }
 %>
 
-<div 
-    class="login-popup-overlay" 
+<div
     id="loginPopupOverlay"
-    data-open="${openLoginPopup == true ? 'true' : 'false'}"
-    data-register-open="${openRegisterPopup == true ? 'true' : 'false'}">
+    class="login-popup-overlay"
+    data-open="${openLoginPopup ? 'true' : 'false'}"
+    data-register-open="${openRegisterPopup ? 'true' : 'false'}"
+    data-login-error="${loginError != null ? loginError : ''}"
+    data-login-success="${loginSuccess ? 'true' : 'false'}"
+>
     
     <div class="login-popup-panel">
         <button type="button" class="login-popup-close" id="closeLoginPopup" aria-label="Đóng">

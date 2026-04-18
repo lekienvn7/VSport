@@ -127,3 +127,33 @@
     
 
 }
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark-mode {
+
+    /* nền */
+    --color-white: #0b0b0b;
+    --color-off-white: #171717;
+
+    /* text */
+    --color-black: #ffffff;
+    --color-black-soft: #e5e5e5;
+
+    /* gray đảo lại */
+    --color-gray-100: #1f1f1f;
+    --color-gray-200: #2a2a2a;
+    --color-gray-400: #bdbdbd;
+    --color-gray-600: #d1d5db;
+    --color-gray-800: #f3f4f6;
+
+    /* giữ đỏ làm brand */
+    --color-red: #ff2d55;
+    --color-red-hover: #ff4d6d;
+    --color-red-soft: rgba(255, 45, 85, 0.1);
+
+    --color-gold: #FFD700;
+    --color-green: #22c55e;
+}
