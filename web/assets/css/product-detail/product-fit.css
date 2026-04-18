@@ -1,0 +1,77 @@
+.pd-fit-box {
+    width: 88%;
+    max-width: 1040px;
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 84px;
+    align-items: start;
+}
+
+.pd-fit-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-content: center;
+    gap: 18px;
+}
+
+.pd-fit-icon {
+    width: 45px;
+    min-width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    line-height: 1;
+}
+
+.pd-fit-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 2px;
+}
+
+.pd-fit-label {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: #111;
+    line-height: 1.35;
+}
+
+.pd-fit-value {
+    font-family: var(--font-body-2);
+    font-size: 20px;
+    letter-spacing: 2px;
+    line-height: 1.15;
+    color: #000;
+}
+
+@media (max-width: 1200px) {
+    .pd-fit-box {
+        width: 94%;
+        gap: 44px;
+    }
+
+    .pd-fit-value {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pd-fit-box {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .pd-fit-icon {
+        font-size: 34px;
+    }
+
+    .pd-fit-value {
+        font-size: 22px;
+    }
+}

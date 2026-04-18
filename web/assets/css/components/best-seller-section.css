@@ -1,0 +1,37 @@
+.best-seller-section {
+    width: 100%;
+    padding: 60px 24px 72px;
+    background: var(--color-white);
+}
+
+.best-seller-container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.best-seller-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 38px;
+}
+
+.best-seller-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.best-seller-line {
+    width: 260px;
+    height: 3px;
+    background: #e60023;
+    margin-top: 12px;
+    display: block;
+}

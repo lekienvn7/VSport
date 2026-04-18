@@ -1,0 +1,129 @@
+/* =========================
+   ROOT VARIABLES (BIẾN TOÀN CỤC)
+   Dùng để tái sử dụng toàn bộ web
+========================= */
+
+:root {
+
+    /* =========================
+       1. MÀU SẮC (COLOR SYSTEM)
+    ========================= */
+
+    /* Màu nền chính */
+    --color-white: #ffffff;        /* nền chính */
+    --color-off-white: #f7f7f7;    /* nền phụ (section xen kẽ) */
+
+    /* Màu đen */
+    --color-black: #0b0b0b;        /* đen chính */
+    --color-black-soft: #171717;   /* đen nhẹ hơn (footer, banner) */
+
+    /* Màu xám (text phụ, border) */
+    --color-gray-100: #f3f4f6;     /* nền xám nhẹ */
+    --color-gray-200: #e5e5e5;     /* border */
+    --color-gray-400: #9ca3af;     /* text phụ */
+    --color-gray-600: #6b7280;     /* text mô tả */
+    --color-gray-800: #1f1f1f;     /* text đậm hơn */
+
+    /* Màu đỏ (brand chính) */
+    --color-red: #e11d48;          /* màu chính (CTA, hover) */
+    --color-red-hover: #be123c;    /* khi hover */
+    --color-red-soft: #fff1f2;     /* nền nhẹ */
+    
+    --color-gold: #FFD700;
+    
+    --color-green: #18a957;
+
+   /* =========================
+   2. FONT (CHỮ)
+    ========================= */
+
+    /* Font chính toàn web */
+    --font-body: 'Juventus Fans Regular', sans-serif;
+    
+    --font-body-2: 'Michroma', sans-serif;
+
+    /* Font tiêu đề */
+    --font-heading: 'Juventus Fans Bold', sans-serif;
+
+    /* Font banner / hero / slogan lớn */
+    --font-display: 'Juventus Fans Bold inline', sans-serif;
+
+    /* Font nhẹ cho text phụ */
+    --font-light: 'Juventus Fans Light', sans-serif;
+
+    /* =========================
+       3. CỠ CHỮ (FONT SIZE)
+    ========================= */
+
+    /* text nhỏ */
+    --text-xs: 12px;
+    --text-sm: 14px;
+
+    /* text chuẩn */
+    --text-base: 16px;
+
+    /* text lớn */
+    --text-lg: 18px;
+    --text-xl: 20px;
+
+    /* tiêu đề */
+    --text-2xl: 24px;
+    --text-3xl: 32px;
+    --text-4xl: 40px;
+    --text-5xl: 64px; /* hero */
+
+    /* =========================
+       4. FONT WEIGHT (ĐỘ ĐẬM)
+    ========================= */
+
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* =========================
+       5. SPACING (KHOẢNG CÁCH)
+       DÙNG ĐỂ TRÁNH CANH PIXEL LUNG TUNG
+    ========================= */
+
+    --space-1: 8px;
+    --space-2: 12px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 32px;
+    --space-6: 48px;
+    --space-7: 64px;
+    --space-8: 96px;
+    --space-9: 128px;
+
+    /* =========================
+       6. BORDER & RADIUS (BO GÓC)
+    ========================= */
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+
+    /* =========================
+       7. SHADOW (BÓNG ĐỔ)
+    ========================= */
+
+    --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    /* =========================
+       8. WIDTH CHUẨN
+    ========================= */
+
+    --container-width: 1320px;
+
+    /* =========================
+       9. TRANSITION (HIỆU ỨNG)
+    ========================= */
+
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    
+    
+
+}

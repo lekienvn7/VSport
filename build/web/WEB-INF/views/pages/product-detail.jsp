@@ -1,0 +1,58 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.SanPham"%>
+<%
+    SanPham sp = (SanPham) request.getAttribute("sp");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <jsp:include page="/WEB-INF/views/common/head.jsp" />
+
+
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logos/logo.png">
+
+    <title><%= sp.getTenSanPham() %></title>
+</head>
+<body>
+    <div class="header-shell">
+        <%@ include file="/WEB-INF/views/common/header.jsp" %>
+        <%@ include file="/WEB-INF/views/common/navbar.jsp" %>
+    </div>
+
+    <main class="pd-page">
+        <section class="pd-top">
+            <div class="pd-top-left">
+                <jsp:include page="/WEB-INF/views/pages/components/product-gallery.jsp" />
+                <jsp:include page="/WEB-INF/views/pages/components/product-fit.jsp" />
+                <jsp:include page="/WEB-INF/views/pages/components/product-accordion.jsp" />
+            </div>
+
+            <div class="pd-top-right">
+                <jsp:include page="/WEB-INF/views/pages/components/product-info.jsp" />
+            </div>
+        </section>
+    </main>
+            
+            <%@ include file="/WEB-INF/views/auth/login-popup.jsp" %>
+
+    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+    <div id="cart-popup-root"></div>
+
+    
+
+    <script src="${pageContext.request.contextPath}/assets/js/components/header.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/product-detail.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/login-popup.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+    window.contextPath = "${pageContext.request.contextPath}";
+</script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/search-popup.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/common/scroll-reveal.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
