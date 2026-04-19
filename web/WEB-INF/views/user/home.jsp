@@ -1,6 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%
+    Boolean loginSuccessFlag = (Boolean) request.getAttribute("loginSuccess");
+    Boolean logoutSuccessFlag = (Boolean) request.getAttribute("logoutSuccess");
 
+    if (loginSuccessFlag == null) loginSuccessFlag = false;
+    if (logoutSuccessFlag == null) logoutSuccessFlag = false;
+%>
 <!DOCTYPE html>
 <html lang="vi">
     <head>
@@ -20,9 +26,25 @@
         <!-- CSS component -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
         <jsp:include page="/WEB-INF/views/common/head.jsp" />
+        
+        <script>
+        (function () {
+            try {
+                const theme = localStorage.getItem("theme");
+                if (theme === "dark") {
+                    document.documentElement.classList.add("dark-mode");
+                } else {
+                    document.documentElement.classList.remove("dark-mode");
+                }
+            } catch (e) {}
+        })();
+        </script>
     </head>
 
-    <body>
+    <body
+        data-login-success="<%= loginSuccessFlag %>"
+        data-logout-success="<%= logoutSuccessFlag %>"
+    >
         
         <!-- HEADER -->
         <div class="header-shell">
@@ -56,5 +78,6 @@
 
         
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+        
     </body>
 </html>

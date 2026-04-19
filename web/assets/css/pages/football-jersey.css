@@ -16,7 +16,6 @@
     margin-bottom: var(--space-5);
 }
 
-
 .football-jersey-section .football-section-title {
     margin: 0 0 var(--space-4);
     color: var(--color-black);
@@ -86,7 +85,7 @@
     flex: 0 0 200px;
     min-height: 150px;
     padding: var(--space-2);
-    background: #ededed;
+    background: var(--color-gray-200);
     text-decoration: none;
     color: var(--color-black);
     border: 1px solid transparent;
@@ -166,7 +165,6 @@
     background: var(--color-black);
     margin: var(--space-2) 0 var(--space-1);
 }
-
 
 /* =========================
    RESPONSIVE

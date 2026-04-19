@@ -1,5 +1,5 @@
 .cart-page {
-    background: #f7f7f7;
+    background: var(--color-white);
     min-height: 100vh;
     padding: 48px 0 80px;
 }
@@ -28,8 +28,7 @@
     align-items: center;
     justify-content: space-between;
 
-
-    overflow: hidden; /* chặn ảnh tràn */
+    overflow: hidden;
 }
 
 .cart-empty {
@@ -37,11 +36,10 @@
     max-width: 520px;
 }
 
-/* bên phải */
 .cart-empty-right {
     flex: 1;
     display: flex;
-    justify-content: flex-end; /* đẩy sát phải */
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -55,7 +53,7 @@
 .cart-empty-title,
 .cart-summary-title {
     font-family: var(--font-heading);
-    color: #000;
+    color: var(--color-black);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 0.95;
@@ -64,7 +62,6 @@
 .cart-title, .cart-empty-title {
     font-size: clamp(46px, 5vw, 78px);
 }
-
 
 .cart-empty-text{
     margin-top: 20px;
@@ -79,7 +76,7 @@
 .cart-count-page {
     font-family: var(--font-body);
     font-size: 20px;
-    color: #737373;
+    color: var(--color-gray-600);
     font-weight: 600;
 }
 
@@ -87,13 +84,13 @@
 .cart-empty-text {
     font-family: var(--font-body);
     font-size: 19px;
-    color: #111;
+    color: var(--color-black);
     line-height: 1.55;
     margin-bottom: 38px;
 }
 
 .cart-list {
-    border-top: 1px solid #cfcfcf;
+    border-top: 1px solid var(--color-gray-200);
 }
 
 .cart-item {
@@ -101,14 +98,14 @@
     grid-template-columns: 300px 1fr;
     gap: 28px;
     padding: 30px 0;
-    border-bottom: 1px solid #d7d7d7;
+    border-bottom: 1px solid var(--color-gray-200);
 }
 
 .cart-item-image {
     width: 100%;
     height: 300px;
     overflow: hidden;
-    background: #ececec;
+    background: var(--color-gray-200);
 }
 
 .cart-item-image img {
@@ -159,6 +156,7 @@
 .cart-remove-btn {
     border: none;
     background: transparent;
+    color: var(--color-black);
     font-size: 28px;
     cursor: pointer;
     line-height: 1;
@@ -180,8 +178,8 @@
 .cart-item-qty {
     width: 100%;
     height: 50px;
-    border: 1px solid #111;
-    background: #fff;
+    border: 1px solid var(--color-black);
+    background: var(--color-white);
     padding: 0 18px;
     font-size: 20px;
     color: var(--color-black);
@@ -191,7 +189,7 @@
 .cart-item-price {
     font-size: 24px;
     font-weight: 700;
-    color: #000;
+    color: var(--color-black);
 }
 
 .cart-left {
@@ -213,13 +211,13 @@
     font-family: var(--font-body);
     font-size: 21px;
     line-height: 1.55;
-    color: #111;
+    color: var(--color-black);
     margin-bottom: 6px;
 }
 
 .cart-summary-line strong {
     font-weight: 700;
-    color: #000;
+    color: var(--color-black);
 }
 
 .cart-summary-total {
@@ -244,6 +242,8 @@
     min-height: 40;
     border: 2px solid var(--color-black);
     display: flex;
+    background: var(--color-white);
+    color: var(--color-black);
     align-items: center;
     justify-content: center;
     padding: 10px 15px;
@@ -258,9 +258,9 @@
     margin-top: 24px;
     width: 100%;
     min-height: 72px;
-    background: #000;
-    color: #fff;
-    border: 2px solid #111;
+    background: var(--color-black);
+    color: var(--color-white);
+    border: 2px solid var(--color-black);
     text-decoration: none;
     display: flex;
     align-items: center;

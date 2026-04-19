@@ -21,7 +21,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
-    border-bottom: 1px solid #cfcfcf;
+    border-bottom: 1px solid var(--color-gray-200);
     padding: 0 64px; /* chừa chỗ cho 2 nút arrow đè lên */
     background: var(--color-white);
 }
@@ -46,7 +46,7 @@
     height: 64px;
     padding: 0 20px;
     white-space: nowrap;
-    color: #1a1a1a;
+    color: var(--color-gray-800);
     text-decoration: none;
     font-family: var(--font-body);
     font-size: 24px;
@@ -55,7 +55,7 @@
 }
 
 .club-filter-link:hover {
-    background: #f2f2f2;
+    background: var(--color-gray-100);
 }
 
 .club-filter-link.active {
@@ -71,7 +71,7 @@
     right: 0;
     bottom: -1px;
     height: 2px;
-    background: #000;
+    background: var(--color-black);
 }
 
 /* Nút mũi tên chỉ nằm trên thanh link */
@@ -83,9 +83,9 @@
 
     width: 60px;
     height: 60px;
-    border: 1px solid #111;
-    background: #fff;
-    color: #111;
+    border: 1px solid var(--color-black);
+    background: var(--color-white);
+    color: var(--color-black);
     font-size: 28px;
     line-height: 1;
     display: flex;
@@ -112,8 +112,8 @@
 }
 
 .club-scroll-btn:hover {
-    background: #111;
-    color: #fff;
+    background: var(--color-black);
+    color: var(--color-white);
 }
 
 /* Nút lọc */
@@ -122,9 +122,9 @@
     height: 60px;
     min-width: 190px;
     padding: 0 24px;
-    border: 1px solid #111;
+    border: 1px solid var(--color-black);
     background: transparent;
-    color: #111;
+    color: var(--color-black);
     font-family: var(--font-body);
     font-size: 24px;
     font-weight: 500;
@@ -133,8 +133,8 @@
 }
 
 .club-sort-btn:hover {
-    background: #111;
-    color: #fff;
+    background: var(--color-black);
+    color: var(--color-white);
 }
 
 @media (max-width: 1200px) {

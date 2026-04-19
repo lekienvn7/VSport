@@ -118,6 +118,19 @@
     <title>Thông tin cá nhân | VSport</title>
         
         <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logos/logo.png">
+        
+        <script>
+        (function () {
+            try {
+                const theme = localStorage.getItem("theme");
+                if (theme === "dark") {
+                    document.documentElement.classList.add("dark-mode");
+                } else {
+                    document.documentElement.classList.remove("dark-mode");
+                }
+            } catch (e) {}
+        })();
+        </script>
     
 </head>
 <body>
@@ -212,17 +225,6 @@
 <section class="profile-main">
     <div class="profile-main-container">
         
-        <% if (successMsg != null) { %>
-            <div class="profile-alert success"><%= successMsg %></div>
-        <% } %>
-
-        <% if (errorMsg != null) { %>
-            <div class="profile-alert error"><%= errorMsg %></div>
-        <% } %>
-
-        <%
-            boolean moPopupSauRedirect = (errorMsg != null);
-        %>
 
         <div class="profile-card-grid">
             <a href="${pageContext.request.contextPath}/thong_tin_ca_nhan" class="profile-mini-card">

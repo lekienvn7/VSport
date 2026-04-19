@@ -7,11 +7,11 @@
 }
 
 .pd-accordion-item {
-    border-top: 1px solid #d7d7d7;
+    border-top: 1px solid var(--color-gray-200);
 }
 
 .pd-accordion-item:last-child {
-    border-bottom: 1px solid #d7d7d7;
+    border-bottom: 1px solid var(--color-gray-200);
 }
 
 .pd-accordion-header {
@@ -33,7 +33,7 @@
     font-size: 18px;
     font-weight: 700;
     line-height: 1.35;
-    color: #111;
+    color: var(--color-black);
 }
 
 .pd-accordion-right {
@@ -46,14 +46,14 @@
 .pd-rating-stars {
     font-size: 16px;
     letter-spacing: 4px;
-    color: #111;
+    color: var(--color-black);
     white-space: nowrap;
 }
 
 .pd-arrow {
     font-size: 28px;
     line-height: 1;
-    color: #111;
+    color: var(--color-black);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -86,7 +86,7 @@
     font-family: 'Arial';
     font-size: 16px;
     line-height: 1.85;
-    color: #444;
+    color: var(--color-gray-600);
     white-space: normal;
     overflow-y: auto;
     max-height: 220px;
@@ -142,24 +142,24 @@
 .pd-review-top strong {
     font-size: 15px;
     font-weight: 700;
-    color: #111;
+    color: var(--color-black);
 }
 
 .pd-review-top span {
     font-size: 14px;
-    color: #111;
+    color: var(--color-black);
 }
 
 .pd-review-date {
     font-size: 13px;
-    color: #888;
+    color: var(--color-gray-500);
     margin-bottom: 10px;
 }
 
 .pd-review-content {
     font-size: 15px;
     line-height: 1.8;
-    color: #444;
+    color: var(--color-gray-600);
 }
 
 .pd-rating-stars,
@@ -176,12 +176,12 @@
 }
 
 .pd-star-icon.filled {
-    color: #111;
-    fill: #111;
+    color: var(--color-black);
+    fill: var(--color-black);
 }
 
 .pd-star-icon.empty {
-    color: #cfcfcf;
+    color: var(--color-gray-200);
     fill: none;
 }
 
@@ -189,7 +189,7 @@
     margin-left: 6px;
     font-family: var(--font-body);
     font-size: 14px;
-    color: #111;
+    color: var(--color-black);
     font-weight: 600;
 }
 
@@ -201,7 +201,7 @@
 
 .pd-review-score {
     font-size: 14px;
-    color: #111;
+    color: var(--color-black);
     font-weight: 500;
 }
 

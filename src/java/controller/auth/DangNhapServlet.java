@@ -48,10 +48,6 @@ public class DangNhapServlet extends HttpServlet {
         redirect = redirect != null ? redirect.trim() : "";
 
         HttpSession session = request.getSession();
-        session.setAttribute("nguoiDung", nguoiDung);
-        session.setAttribute("loginSuccess", true);
-
-        response.sendRedirect(request.getContextPath() + "/trang_chu");
 
         if (dangNhap.isEmpty() || matKhau.isEmpty()) {
             session.setAttribute("loginError", "Vui lòng nhập đầy đủ thông tin.");
@@ -80,10 +76,10 @@ public class DangNhapServlet extends HttpServlet {
 
         session.removeAttribute("loginError");
         session.removeAttribute("openLoginPopup");
+
         session.setAttribute("nguoiDung", nguoiDung);
-        
+        session.setAttribute("loginSuccess", true);
         session.setMaxInactiveInterval(1800);
-        
 
         if (!redirect.isEmpty()) {
             if (!redirect.startsWith("/")) {
@@ -95,8 +91,9 @@ public class DangNhapServlet extends HttpServlet {
             }
 
             response.sendRedirect(request.getContextPath() + redirect);
-        } else {
-            response.sendRedirect(request.getContextPath() + "/trang_chu");
+            return;
         }
+
+        response.sendRedirect(request.getContextPath() + "/trang_chu");
     }
 }

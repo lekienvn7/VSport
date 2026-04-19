@@ -1,5 +1,3 @@
-
-
 .xu-page {
     padding: 40px 20px 60px;
 }
@@ -10,7 +8,7 @@
 }
 
 .xu-topbar {
-    background: linear-gradient(135deg, #0f0f10, #222);
+    background: linear-gradient(135deg, var(--color-black), var(--color-gray-800));
     color: var(--color-white);
     border-radius: var(--radius-lg);
     padding: 28px 34px;
@@ -38,7 +36,7 @@
     height: 46px;
     border-radius: 50%;
     background: var(--color-red);
-    color: #fff;
+    color: var(--color-white);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -112,7 +110,7 @@
     min-height: 96px;
     border: 1px solid var(--color-gray-200);
     border-radius: 16px;
-    background: #fafafa;
+    background: var(--color-gray-100);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,9 +125,9 @@
 }
 
 .xu-day-box.claimed {
-    background: linear-gradient(135deg, #111, #242424);
-    color: #fff;
-    border-color: #111;
+    background: linear-gradient(135deg, var(--color-black), var(--color-gray-800));
+    color: var(--color-white);
+    border-color: var(--color-black);
 }
 
 .xu-day-plus {
@@ -143,7 +141,7 @@
     height: 34px;
     border-radius: 50%;
     background: var(--color-red);
-    color: #fff;
+    color: var(--color-white);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -151,7 +149,7 @@
 }
 
 .xu-day-box.claimed .xu-day-coin {
-    background: #fff;
+    background: var(--color-white);
     color: var(--color-red);
 }
 
@@ -168,7 +166,7 @@
     border: none;
     border-radius: 14px;
     background: var(--color-red);
-    color: #fff;
+    color: var(--color-white);
     font-family: var(--font-body);
     font-size: 20px;
     font-weight: 700;
@@ -182,7 +180,7 @@
 }
 
 .xu-btn.disabled {
-    background: #3a3a3d;
+    background: var(--color-gray-700);
     cursor: not-allowed;
 }
 
@@ -235,7 +233,7 @@
     font-family: var(--font-body);
     font-size: 14px;
     letter-spacing: 1.7px;
-    color: var(--xu-red);
+    color: var(--color-red);
     font-weight: 700;
     margin-bottom: 8px;
 }
@@ -320,17 +318,17 @@
 }
 
 .xu-history-right.plus {
-    color: var(--xu-green);
+    color: var(--color-green);
 }
 
 .xu-history-right.minus {
-    color: var(--xu-red);
+    color: var(--color-red);
 }
 
 .xu-empty {
     padding: 36px 12px;
     text-align: center;
-    color: var(--xu-gray-500);
+    color: var(--color-gray-500);
     font-size: 15px;
     line-height: 1.7;
 }

@@ -3,15 +3,15 @@
 ========================= */
 .site-footer {
     position: relative;
-    background: var(--color-black);
-    color: var(--color-white);
+    background: #0b0b0b;
+    color: #ffffff;
     padding: calc(var(--space-9) - 8px) var(--space-7) var(--space-7);
     overflow: visible;
     margin-top: 80px;
 }
 
 /* =========================
-   LOGO NỔI Ở GIỮA, DÍNH MÉP TRÊN FOOTER
+   LOGO NỔI
 ========================= */
 .footer-logo-wrap {
     position: absolute;
@@ -34,19 +34,15 @@
     display: block;
     object-fit: contain;
 
-    /* viền trắng ôm theo nét PNG */
-    
-
     transition: transform var(--transition-normal), filter var(--transition-normal);
 }
 
 .footer-logo-link:hover .footer-logo {
     transform: scale(1.04);
-    
 }
 
 /* =========================
-   SLOGAN HAI BÊN
+   SLOGAN
 ========================= */
 .footer-top-slogan {
     width: 100%;
@@ -60,7 +56,7 @@
 
 .footer-slogan {
     margin: 0;
-    color: var(--color-white);
+    color: #ffffff;
     font-family: var(--font-heading);
     font-size: var(--text-4xl);
     font-weight: var(--fw-bold);
@@ -91,7 +87,7 @@
 
 .footer-social-title {
     margin: 0 0 var(--space-4);
-    color: var(--color-red);
+    color: #e11d48;
     font-family: var(--font-display);
     font-size: var(--text-2xl);
     font-weight: var(--fw-bold);
@@ -114,8 +110,6 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-   
     background: transparent;
 
     text-decoration: none;
@@ -126,8 +120,6 @@
         background 0.35s;
 }
 
-
-
 .icon-footer {
     width: 45px;
     height: 45px;
@@ -135,8 +127,6 @@
     display: block;
     transition: filter 0.35s;
 }
-
-
 
 .footer-extra-icon {
     display: flex;
@@ -151,7 +141,7 @@
 }
 
 /* =========================
-   ĐƯỜNG NGĂN
+   DIVIDER
 ========================= */
 .footer-divider {
     width: 100%;
@@ -162,7 +152,7 @@
 }
 
 /* =========================
-   PHẦN DƯỚI
+   BOTTOM
 ========================= */
 .footer-bottom {
     width: 100%;
@@ -190,7 +180,7 @@
 }
 
 .footer-bottom-left .footer-name .brand-footer {
-    color: var(--color-red);
+    color: #e11d48;
 }
 
 .footer-bottom-links {
@@ -207,7 +197,7 @@
 
 .footer-link-column p {
     font-family: var(--font-heading);
-    color: var(--color-red);
+    color: #e11d48;
     font-size: var(--text-lg);
 }
 
@@ -222,11 +212,11 @@
 }
 
 .footer-link-column a:hover {
-    color: #D4AF37;
+    color: #FFD700;
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE (giữ nguyên)
 ========================= */
 @media (max-width: 1200px) {
     .site-footer {
@@ -300,7 +290,6 @@
         gap: 14px;
     }
 
-    
     .icon-footer {
         width: 5px;
     }

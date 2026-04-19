@@ -12,6 +12,19 @@
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logos/logo.png">
 
     <title><%= sp.getTenSanPham() %></title>
+    
+    <script>
+    (function () {
+        try {
+            const theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.documentElement.classList.add("dark-mode");
+            } else {
+                document.documentElement.classList.remove("dark-mode");
+            }
+        } catch (e) {}
+    })();
+    </script>
 </head>
 <body>
     <div class="header-shell">

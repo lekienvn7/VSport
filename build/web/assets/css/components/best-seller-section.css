@@ -25,13 +25,13 @@
     font-weight: 900;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #000;
+    color: var(--color-black);
 }
 
 .best-seller-line {
     width: 260px;
     height: 3px;
-    background: #e60023;
+    background: var(--color-red);
     margin-top: 12px;
     display: block;
 }

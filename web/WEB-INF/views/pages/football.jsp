@@ -16,6 +16,19 @@
         <!-- CSS component -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/header.css">
         <jsp:include page="/WEB-INF/views/common/head.jsp" />
+        
+        <script>
+        (function () {
+            try {
+                const theme = localStorage.getItem("theme");
+                if (theme === "dark") {
+                    document.documentElement.classList.add("dark-mode");
+                } else {
+                    document.documentElement.classList.remove("dark-mode");
+                }
+            } catch (e) {}
+        })();
+        </script>
     </head>
 
     <body>

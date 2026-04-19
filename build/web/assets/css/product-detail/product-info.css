@@ -12,7 +12,7 @@
 
 .pd-category-line {
     font-size: 15px;
-    color: #333;
+    color: var(--color-gray-700);
     margin: 0;
     white-space: nowrap;
 }
@@ -23,7 +23,6 @@
 }
 
 .club-breadcrumb-detail .club-container {
-
     justify-content: flex-end;
     font-size: 15px;
     padding: 0;
@@ -35,7 +34,7 @@
 .club-detail-breadcrumb-home,
 .club-detail-breadcrumb-current,
 .club-detail-breadcrumb-divider {
-    color: #111;
+    color: var(--color-black-soft);
     text-decoration: none;
     line-height: 1.4;
 }
@@ -72,7 +71,7 @@ club-detail-breadcrumb-current:hover,
 
 .pd-category-line {
     font-size: 15px;
-    color: #333;
+    color: var(--color-gray-700);
     margin-bottom: 14px;
 }
 
@@ -81,8 +80,8 @@ club-detail-breadcrumb-current:hover,
     font-size: 14px;
     font-weight: 700;
     padding: 6px 12px;
-    background: #111;
-    color: #fff;
+    background: var(--color-black-soft);
+    color: var(--color-white);
     margin-bottom: 18px;
 }
 
@@ -97,7 +96,7 @@ club-detail-breadcrumb-current:hover,
 .pd-rating-score,
 .pd-rating-stars,
 .pd-rating-count {
-    color: #111;
+    color: var(--color-black-soft);
 }
 
 .pd-star-icon {
@@ -114,7 +113,7 @@ club-detail-breadcrumb-current:hover,
     font-weight: 800;
     line-height: 1.06;
     letter-spacing: 1px;
-    color: #111;
+    color: var(--color-black-soft);
     margin: 0 0 28px;
 }
 
@@ -130,7 +129,7 @@ club-detail-breadcrumb-current:hover,
     font-family: var(--font-body);
     font-size: 22px;
     font-weight: 700;
-    color: #8d8d8d;
+    color: var(--color-gray-500);
     text-decoration: line-through;
 }
 
@@ -138,27 +137,27 @@ club-detail-breadcrumb-current:hover,
     font-family: var(--font-body);
     font-size: 30px;
     font-weight: 800;
-    color: #c90019;
+    color: var(--color-red);
 }
 
 .pd-price-normal {
     font-family: var(--font-body);
     font-size: 34px;
     font-weight: 800;
-    color: #111;
+    color: var(--color-black-soft);
 }
 
 .pd-sale-note {
     font-family: var(--font-body);
     font-size: 24px;
     line-height: 1.55;
-    color: #666;
+    color: var(--color-gray-600);
     margin-bottom: 34px;
     max-width: 420px;
 }
 
 .pd-sale-note.is-sale {
-    color: #d0021b;
+    color: var(--color-red);
 }
 
 .pd-size-block {
@@ -170,7 +169,7 @@ club-detail-breadcrumb-current:hover,
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 16px;
-    color: #111;
+    color: var(--color-black-soft);
 }
 
 .pd-size-grid {
@@ -181,19 +180,19 @@ club-detail-breadcrumb-current:hover,
 
 .pd-size-btn {
     height: 30px;
-    background: #ececec;
+    background: var(--color-gray-150);
     border: none;
     font-family: var(--font-body);
     font-size: 20px;
-    color: #111;
+    color: var(--color-black-soft);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .pd-size-btn.active,
 .pd-size-btn:hover {
-    background: #000;
-    color: #fff;
+    background: var(--color-black);
+    color: var(--color-white);
 }
 
 .pd-action-row {
@@ -207,8 +206,8 @@ club-detail-breadcrumb-current:hover,
     min-height: 60px;
     padding: 0 28px;
     border: none;
-    background: #000;
-    color: #fff;
+    background: var(--color-black);
+    color: var(--color-white);
     font-size: 22px;
     font-weight: 800;
     display: flex;
@@ -229,13 +228,13 @@ club-detail-breadcrumb-current:hover,
     border: 1px solid #222;
     background: transparent;
     font-size: 30px;
-    color: #111;
+    color: var(--color-black-soft);
     cursor: pointer;
 }
 
 .pd-member-box {
     padding-top: 24px;
-    border-top: 1px solid #d7d7d7;
+    border-top: 1px solid var(--color-gray-300);
     margin-bottom: 26px;
 }
 
@@ -248,7 +247,7 @@ club-detail-breadcrumb-current:hover,
     margin-bottom: 16px;
     font-size: 24px;
     font-weight: 700;
-    color: #111;
+    color: var(--color-black-soft);
 }
 
 .pd-member-brand {
@@ -263,7 +262,7 @@ club-detail-breadcrumb-current:hover,
     align-items: center;
     gap: 10px;
     font-size: 18px;
-    color: #111;
+    color: var(--color-black-soft);
 }
 
 .pd-member-icon {
@@ -272,7 +271,7 @@ club-detail-breadcrumb-current:hover,
 }
 
 .pd-benefit-list {
-    border-top: 1px solid #d7d7d7;
+    border-top: 1px solid var(--color-gray-300);
 }
 
 .pd-benefit-item {
@@ -282,7 +281,7 @@ club-detail-breadcrumb-current:hover,
     align-items: center;
     justify-content: space-between;
     gap: 18px;
-    border-bottom: 1px solid #d7d7d7;
+    border-bottom: 1px solid var(--color-gray-300);
     font-size: 16px;
     color: var(--color-gray-800);
 }

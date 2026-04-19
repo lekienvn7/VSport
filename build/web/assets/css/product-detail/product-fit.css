@@ -37,7 +37,7 @@
 .pd-fit-label {
     font-family: var(--font-heading);
     font-size: 22px;
-    color: #111;
+    color: var(--color-black-soft);
     line-height: 1.35;
 }
 
@@ -46,7 +46,7 @@
     font-size: 20px;
     letter-spacing: 2px;
     line-height: 1.15;
-    color: #000;
+    color: var(--color-black);
 }
 
 @media (max-width: 1200px) {

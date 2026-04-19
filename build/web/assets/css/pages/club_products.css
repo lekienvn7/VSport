@@ -1,6 +1,6 @@
 .club-products-page {
-    background: #ffffff;
-    color: #111111;
+    background: var(--color-white);
+    color: var(--color-black);
     min-height: 100vh;
     padding-top: 40px;
 }
@@ -35,7 +35,7 @@
 .club-back-link,
 .club-breadcrumb-home,
 .club-breadcrumb-current {
-    color: #111;
+    color: var(--color-black);
     text-decoration: none;
 }
 
@@ -47,16 +47,10 @@
 /* =========================
    HERO
 ========================= */
-/* =========================
-   HERO
-========================= */
-/* =========================
-   HERO
-========================= */
 .club-hero {
     position: relative;
     padding: 18px 0 0;
-    background: #fff;
+    background: var(--color-white);
 }
 
 .club-title {
@@ -74,7 +68,7 @@
 .club-mini-categories-wrapper {
     position: relative;
     z-index: 3;
-    margin-bottom: -78px; /* kéo card đè xuống dải xám */
+    margin-bottom: -78px;
 }
 
 .club-mini-categories {
@@ -102,11 +96,12 @@
 .club-mini-image {
     width: 100%;
     height: 110px;
-    background: #cfcfcf;
+    background: var(--color-gray-200);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .mini-banner {
     width: 100%;
     max-height: 110px;
@@ -121,7 +116,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     text-align: left;
-    color: #111;
+    color: var(--color-black);
     text-decoration: underline;
     cursor: pointer;
     line-height: 1.35;
@@ -130,15 +125,10 @@
 .club-hero-bottom-strip {
     width: 100%;
     height: 100px;
-    background: #e9ecef; /* test có thể đổi thành red */
+    background: var(--color-gray-100);
     position: relative;
     z-index: 1;
 }
-
-/* =========================
-   FILTER BAR
-========================= */
-
 
 /* =========================
    PRODUCT GRID
@@ -161,8 +151,8 @@
 
 .club-product-card {
     position: relative;
-    width: 300px; 
-    background: #fff;
+    width: 300px;
+    background: var(--color-white);
     transform-origin: center center;
     z-index: 1;
 }
@@ -182,14 +172,14 @@
 }
 
 .club-product-card:hover::after {
-    border-color: #111111;
+    border-color: var(--color-black);
 }
 
 .club-product-image-wrap {
     position: relative;
     width: 100%;
     aspect-ratio: 0.9 / 1;
-    background: #efefef;
+    background: var(--color-gray-100);
     overflow: hidden;
 }
 
@@ -223,8 +213,6 @@
     transform: scale(1.06);
 }
 
-
-
 .club-favorite-btn {
     position: absolute;
     top: 18px;
@@ -233,7 +221,7 @@
     height: 42px;
     border: none;
     background: rgba(255, 255, 255, 0.9);
-    color: #111;
+    color: var(--color-black);
     font-size: 28px;
     border-radius: 50%;
     cursor: pointer;
@@ -251,31 +239,28 @@
     margin-bottom: 10px;
 }
 
-/* 💀 Giá gốc (bị gạch) */
 .club-product-price-old {
     font-family: var(--font-body);
     font-size: 18px;
-    color: #9e9e9e;
+    color: var(--color-gray-400);
     text-decoration: line-through;
     font-weight: 500;
     opacity: 0.9;
 }
 
-/* 🔥 Giá sale (đập vào mắt) */
 .club-product-price-sale {
     font-family: var(--font-body);
-    font-size: 24px; /* to hơn */
+    font-size: 24px;
     font-weight: 800;
-    color: #d6001c; /* đỏ cháy */
+    color: var(--color-red);
     letter-spacing: 0.3px;
 }
 
-/* 🧊 Giá bình thường */
 .club-product-price-normal {
     font-family: var(--font-body);
     font-size: 20px;
     font-weight: 700;
-    color: #111;
+    color: var(--color-black);
 }
 
 .club-product-name {
@@ -291,10 +276,8 @@
     font-family: 'Arial';
     font-size: 15px;
     line-height: 1.6;
-    color: #666;
+    color: var(--color-gray-600);
 }
-
-
 
 /* =========================
    INLINE BANNER
@@ -308,14 +291,14 @@
 .club-inline-banner-inner {
     width: 100%;
     height: 280px;
-    background: #000000;
+    background: var(--color-black);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .club-inline-banner-inner span {
-    color: #ffffff;
+    color: var(--color-white);
     font-family: var(--font-heading);
     font-size: 38px;
     letter-spacing: 3px;

@@ -243,7 +243,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (loginSuccess) {
-        saveTheme("dark");
         closePopup();
     }
 

@@ -16,14 +16,18 @@ public class DangXuatServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
+        HttpSession oldSession = request.getSession(false);
+
+        if (oldSession != null) {
+            oldSession.invalidate();
         }
+
+        HttpSession newSession = request.getSession(true);
+        newSession.setAttribute("logoutSuccess", true);
 
         response.sendRedirect(request.getContextPath() + "/trang_chu");
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

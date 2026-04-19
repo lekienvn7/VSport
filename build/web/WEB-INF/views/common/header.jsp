@@ -85,9 +85,32 @@
     <% } %>
 
 </div>
+    
+    <div class="theme-toggle-wrap">
+    <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Chuyển giao diện">
+        <span class="theme-toggle-track">
+            <i data-lucide="sun" class="theme-icon theme-icon-sun"></i>
+            <i data-lucide="moon" class="theme-icon theme-icon-moon"></i>
+            <span class="theme-toggle-thumb"></span>
+        </span>
+    </button>
+</div>
         </div>
     </div>
                 
+    
+    <script>
+    (function () {
+        try {
+            const theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.documentElement.classList.add("dark-mode");
+            } else {
+                document.documentElement.classList.remove("dark-mode");
+            }
+        } catch (e) {}
+    })();
+    </script>
                 
 </header>
                 

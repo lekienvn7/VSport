@@ -6,6 +6,12 @@
 
     String loginError = (String) session.getAttribute("loginError");
     Boolean openLoginPopup = (Boolean) session.getAttribute("openLoginPopup");
+    Boolean loginSuccess = (Boolean) session.getAttribute("loginSuccess");
+
+    if (loginSuccess != null && loginSuccess) {
+        request.setAttribute("loginSuccess", true);
+        session.removeAttribute("loginSuccess");
+    }
 
     if (loginError != null) {
         request.setAttribute("loginError", loginError);
@@ -62,6 +68,10 @@
         session.removeAttribute("registerSoDienThoai");
     }
 %>
+
+
+
+
 
 <div
     id="loginPopupOverlay"

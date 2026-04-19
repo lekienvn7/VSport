@@ -3,7 +3,7 @@
     inset: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.97);
+    background: var(--overlay-white-strong);
     z-index: 99999;
 
     opacity: 0;
@@ -38,7 +38,7 @@
     font-size: 34px;
     line-height: 1;
     cursor: pointer;
-    color: #111;
+    color: var(--color-black);
 }
 
 .search-box-wrap {
@@ -56,7 +56,7 @@
     margin: 0 0 14px;
     text-transform: uppercase;
     text-align: center;
-    color: #111;
+    color: var(--color-black);
 }
 
 .search-subtitle {
@@ -64,7 +64,7 @@
     margin: 0 0 14px;
     font-size: 18px;
     font-weight: 500;
-    color: #111;
+    color: var(--color-black);
     text-align: left;
 }
 
@@ -73,15 +73,15 @@
     align-items: center;
     gap: 10px;
     width: 100%;
-    background: #fff;
-    border-bottom: 2px solid #111;
+    background: var(--color-white);
+    border-bottom: 2px solid var(--color-black);
     padding: 8px 0 10px;
 }
 
 .search-input-icon {
     width: 22px;
     height: 22px;
-    color: #111;
+    color: var(--color-black);
     flex-shrink: 0;
 }
 
@@ -92,13 +92,13 @@
     background: transparent;
     font-size: 16px;
     font-weight: 400;
-    color: #111;
+    color: var(--color-black);
     padding: 4px 2px;
     font-family: var(--font-body);
 }
 
 .search-input-popup::placeholder {
-    color: #b7bcc3;
+    color: var(--color-gray-400);
 }
 
 .search-clear-btn {
@@ -107,7 +107,7 @@
     font-size: 26px;
     line-height: 1;
     cursor: pointer;
-    color: #111;
+    color: var(--color-black);
     padding: 0;
 }
 
@@ -127,8 +127,8 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    background: #fff;
-    border: 1px solid #ececec;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
     padding: 14px;
     text-decoration: none;
     transition: transform 0.22s ease, box-shadow 0.22s ease;
@@ -168,7 +168,7 @@
     margin-bottom: 8px;
     font-family: var(--font-body);
     font-size: 13px;
-    color: #777;
+    color: var(--color-gray-600);
     text-transform: uppercase;
     letter-spacing: 0.4px;
 }
@@ -180,7 +180,7 @@
     line-height: 1.25;
     font-weight: 900;
     text-transform: uppercase;
-    color: #222;
+    color: var(--color-gray-800);
 }
 
 .search-product-badges {
@@ -200,7 +200,7 @@
 .old-price {
     font-family: var(--font-body);
     font-size: 14px;
-    color: #9b9b9b;
+    color: var(--color-gray-400);
     text-decoration: line-through;
 }
 
@@ -215,7 +215,7 @@
     width: 100%;
     text-align: center;
     padding: 28px 20px;
-    color: #666;
+    color: var(--color-gray-600);
     font-family: var(--font-body);
     font-size: 16px;
 }
@@ -224,7 +224,7 @@
     text-align: center;
     padding: 32px 20px;
     font-size: 16px;
-    color: #555;
+    color: var(--color-gray-600);
 }
 
 body.search-lock {
