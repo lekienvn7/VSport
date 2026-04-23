@@ -1,29 +1,170 @@
-/* =========================
-   HEADER
-========================= */
-.header-shell {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-    background: var(--color-white);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+
+
+/* TRANG HOME: ban đầu nền đen */
+body.home-page .header-shell {
+    background: #000000;
 }
 
+/* Khi scroll qua banner ở home thì đổi sang trắng */
+body.home-page .header-shell.header-light {
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   SITE HEADER
+========================= */
 .site-header {
     position: relative;
     top: 0;
     z-index: 1001;
     width: 100%;
     height: 75px;
-    background: color-mix(in srgb, var(--color-white) 96%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid var(--color-gray-700);
+    transition:
+        height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+/* HOME khi chưa scroll qua banner => border sáng nhẹ trên nền đen */
+body.home-page .header-shell:not(.header-light) .site-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* HOME khi đã qua banner => border về xám nhạt */
+body.home-page .header-shell.header-light .site-header {
     border-bottom: 1px solid var(--color-gray-100);
-    transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                background 0.35s ease,
-                box-shadow 0.35s ease,
-                border-color 0.35s ease;
+}
+
+.header-shell {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: var(--color-white);
+    transition:
+        background-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* =========================
+   TEXT / ICON MẶC ĐỊNH
+   (trang thường: trắng nền -> chữ đen)
+========================= */
+.store-title {
+    color: #0b0b0b;
+}
+
+.subtitle-address,
+.header-icon {
+    color: #0b0b0b;
+}
+
+/* search mặc định */
+.search-box {
+    border-bottom: 1px solid var(--color-gray-400);
+}
+
+.search-box span {
+    color: var(--color-gray-400);
+}
+
+.search-box svg {
+    color: var(--color-gray-600);
+}
+
+.search-box:hover {
+    border-bottom-color: #0b0b0b;
+}
+
+.search-box:hover span,
+.search-box:hover svg {
+    color: #0b0b0b;
+}
+
+/* user đã login vẫn giữ đỏ */
+.header-icon.logged-in {
+    color: #0b0b0b;
+}
+
+
+
+/* =========================
+   HOME + CHƯA QUA BANNER
+   nền đen chữ trắng
+========================= */
+body.home-page .header-shell:not(.header-light) .store-title,
+body.home-page .header-shell:not(.header-light) .subtitle-address,
+body.home-page .header-shell:not(.header-light) .header-icon {
+    color: #ffffff;
+}
+
+body.home-page .header-shell:not(.header-light) .search-box {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+body.home-page .header-shell:not(.header-light) .search-box span,
+body.home-page .header-shell:not(.header-light) .search-box svg {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+body.home-page .header-shell:not(.header-light) .search-box:hover {
+    border-bottom-color: #ffffff;
+}
+
+body.home-page .header-shell:not(.header-light) .search-box:hover span,
+body.home-page .header-shell:not(.header-light) .search-box:hover svg {
+    color: #ffffff;
+}
+
+/* login rồi thì vẫn đỏ như cũ, không ép sang trắng */
+body.home-page .header-shell:not(.header-light) .header-icon.logged-in {
+    color: var(--color-red);
+}
+
+/* =========================
+   HOME + ĐÃ QUA BANNER
+   trở lại nền trắng chữ đen
+========================= */
+body.home-page .header-shell.header-light .store-title {
+    color: #0b0b0b;
+}
+
+body.home-page .header-shell.header-light .subtitle-address,
+body.home-page .header-shell.header-light .header-icon {
+    color: #0b0b0b;
+}
+
+body.home-page .header-shell.header-light .search-box {
+    border-bottom: 1px solid var(--color-gray-400);
+}
+
+body.home-page .header-shell.header-light .search-box span {
+    color: var(--color-gray-400);
+}
+
+body.home-page .header-shell.header-light .search-box svg {
+    color: var(--color-gray-600);
+}
+
+body.home-page .header-shell.header-light .search-box:hover {
+    border-bottom-color: #0b0b0b;
+}
+
+body.home-page .header-shell.header-light .search-box:hover span,
+body.home-page .header-shell.header-light .search-box:hover svg {
+    color: #0b0b0b;
+}
+
+/* login rồi vẫn đỏ */
+body.home-page .header-shell.header-light .header-icon.logged-in {
+    color: var(--color-red);
 }
 
 .header-container {
@@ -484,4 +625,60 @@
     .site-header.shrink .subtitle-address {
         font-size: 11px;
     }
+}
+
+/* =========================
+   PROFILE HEADER DARK MODE
+========================= */
+
+/* nền đen */
+body.profile-page .header-shell {
+    background: #000000;
+}
+
+/* chữ trắng */
+body.profile-page .store-title,
+body.profile-page .subtitle-address,
+body.profile-page .header-icon {
+    color: #ffffff;
+}
+
+/* search */
+body.profile-page .search-box {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+body.profile-page .search-box span,
+body.profile-page .search-box svg {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+body.profile-page .search-box:hover {
+    border-bottom-color: #ffffff;
+}
+
+body.profile-page .search-box:hover span,
+body.profile-page .search-box:hover svg {
+    color: #ffffff;
+}
+
+/* navbar */
+body.profile-page .main-navbar {
+    background: #000000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.profile-page .navbar-link {
+    color: #ffffff;
+}
+
+body.profile-page .navbar-link:hover,
+body.profile-page .navbar-link.active,
+body.profile-page .sale-link {
+    color: var(--color-red);
+}
+
+/* giữ icon login màu đỏ */
+body.profile-page .header-icon.logged-in {
+    color: var(--color-red);
 }

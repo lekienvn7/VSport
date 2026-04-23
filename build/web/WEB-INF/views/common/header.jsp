@@ -80,6 +80,7 @@
 
         <div class="user-dropdown">
             <a href="${pageContext.request.contextPath}/thong_tin_ca_nhan">Thông tin tài khoản</a>
+            <a href="${pageContext.request.contextPath}/don-hang?tab=cho_xac_nhan">Lịch sử đơn hàng</a>
             <a href="${pageContext.request.contextPath}/dang_xuat">Đăng xuất</a>
         </div>
     <% } %>

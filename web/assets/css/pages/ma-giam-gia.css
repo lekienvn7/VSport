@@ -22,7 +22,7 @@
 
 .voucher-topbar-label {
     display: block;
-    color: rgba(255,255,255,.65);
+    color: var(--overlay-white-strong);
     font-family: var(--font-heading);
     font-size: 16px;
     letter-spacing: 1.8px;
@@ -37,7 +37,7 @@
 
 .voucher-topbar p {
     margin: 0;
-    color: rgba(255,255,255,.78);
+    color: var(--overlay-white-strong);
     line-height: 1.6;
 }
 
@@ -67,7 +67,8 @@
 .voucher-alert {
     padding: 14px 16px;
     border-radius: 14px;
-    font-size: 14px;
+    font-family: var(--font-heading);
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 20px;
 }
@@ -179,6 +180,7 @@
     font-family: var(--font-heading);
     font-size: 28px;
     font-weight: 800;
+    height: 80px;
     color: var(--color-red);
     margin-bottom: 14px;
 }
@@ -199,6 +201,9 @@
     font-family: 'Arial';
     line-height: 1.8;
     font-size: 13px;
+    max-height: 100px;
+    
+    overflow-y: auto;
 }
 
 .voucher-btn {
@@ -220,7 +225,7 @@
 }
 
 .voucher-btn.disabled {
-    background: var(--color-gray-700);
+    background: var(--color-gray-400);
     cursor: not-allowed;
 }
 
@@ -323,8 +328,19 @@
     padding: 32px 20px;
     text-align: center;
     color: var(--color-gray-500);
+    font-family: var(--font-body);
     line-height: 1.7;
 }
+.voucher-history-icon.refund {
+    background: rgba(0, 150, 255, 0.1);
+    color: #2196f3;
+}
+
+.history-refund-label {
+    color: #2196f3;
+    font-weight: 600;
+}
+
 
 @media (max-width: 1100px) {
     .voucher-grid {

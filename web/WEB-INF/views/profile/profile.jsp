@@ -133,7 +133,7 @@
         </script>
     
 </head>
-<body>
+<body class="profile-page">
 <jsp:include page="/WEB-INF/views/common/head.jsp" />
 <div class="header-shell">
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -248,68 +248,7 @@
             </a>
         </div>
 
-        <div class="profile-info-box">
-            <div class="profile-info-header">
-                <div class="profile-info-avatar">
-                    <% if (coAvatar) { %>
-                        <img src="<%= request.getContextPath() + "/" + avatar %>" alt="Avatar">
-                    <% } else { %>
-                        <div class="avatar-text" style="background: <%= mauAvatar %>;">
-                            <%= kyTuDau %>
-                        </div>
-                    <% } %>
-                </div>
 
-                <div class="profile-info-meta">
-                    <div class="profile-info-meta-item">
-                        <label>MÃ THÀNH VIÊN</label>
-                        <span><%= maThanhVien %></span>
-                    </div>
-                    <div class="profile-info-meta-item">
-                        <label>MÃ HỒ SƠ</label>
-                        <span><%= maHoSo %></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="profile-form-view">
-                <div class="profile-view-row">
-                    <label>HỌ TÊN</label>
-                    <div><%= ten != null && !ten.isEmpty() ? ten : "Chưa cập nhật" %></div>
-                </div>
-
-                <div class="profile-view-row">
-                    <label>NGÀY SINH</label>
-                    <div><%= ngaySinh != null ? ngaySinh.toString() : "Chưa cập nhật" %></div>
-                </div>
-
-                <div class="profile-view-row">
-                    <label>EMAIL</label>
-                    <div><%= email != null && !email.isEmpty() ? email : "Chưa cập nhật" %></div>
-                </div>
-
-                <div class="profile-view-row">
-                    <label>SỐ ĐIỆN THOẠI</label>
-                    <div><%= soDienThoai != null && !soDienThoai.isEmpty() ? soDienThoai : "Chưa cập nhật" %></div>
-                </div>
-
-                <div class="profile-view-row">
-                    <label>ĐỊA CHỈ</label>
-                    <div><%= diaChi != null && !diaChi.isEmpty() ? diaChi : "Chưa cập nhật" %></div>
-                </div>
-
-                <div class="profile-view-row">
-                    <label>SỐ XU HIỆN CÓ</label>
-                    <div><%= nguoiDungProfile.getSoXu() %></div>
-                </div>
-
-                <div class="profile-view-actions">
-                    <button type="button" class="profile-save-btn" id="openProfileFormBottom">
-                        CHỈNH SỬA THÔNG TIN
-                    </button>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
                 
@@ -326,9 +265,15 @@
     lucide.createIcons();
 </script>
 
+<script>
+            window.contextPath = "${pageContext.request.contextPath}";
+        </script>
 <script src="${pageContext.request.contextPath}/assets/js/components/header.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/common/scroll-reveal.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/pages/profile.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/components/search-popup.js"></script>
+
+
 
 </body>
 </html>

@@ -9,11 +9,20 @@ public class SanPham {
     
     private Integer maDoiBong;
 
+    
+    private int tongTonKho;
+
     private String tenSanPham;
     private String slug;
     private String loaiSanPham;
     private String moTaNgan;
     private String moTaChiTiet;
+    private String danhMucSlug;
+
+   
+
+    
+    private String nhomSanPham;
 
     private double giaNiemYet;
     private double giaKhuyenMai;
@@ -94,6 +103,22 @@ public class SanPham {
     public void setMaDanhMuc(int maDanhMuc) {
         this.maDanhMuc = maDanhMuc;
     }
+    
+    public int getTongTonKho() {
+        return tongTonKho;
+    }
+
+    public void setTongTonKho(int tongTonKho) {
+        this.tongTonKho = tongTonKho;
+    }
+    
+    public String getNhomSanPham() {
+        return nhomSanPham;
+    }
+
+    public void setNhomSanPham(String nhomSanPham) {
+        this.nhomSanPham = nhomSanPham;
+    }
 
     public int getMaThuongHieu() {
         return maThuongHieu;
@@ -117,6 +142,14 @@ public class SanPham {
 
     public void setTenSanPham(String tenSanPham) {
         this.tenSanPham = tenSanPham;
+    }
+    
+     public String getDanhMucSlug() {
+        return danhMucSlug;
+    }
+
+    public void setDanhMucSlug(String danhMucSlug) {
+        this.danhMucSlug = danhMucSlug;
     }
 
     public String getSlug() {

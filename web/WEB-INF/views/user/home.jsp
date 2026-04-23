@@ -41,13 +41,13 @@
         </script>
     </head>
 
-    <body
+    <body class="home-page"
         data-login-success="<%= loginSuccessFlag %>"
         data-logout-success="<%= logoutSuccessFlag %>"
     >
         
         <!-- HEADER -->
-        <div class="header-shell">
+        <div class="header-shell" id="siteHeaderShell">
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
             <%@ include file="/WEB-INF/views/common/navbar.jsp" %>
         </div>
@@ -66,6 +66,7 @@
         <script src="${pageContext.request.contextPath}/assets/js/components/header.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/components/banner.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/components/search-popup.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/js/components/best-seller-section.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/components/login-popup.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/components/favorite-section.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/components/newsletter-bar.js"></script>

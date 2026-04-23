@@ -1,0 +1,151 @@
+.admin-capital-page {
+    flex: 1;
+    min-height: 100vh;
+    background: #f7f7f8;
+    padding: 32px;
+}
+
+.admin-capital-top {
+    margin-bottom: 28px;
+}
+
+.admin-capital-hero {
+    background: linear-gradient(135deg, #0f0f12 0%, #1d1f27 100%);
+    border-radius: 28px;
+    padding: 36px 38px;
+    color: #fff;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.14);
+}
+
+.admin-capital-hero-label {
+    margin: 0 0 10px;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-size: 20px;
+    color: rgba(255,255,255,0.74);
+}
+
+.admin-capital-hero-value {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 60px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.admin-capital-hero-meta {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 28px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+}
+
+.admin-capital-history-section {
+    background: #fff;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.05);
+}
+
+.admin-capital-section-header h2 {
+    margin: 0 0 18px;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: 900;
+    color: #111;
+}
+
+.admin-capital-history-table-wrap {
+    overflow-x: auto;
+}
+
+.admin-capital-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 960px;
+}
+
+.admin-capital-history-table thead th {
+    text-align: left;
+    padding: 16px 14px;
+    background: #fafafa;
+    border-bottom: 1px solid #ececec;
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 800;
+    color: #666;
+}
+
+.admin-capital-history-table tbody td {
+    padding: 16px 14px;
+    border-bottom: 1px solid #f1f1f1;
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: #111;
+    vertical-align: middle;
+}
+
+.capital-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.capital-badge-plus {
+    background: rgba(20, 184, 92, 0.12);
+    font-family: var(--font-body);
+    color: #16a34a;
+}
+
+.capital-badge-minus {
+    background: rgba(225, 29, 72, 0.12);
+    font-family: var(--font-body);
+    color: #e11d48;
+}
+
+.capital-money-plus {
+    color: #16a34a !important;
+    font-family: var(--font-body);
+    font-weight: 800;
+}
+
+.capital-money-minus {
+    color: #e11d48 !important;
+    font-family: var(--font-body);
+    font-weight: 800;
+}
+
+.admin-capital-empty {
+    text-align: center;
+    font-family: var(--font-body);
+    color: #888;
+    padding: 30px 14px !important;
+}
+
+@media (max-width: 900px) {
+    .admin-capital-page {
+        padding: 18px;
+    }
+
+    .admin-capital-hero {
+        padding: 24px;
+    }
+
+    .admin-capital-hero-value {
+        font-size: 40px;
+    }
+
+    .admin-capital-history-section {
+        padding: 16px;
+    }
+}

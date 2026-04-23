@@ -49,6 +49,8 @@
         
         <%@ include file="/WEB-INF/views/pages/football-sections/football-jersey.jsp" %>     
         <%@ include file="/WEB-INF/views/common/football-jersey-banner.jsp" %>
+        
+        <jsp:include page="/WEB-INF/views/pages/components/collections.jsp" />
         <%@ include file="/WEB-INF/views/auth/login-popup.jsp" %>
         
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -57,6 +59,7 @@
         <script src="${pageContext.request.contextPath}/assets/js/components/football-jersey-banner.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/common/scroll-reveal.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/components/login-popup.js"></script>
+        <script src="<%= request.getContextPath() %>/assets/js/components/collections.js"></script>
         
         <script>
     window.contextPath = "${pageContext.request.contextPath}";

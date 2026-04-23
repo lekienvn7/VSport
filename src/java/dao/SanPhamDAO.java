@@ -239,6 +239,81 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
     return list;
 }
 
+    public List<SanPham> getSanPhamByNhomSanPham(String nhomSlug) {
+    List<SanPham> list = new ArrayList<>();
+
+    String sql = """
+        SELECT 
+            sp.*,
+            th.ten_thuong_hieu,
+            db.ten_doi_bong,
+            db.doi_slug,
+            dm.ten_danh_muc,
+            dm.slug AS danh_muc_slug
+        FROM san_pham sp
+        LEFT JOIN thuong_hieu th ON sp.ma_thuong_hieu = th.ma_thuong_hieu
+        LEFT JOIN doi_bong db ON sp.ma_doi_bong = db.ma_doi_bong
+        LEFT JOIN danh_muc dm ON sp.ma_danh_muc = dm.ma_danh_muc
+        WHERE dm.slug = ?
+          AND sp.trang_thai = 'dang_ban'
+        ORDER BY sp.ma_san_pham DESC
+    """;
+
+    try (
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)
+    ) {
+        ps.setString(1, nhomSlug);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            list.add(mapResultSetToSanPham(rs));
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+    
+    public List<SanPham> getByDoiBongAndNhom(String doiBongSlug, String nhomSlug) {
+    List<SanPham> list = new ArrayList<>();
+
+    String sql = """
+        SELECT 
+            sp.*,
+            th.ten_thuong_hieu,
+            db.ten_doi_bong,
+            db.doi_slug,
+            dm.ten_danh_muc,
+            dm.slug AS danh_muc_slug
+        FROM san_pham sp
+        JOIN doi_bong db ON sp.ma_doi_bong = db.ma_doi_bong
+        LEFT JOIN thuong_hieu th ON sp.ma_thuong_hieu = th.ma_thuong_hieu
+        LEFT JOIN danh_muc dm ON sp.ma_danh_muc = dm.ma_danh_muc
+        WHERE db.doi_slug = ?
+          AND dm.slug = ?
+          AND sp.trang_thai = 'dang_ban'
+        ORDER BY sp.ma_san_pham DESC
+    """;
+
+    try (
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)
+    ) {
+        ps.setString(1, doiBongSlug);
+        ps.setString(2, nhomSlug);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            list.add(mapResultSetToSanPham(rs));
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
 
 
     public List<String> getImagesByProductId(int maSanPham) {
@@ -552,6 +627,7 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
     
     public List<SanPham> getSanPhamDaLoc(
         String doiBongSlug,
+        String nhomSanPham,
         String[] loaiList,
         String[] thuongHieuList,
         String[] sizeList,
@@ -563,26 +639,30 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
     List<Object> params = new ArrayList<>();
 
     StringBuilder sql = new StringBuilder("""
-        SELECT DISTINCT
-            sp.*,
-            th.ten_thuong_hieu,
-            db.ten_doi_bong,
-            db.doi_slug,
-            dm.ten_danh_muc
+    SELECT DISTINCT
+        sp.*,
+        th.ten_thuong_hieu,
+        db.ten_doi_bong,
+        db.doi_slug,
+        dm.ten_danh_muc,
+        dm.slug AS danh_muc_slug
         FROM san_pham sp
         LEFT JOIN thuong_hieu th ON sp.ma_thuong_hieu = th.ma_thuong_hieu
         LEFT JOIN doi_bong db ON sp.ma_doi_bong = db.ma_doi_bong
-        LEFT JOIN danh_muc dm ON sp.ma_danh_muc = dm.ma_danh_muc
+        LEFT JOIN danh_muc dm ON sp.nhom_san_pham = dm.ma_danh_muc
         WHERE sp.trang_thai = 'dang_ban'
     """);
 
-    // ===== lọc theo đội =====
     if (doiBongSlug != null && !doiBongSlug.trim().isEmpty()) {
         sql.append(" AND db.doi_slug = ? ");
         params.add(doiBongSlug.trim());
     }
 
-    // ===== lọc loại =====
+    if (nhomSanPham != null && !nhomSanPham.trim().isEmpty()) {
+        sql.append(" AND dm.slug = ? ");
+        params.add(nhomSanPham.trim());
+    }
+
     if (loaiList != null && loaiList.length > 0) {
         sql.append(" AND sp.loai_san_pham IN (");
         appendPlaceholders(sql, loaiList.length);
@@ -590,7 +670,6 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
         for (String s : loaiList) params.add(s);
     }
 
-    // ===== lọc thương hiệu =====
     if (thuongHieuList != null && thuongHieuList.length > 0) {
         sql.append(" AND sp.ma_thuong_hieu IN (");
         appendPlaceholders(sql, thuongHieuList.length);
@@ -598,7 +677,6 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
         for (String s : thuongHieuList) params.add(Integer.parseInt(s));
     }
 
-    // ===== lọc giá =====
     if (giaMin != null && !giaMin.trim().isEmpty()) {
         sql.append(" AND sp.gia_san_pham >= ? ");
         params.add(Double.parseDouble(giaMin));
@@ -609,7 +687,6 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
         params.add(Double.parseDouble(giaMax));
     }
 
-    // ===== lọc size (QUAN TRỌNG) =====
     if (sizeList != null && sizeList.length > 0) {
         sql.append("""
             AND EXISTS (
@@ -624,7 +701,6 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
         for (String s : sizeList) params.add(Integer.parseInt(s));
     }
 
-    // ===== sort =====
     if ("price_asc".equals(sort)) {
         sql.append(" ORDER BY sp.gia_san_pham ASC ");
     } else if ("price_desc".equals(sort)) {
@@ -653,6 +729,255 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
     }
 
     return list;
+}
+    
+    public List<SanPham> getSanPhamBanChay(int limit) {
+    List<SanPham> list = new ArrayList<>();
+
+    String sql = """
+        SELECT 
+            ma_san_pham,
+            ten_san_pham,
+            slug,
+            anh_chinh,
+            gia_niem_yet,
+            gia_khuyen_mai,
+            gia_san_pham,
+            mo_ta_ngan,
+            da_ban
+        FROM san_pham
+        WHERE da_ban > 0
+        ORDER BY da_ban DESC, ngay_tao DESC
+        LIMIT ?
+    """;
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, limit);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                SanPham item = new SanPham();
+                item.setMaSanPham(rs.getInt("ma_san_pham"));
+                item.setTenSanPham(rs.getString("ten_san_pham"));
+                item.setSlug(rs.getString("slug"));
+                item.setAnhChinh(rs.getString("anh_chinh"));
+                item.setGiaNiemYet(rs.getDouble("gia_niem_yet"));
+                item.setGiaKhuyenMai(rs.getDouble("gia_khuyen_mai"));
+                item.setGiaSanPham(rs.getDouble("gia_san_pham"));
+                item.setMoTaNgan(rs.getString("mo_ta_ngan"));
+                item.setDaBan(rs.getInt("da_ban"));
+                list.add(item);
+            }
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+    
+    public List<SanPham> getAdminProductList(
+        String keyword,
+        String createdFrom,
+        String createdTo,
+        String trangThai,
+        String maDanhMuc,
+        String maThuongHieu,
+        String maDoiBong,
+        int offset,
+        int limit
+) {
+    List<SanPham> list = new ArrayList<>();
+    List<Object> params = new ArrayList<>();
+
+    StringBuilder sql = new StringBuilder("""
+        SELECT
+            sp.*,
+            th.ten_thuong_hieu,
+            db.ten_doi_bong,
+            db.doi_slug,
+            dm.ten_danh_muc,
+            dm.slug AS danh_muc_slug,
+            COALESCE((
+                SELECT SUM(bt.so_luong_ton)
+                FROM bien_the_san_pham bt
+                WHERE bt.ma_san_pham = sp.ma_san_pham
+            ), 0) AS tong_ton_kho
+        FROM san_pham sp
+        LEFT JOIN thuong_hieu th ON sp.ma_thuong_hieu = th.ma_thuong_hieu
+        LEFT JOIN doi_bong db ON sp.ma_doi_bong = db.ma_doi_bong
+        LEFT JOIN danh_muc dm ON sp.ma_danh_muc = dm.ma_danh_muc
+        WHERE 1=1
+    """);
+
+    if (keyword != null && !keyword.isEmpty()) {
+        sql.append("""
+            AND (
+                sp.ten_san_pham LIKE ?
+                OR sp.slug LIKE ?
+                OR dm.ten_danh_muc LIKE ?
+                OR th.ten_thuong_hieu LIKE ?
+                OR db.ten_doi_bong LIKE ?
+            )
+        """);
+        String kw = "%" + keyword + "%";
+        params.add(kw);
+        params.add(kw);
+        params.add(kw);
+        params.add(kw);
+        params.add(kw);
+    }
+
+    if (createdFrom != null && !createdFrom.isEmpty()) {
+        sql.append(" AND DATE(sp.ngay_tao) >= ? ");
+        params.add(createdFrom);
+    }
+
+    if (createdTo != null && !createdTo.isEmpty()) {
+        sql.append(" AND DATE(sp.ngay_tao) <= ? ");
+        params.add(createdTo);
+    }
+
+    if (trangThai != null && !trangThai.isEmpty()) {
+        sql.append(" AND sp.trang_thai = ? ");
+        params.add(trangThai);
+    }
+
+    if (maDanhMuc != null && !maDanhMuc.isEmpty()) {
+        sql.append(" AND sp.ma_danh_muc = ? ");
+        params.add(Integer.parseInt(maDanhMuc));
+    }
+
+    if (maThuongHieu != null && !maThuongHieu.isEmpty()) {
+        sql.append(" AND sp.ma_thuong_hieu = ? ");
+        params.add(Integer.parseInt(maThuongHieu));
+    }
+
+    if (maDoiBong != null && !maDoiBong.isEmpty()) {
+        sql.append(" AND sp.ma_doi_bong = ? ");
+        params.add(Integer.parseInt(maDoiBong));
+    }
+
+    sql.append(" ORDER BY sp.ngay_tao DESC, sp.ma_san_pham DESC ");
+    sql.append(" LIMIT ?, ? ");
+    params.add(offset);
+    params.add(limit);
+
+    try (
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql.toString())
+    ) {
+        setParams(ps, params);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            SanPham sp = mapResultSetToSanPham(rs);
+
+            try {
+                sp.setTongTonKho(rs.getInt("tong_ton_kho"));
+            } catch (Exception ignored) {}
+
+            try {
+                sp.setDanhMucSlug(rs.getString("danh_muc_slug"));
+            } catch (Exception ignored) {}
+
+            list.add(sp);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+    
+    public int countAdminProductList(
+        String keyword,
+        String createdFrom,
+        String createdTo,
+        String trangThai,
+        String maDanhMuc,
+        String maThuongHieu,
+        String maDoiBong
+) {
+    List<Object> params = new ArrayList<>();
+
+    StringBuilder sql = new StringBuilder("""
+        SELECT COUNT(DISTINCT sp.ma_san_pham) AS total
+        FROM san_pham sp
+        LEFT JOIN thuong_hieu th ON sp.ma_thuong_hieu = th.ma_thuong_hieu
+        LEFT JOIN doi_bong db ON sp.ma_doi_bong = db.ma_doi_bong
+        LEFT JOIN danh_muc dm ON sp.ma_danh_muc = dm.ma_danh_muc
+        WHERE 1=1
+    """);
+
+    if (keyword != null && !keyword.isEmpty()) {
+        sql.append("""
+            AND (
+                sp.ten_san_pham LIKE ?
+                OR sp.slug LIKE ?
+                OR dm.ten_danh_muc LIKE ?
+                OR th.ten_thuong_hieu LIKE ?
+                OR db.ten_doi_bong LIKE ?
+            )
+        """);
+        String kw = "%" + keyword + "%";
+        params.add(kw);
+        params.add(kw);
+        params.add(kw);
+        params.add(kw);
+        params.add(kw);
+    }
+
+    if (createdFrom != null && !createdFrom.isEmpty()) {
+        sql.append(" AND DATE(sp.ngay_tao) >= ? ");
+        params.add(createdFrom);
+    }
+
+    if (createdTo != null && !createdTo.isEmpty()) {
+        sql.append(" AND DATE(sp.ngay_tao) <= ? ");
+        params.add(createdTo);
+    }
+
+    if (trangThai != null && !trangThai.isEmpty()) {
+        sql.append(" AND sp.trang_thai = ? ");
+        params.add(trangThai);
+    }
+
+    if (maDanhMuc != null && !maDanhMuc.isEmpty()) {
+        sql.append(" AND sp.ma_danh_muc = ? ");
+        params.add(Integer.parseInt(maDanhMuc));
+    }
+
+    if (maThuongHieu != null && !maThuongHieu.isEmpty()) {
+        sql.append(" AND sp.ma_thuong_hieu = ? ");
+        params.add(Integer.parseInt(maThuongHieu));
+    }
+
+    if (maDoiBong != null && !maDoiBong.isEmpty()) {
+        sql.append(" AND sp.ma_doi_bong = ? ");
+        params.add(Integer.parseInt(maDoiBong));
+    }
+
+    try (
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql.toString())
+    ) {
+        setParams(ps, params);
+
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("total");
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return 0;
 }
     
 }

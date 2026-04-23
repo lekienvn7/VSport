@@ -78,8 +78,14 @@ public class SanPhamServlet extends HttpServlet {
             }
         }
 
+        String nhomSanPham = request.getParameter("nhom");
+        if (nhomSanPham != null) {
+            nhomSanPham = nhomSanPham.trim();
+        }
+
         List<SanPham> danhSachSanPham = sanPhamDAO.getSanPhamDaLoc(
                 doiBongSlug,
+                nhomSanPham,
                 loaiList,
                 thuongHieuList,
                 sizeList,
@@ -98,7 +104,7 @@ public class SanPhamServlet extends HttpServlet {
         );
         
         HttpSession session = request.getSession(false);
-List<YeuThich> dsYeuThich = new ArrayList<>();
+        List<YeuThich> dsYeuThich = new ArrayList<>();
 
 if (session != null && session.getAttribute("nguoiDung") != null) {
     NguoiDung nguoiDung = (NguoiDung) session.getAttribute("nguoiDung");

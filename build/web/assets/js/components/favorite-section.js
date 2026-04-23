@@ -97,3 +97,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateSlider();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const favoriteSection = document.getElementById("favoriteSection");
+    if (!favoriteSection) return;
+
+    favoriteSection.classList.add("is-hidden");
+
+    const observer = new IntersectionObserver(
+        function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    favoriteSection.classList.add("is-visible");
+                    favoriteSection.classList.remove("is-hidden");
+                } else {
+                    favoriteSection.classList.remove("is-visible");
+                    favoriteSection.classList.add("is-hidden");
+                }
+            });
+        },
+        {
+            threshold: 0.16,
+            root: null,
+            rootMargin: "0px 0px -8% 0px"
+        }
+    );
+
+    observer.observe(favoriteSection);
+});

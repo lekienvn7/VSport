@@ -18,7 +18,7 @@
                     </a>
 
                     <c:forEach var="doi" items="${danhSachDoiBong}">
-                        <a href="${pageContext.request.contextPath}/bong_da/${doi.doiSlug}"
+                        <a href="${pageContext.request.contextPath}/bong_da/${doi.doiSlug}?nhom=ao-dau-bong-da"
                            class="club-filter-link ${doiBongHienTai != null && doi.doiSlug eq doiBongHienTai.doiSlug ? 'active' : ''}">
                             ${doi.tenDoiBong}
                         </a>

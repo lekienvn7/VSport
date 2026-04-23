@@ -59,3 +59,53 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleTheme();
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const header = document.getElementById("siteHeader");
+    const headerShell = document.getElementById("siteHeaderShell");
+    const isHome = document.body.classList.contains("home-page");
+
+    if (!header || !headerShell) return;
+
+    let ticking = false;
+
+    // 👇 CHỈNH Ở ĐÂY
+    const bannerHeight = 790; // px - m tự set theo banner
+
+    function updateHeader() {
+        const scrollY = window.scrollY;
+
+        // shrink vẫn giữ
+        if (scrollY > 40) {
+            header.classList.add("shrink");
+        } else {
+            header.classList.remove("shrink");
+        }
+
+        // chỉ trang home mới đổi màu
+        if (isHome) {
+            const triggerPoint = bannerHeight - headerShell.offsetHeight;
+
+            if (scrollY >= triggerPoint) {
+                headerShell.classList.add("header-light");
+            } else {
+                headerShell.classList.remove("header-light");
+            }
+        } else {
+            // trang khác luôn trắng
+            headerShell.classList.remove("header-light");
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", function () {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    });
+
+    window.addEventListener("resize", updateHeader);
+    updateHeader();
+});

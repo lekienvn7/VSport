@@ -1,0 +1,97 @@
+.admin-delete-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease;
+    z-index: 9998;
+}
+
+.admin-delete-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(460px, calc(100vw - 24px));
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+    transform: translate(-50%, -50%) scale(0.96);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease;
+    z-index: 9999;
+}
+
+.admin-delete-popup.show,
+.admin-delete-popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.admin-delete-popup.show {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.admin-delete-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 22px;
+    border-bottom: 1px solid #ececec;
+}
+
+.admin-delete-popup-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: #111;
+}
+
+.admin-delete-popup-close {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: #f4f4f4;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.admin-delete-popup-body {
+    padding: 22px;
+}
+
+.admin-delete-popup-text,
+.admin-delete-popup-note {
+    margin: 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.admin-delete-popup-name {
+    margin: 10px 0 12px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #d61f45;
+    line-height: 1.5;
+}
+
+.admin-delete-popup-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 0 22px 22px;
+}
+
+.admin-btn-delete {
+    border: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    background: #d61f45;
+    color: #fff;
+}

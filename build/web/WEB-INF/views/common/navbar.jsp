@@ -19,11 +19,10 @@ String lastPart = path.substring(path.lastIndexOf("/") + 1);
                         <div class="mega-column">
                             <a href="${pageContext.request.contextPath}/bong_da#football_jersey_section" class="mega-title">Bộ kit tuyển quốc gia</a>
                             <ul class="mega-submenu">
-                                <li><a href="#">Bộ kit đội tuyển Việt Nam</a></li>
-                                <li><a href="#">Bộ kit đội tuyển Pháp</a></li>
-                                <li><a href="#">Bộ kit đội tuyển Đức</a></li>
-                                <li><a href="#">Bộ kit đội tuyển Tây Ban Nha</a></li>
-                                <li><a href="#">Bộ kit đội tuyển Nhật Bản</a></li>
+                                <li><a href="${pageContext.request.contextPath}/bong_da/viet-nam">Bộ kit đội tuyển Việt Nam</a></li>
+                                <li><a href="${pageContext.request.contextPath}/bong_da/phap">Bộ kit đội tuyển Pháp</a></li>
+                                <li><a href="${pageContext.request.contextPath}/bong_da/duc">Bộ kit đội tuyển Đức</a></li>
+                                <li><a href="${pageContext.request.contextPath}/bong_da/tay-ban-nha">Bộ kit đội tuyển Tây Ban Nha</a></li>
                                 <li><a href="${pageContext.request.contextPath}/bong_da#football_jersey_section">→ Xem tất cả</a></li>
                             </ul>
                         </div>
@@ -32,7 +31,6 @@ String lastPart = path.substring(path.lastIndexOf("/") + 1);
                             <a href="${pageContext.request.contextPath}/bong_da#football_jersey_section" class="mega-title">Bộ kit câu lạc bộ </a>
                             <ul class="mega-submenu">
                                 <li><a href="${pageContext.request.contextPath}/bong_da/real-madrid">Bộ kit CLB Real Madrid</a></li>
-                                <li><a href="${pageContext.request.contextPath}/bong_da/juventus">Bộ kit CLB Juventus</a></li>
                                 <li><a href="${pageContext.request.contextPath}/bong_da/liverpool">Bộ kit CLB Liverpool</a></li>
                                 <li><a href="${pageContext.request.contextPath}/bong_da/arsenal">Bộ kit CLB Arsenal</a></li>
                                 <li><a href="${pageContext.request.contextPath}/bong_da/manchester-united">Bộ kit CLB Manchester United</a></li>

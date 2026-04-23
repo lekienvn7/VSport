@@ -91,6 +91,39 @@
 
 .cart-list {
     border-top: 1px solid var(--color-gray-200);
+
+    max-height: 750px;      /* chỉnh theo layout mày */
+    overflow-y: auto;
+    padding-right: 6px;     /* tránh đè content khi có scroll */
+}
+
+/* =========================
+   SCROLLBAR CUSTOM
+========================= */
+
+/* Chrome, Edge, Brave */
+.cart-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.cart-list::-webkit-scrollbar-thumb {
+    background: var(--color-gray-400);
+    border-radius: 999px;
+    transition: background 0.2s ease;
+}
+
+.cart-list::-webkit-scrollbar-thumb:hover {
+    background: var(--color-red);
+}
+
+/* Firefox */
+.cart-list {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gray-400) transparent;
 }
 
 .cart-item {

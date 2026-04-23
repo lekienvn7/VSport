@@ -334,6 +334,26 @@ public class GioHangDAO {
     return false;
 }
     
+    public boolean xoaToanBoGioHang(int maNguoiDung) {
+    String sql = """
+        DELETE FROM gio_hang
+        WHERE ma_nguoi_dung = ?
+    """;
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, maNguoiDung);
+        ps.executeUpdate();
+        return true;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return false;
+}
+    
     
 }
 

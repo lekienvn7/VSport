@@ -4,6 +4,7 @@ import model.KhoXu;
 import model.LichSuXu;
 
 import utils.DBConnection;
+import java.sql.PreparedStatement;
 
 import java.sql.*;
 import java.time.LocalDate;

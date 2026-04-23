@@ -217,9 +217,13 @@
                         <c:forEach var="item" items="${dsLichSuMa}">
                             <div class="voucher-history-item">
                                 <div class="voucher-history-left">
-                                    <div class="voucher-history-icon ${item.loaiLichSu == 'nhan_ma' ? 'receive' : 'use'}">
+                                    <div class="voucher-history-icon
+                                        ${item.loaiLichSu == 'nhan_ma' ? 'receive' :
+                                          (item.loaiLichSu == 'hoan_ma' ? 'refund' : 'use')}">
+
                                         <c:choose>
                                             <c:when test="${item.loaiLichSu == 'nhan_ma'}">+</c:when>
+                                            <c:when test="${item.loaiLichSu == 'hoan_ma'}">↺</c:when>
                                             <c:otherwise>✓</c:otherwise>
                                         </c:choose>
                                     </div>
@@ -229,6 +233,9 @@
                                             <c:choose>
                                                 <c:when test="${item.loaiLichSu == 'nhan_ma'}">
                                                     Nhận mã ${item.maCode}
+                                                </c:when>
+                                                <c:when test="${item.loaiLichSu == 'hoan_ma'}">
+                                                    Hoàn mã ${item.maCode}
                                                 </c:when>
                                                 <c:otherwise>
                                                     Dùng mã ${item.maCode}
@@ -251,6 +258,11 @@
                                         <c:when test="${item.loaiLichSu == 'nhan_ma'}">
                                             <span class="history-xu-minus">-${item.thayDoiXu} xu</span>
                                         </c:when>
+
+                                        <c:when test="${item.loaiLichSu == 'hoan_ma'}">
+                                            <span class="history-refund-label">Đã hoàn</span>
+                                        </c:when>
+
                                         <c:otherwise>
                                             <span class="history-used-label">Đã dùng</span>
                                         </c:otherwise>
@@ -276,8 +288,13 @@
         <script>
           lucide.createIcons();
         </script>
-        <script src="${pageContext.request.contextPath}/assets/js/common/scroll-reveal.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/components/header.js"></script>
+        <script>
+            window.contextPath = "${pageContext.request.contextPath}";
+        </script>
+<script src="${pageContext.request.contextPath}/assets/js/common/scroll-reveal.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/components/header.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/components/search-popup.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/components/login-popup.js"></script>
 
 </body>
 </html>

@@ -68,7 +68,7 @@
     font-size: 54px;
     letter-spacing: 2px;
     margin-bottom: 8px;
-    color: var(--color-white);
+    color: #ffffff;
 }
 
 .profile-hero-title {
@@ -76,7 +76,7 @@
     font-size: 100px;
     line-height: 0.88;
     letter-spacing: 2px;
-    color: var(--color-white);
+    color: #ffffff;
     text-transform: uppercase;
 }
 
@@ -106,7 +106,7 @@
 
 .profile-welcome-block h2 {
     font-family: var(--font-body);
-    color: var(--color-white);
+    color: #ffffff;
     font-size: 45px;
     line-height: 0.95;
     margin-bottom: 18px;
@@ -159,7 +159,7 @@
     justify-content: center;
     font-family: var(--font-body);
     font-size: 64px;
-    color: var(--color-white);
+    color: #ffffff;
     text-transform: uppercase;
 }
 
@@ -217,14 +217,14 @@
 .profile-progress-title {
     font-family: var(--font-heading);
     font-size: 35px;
-    color: var(--color-white);
+    color: #ffffff;
 }
 
 .profile-progress-desc {
     margin-top: 4px;
     font-family: var(--font-body);
     font-size: 20px;
-    color: var(--color-white);
+    color: #ffffff;
 }
 
 .profile-complete-btn {
@@ -282,7 +282,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
     margin-top: 24px;
-    margin-bottom: 42px;
 }
 
 .profile-mini-card {

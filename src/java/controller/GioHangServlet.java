@@ -56,6 +56,8 @@ public class GioHangServlet extends HttpServlet {
             int maNguoiDung = nguoiDung.getMaNguoiDung();
 
             GioHangDAO gioHangDAO = new GioHangDAO();
+            
+            
 
             boolean success = gioHangDAO.themHoacCongDon(maNguoiDung, maSanPham, maBienThe, soLuong);
 

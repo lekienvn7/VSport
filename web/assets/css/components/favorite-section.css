@@ -309,3 +309,78 @@
         height: 20px;
     }
 }
+
+/* =========================
+   FAVORITE REVEAL (RIGHT → LEFT)
+========================= */
+
+.home-favorite-reveal-section {
+    overflow: hidden;
+}
+
+/* TITLE */
+.home-favorite-reveal-title {
+    opacity: 0;
+    transform: translateX(28px);
+    filter: blur(4px);
+    transition:
+        opacity 0.22s ease-out,
+        transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.30s ease-out;
+    will-change: opacity, transform, filter;
+}
+
+/* WRAPPER - chạy từ phải qua trái */
+.home-favorite-reveal-wrapper {
+    opacity: 0;
+    transform: translateX(72px);
+    filter: blur(6px);
+    transition:
+        opacity 0.20s ease-out,
+        transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.32s ease-out;
+    will-change: opacity, transform, filter;
+}
+
+/* HIỆN */
+.home-favorite-reveal-section.is-visible .home-favorite-reveal-title {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+}
+
+.home-favorite-reveal-section.is-visible .home-favorite-reveal-wrapper {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+}
+
+/* ẨN */
+.home-favorite-reveal-section.is-hidden .home-favorite-reveal-title {
+    opacity: 0;
+    transform: translateX(28px);
+    filter: blur(4px);
+}
+
+.home-favorite-reveal-section.is-hidden .home-favorite-reveal-wrapper {
+    opacity: 0;
+    transform: translateX(72px);
+    filter: blur(6px);
+}
+
+/* mượt card */
+.home-favorite-card {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* giảm animation */
+@media (prefers-reduced-motion: reduce) {
+    .home-favorite-reveal-title,
+    .home-favorite-reveal-wrapper {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+    }
+}

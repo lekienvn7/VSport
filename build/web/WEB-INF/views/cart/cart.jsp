@@ -149,10 +149,12 @@
                             <span>THÊM MÃ GIẢM GIÁ</span>
                         </button>
                             
-                        <a href="#" class="cart-checkout-btn">
+                        <button type="button" class="cart-checkout-btn" id="openCheckoutPopupBtn">
                             <span>THANH TOÁN</span>
                             <span class="cart-btn-arrow">→</span>
-                        </a>
+                        </button>
+                            
+                            <div id="checkoutPopupRoot"></div>
                     </aside>
                 </section>
             <% } %>
@@ -172,5 +174,6 @@
     
     <script src="${pageContext.request.contextPath}/assets/js/components/header.js"></script>
     <script src="${pageContext.request.contextPath}/assets/js/components/search-popup.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/components/checkout-popup.js"></script>
 </body>
 </html>

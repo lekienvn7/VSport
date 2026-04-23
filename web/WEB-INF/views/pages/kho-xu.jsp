@@ -157,8 +157,13 @@
 <script>
     lucide.createIcons();
 </script>
+<script>
+            window.contextPath = "${pageContext.request.contextPath}";
+        </script>
 <script src="${pageContext.request.contextPath}/assets/js/common/scroll-reveal.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/components/header.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/components/search-popup.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/components/login-popup.js"></script>
 
 </body>
 </html>

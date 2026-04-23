@@ -65,6 +65,7 @@ public class DangNhapServlet extends HttpServlet {
             return;
         }
 
+        // ✅ Check password trước
         boolean dungMatKhau = PasswordUtil.checkPassword(matKhau, nguoiDung.getMatKhau());
 
         if (!dungMatKhau) {
@@ -74,12 +75,21 @@ public class DangNhapServlet extends HttpServlet {
             return;
         }
 
+        // ✅ Login thành công
         session.removeAttribute("loginError");
         session.removeAttribute("openLoginPopup");
 
         session.setAttribute("nguoiDung", nguoiDung);
         session.setAttribute("loginSuccess", true);
         session.setMaxInactiveInterval(1800);
+
+        // ✅ Xử lý redirect theo role
+        String vaiTro = nguoiDung.getVaiTro() != null ? nguoiDung.getVaiTro().trim() : "";
+        
+        if ("quan_tri".equalsIgnoreCase(vaiTro)) {
+            response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+            return;
+        }
 
         if (!redirect.isEmpty()) {
             if (!redirect.startsWith("/")) {
@@ -94,6 +104,11 @@ public class DangNhapServlet extends HttpServlet {
             return;
         }
 
+        // 👇 Nếu không có redirect custom thì theo role
+        
         response.sendRedirect(request.getContextPath() + "/trang_chu");
+        
+        return;
     }
+    
 }

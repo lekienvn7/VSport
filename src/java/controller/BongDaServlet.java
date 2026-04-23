@@ -1,5 +1,6 @@
 package controller;
 
+import dao.BoSuuTapDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,9 @@ public class BongDaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        BoSuuTapDAO boSuuTapDAO = new BoSuuTapDAO();
+        
+        request.setAttribute("dsBoSuuTap", boSuuTapDAO.getAllBoSuuTapHienThi());
         request.setAttribute("activePage", "bong_da");
         request.getRequestDispatcher("WEB-INF/views/pages/football.jsp")
        .forward(request, response);

@@ -39,7 +39,10 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/shop-category.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/newsletter-bar.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/components/collections.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/kho-xu.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/ma-giam-gia.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/checkout-popup.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/pages/order-history.css">
