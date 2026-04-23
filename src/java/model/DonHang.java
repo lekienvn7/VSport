@@ -22,6 +22,10 @@ public class DonHang {
     
     private Timestamp ngayGiaoDuKien;
     private Timestamp ngayDaGiao;
+
+    
+    private Timestamp ngayXacNhan;
+    private Timestamp ngayBatDauGiao;
     private Integer  maGiamGia;
     private String ghiChu;
     private Timestamp ngayDat;
@@ -104,6 +108,22 @@ public class DonHang {
 
     public void setPhiVanChuyen(double phiVanChuyen) {
         this.phiVanChuyen = phiVanChuyen;
+    }
+    
+    public Timestamp getNgayXacNhan() {
+        return ngayXacNhan;
+    }
+
+    public void setNgayXacNhan(Timestamp ngayXacNhan) {
+        this.ngayXacNhan = ngayXacNhan;
+    }
+
+    public Timestamp getNgayBatDauGiao() {
+        return ngayBatDauGiao;
+    }
+
+    public void setNgayBatDauGiao(Timestamp ngayBatDauGiao) {
+        this.ngayBatDauGiao = ngayBatDauGiao;
     }
 
     public double getGiamGia() {

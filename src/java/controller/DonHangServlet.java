@@ -22,63 +22,69 @@ public class DonHangServlet extends HttpServlet {
     private final DonHangDAO donHangDAO = new DonHangDAO();
 
     @Override
-protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    // 1. Auto update đơn đã giao
-    int soDonDaGiao = donHangDAO.capNhatDonHangDaGiaoVaCongDaBan();
+        // 1. AUTO FLOW MỚI
+        int soDonAutoChoLayHang = donHangDAO.tuDongChuyenChoLayHangSau2Phut();
+        int soDonDangGiao = donHangDAO.tuDongChuyenDangGiaoSau2PhutLayHang();
+        int soDonDaGiao = donHangDAO.capNhatDonHangDaGiaoVaCongDaBan();
+        int soDonDaThanhToan = donHangDAO.capNhatThanhToanSauKhiHoanThanh();
 
-    // 2. Auto thanh toán + cộng vốn + ghi doanh thu
-    int soDonDaThanhToan = donHangDAO.capNhatThanhToanSauKhiHoanThanh();
+        System.out.println("Auto -> cho_lay_hang: " + soDonAutoChoLayHang);
+        System.out.println("Auto -> dang_giao: " + soDonDangGiao);
+        System.out.println("Auto -> da_giao: " + soDonDaGiao);
+        System.out.println("Auto -> da_thanh_toan: " + soDonDaThanhToan);
 
-    // DEBUG (có thể xóa sau)
-    System.out.println("Đơn đã giao: " + soDonDaGiao);
-    System.out.println("Đơn đã thanh toán + cộng vốn: " + soDonDaThanhToan);
+        // 2. Check session user
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("nguoiDung") == null) {
+            response.sendRedirect(request.getContextPath() + "/trang_chu");
+            return;
+        }
 
-    // 3. Session check
-    HttpSession session = request.getSession(false);
-    if (session == null || session.getAttribute("nguoiDung") == null) {
-        response.sendRedirect(request.getContextPath() + "/trang_chu");
-        return;
+        NguoiDung nguoiDung = (NguoiDung) session.getAttribute("nguoiDung");
+        int maNguoiDung = nguoiDung.getMaNguoiDung();
+
+        // 3. Load đơn hàng của user
+        List<DonHang> dsDonHang = donHangDAO.getDanhSachDonHangTheoNguoiDung(maNguoiDung);
+        Map<Integer, List<ChiTietDonHang>> mapChiTiet = new HashMap<>();
+
+        for (DonHang donHang : dsDonHang) {
+            List<ChiTietDonHang> dsChiTiet =
+                    donHangDAO.getChiTietDonHangTheoMaDonHang(donHang.getMaDonHang());
+            mapChiTiet.put(donHang.getMaDonHang(), dsChiTiet);
+        }
+
+        request.setAttribute("dsDonHang", dsDonHang);
+        request.setAttribute("mapChiTiet", mapChiTiet);
+        request.setAttribute("nguoiDung", nguoiDung);
+
+        // 4. Mapping trạng thái đơn
+        Map<String, String> mapTrangThai = new HashMap<>();
+        mapTrangThai.put("cho_xac_nhan", "Chờ xác nhận");
+        mapTrangThai.put("cho_lay_hang", "Chờ lấy hàng");
+        mapTrangThai.put("dang_giao", "Đang giao");
+        mapTrangThai.put("da_giao", "Đã giao");
+        mapTrangThai.put("da_huy", "Đã hủy");
+        mapTrangThai.put("tra_hang", "Trả hàng / Hoàn tiền");
+
+        request.setAttribute("mapTrangThai", mapTrangThai);
+
+        // 5. Mapping thanh toán
+        Map<String, String> mapThanhToan = new HashMap<>();
+        mapThanhToan.put("chua_thanh_toan", "Chưa thanh toán");
+        mapThanhToan.put("da_thanh_toan", "Đã thanh toán");
+
+        request.setAttribute("mapThanhToan", mapThanhToan);
+
+        // 6. Optional debug
+        request.setAttribute("soDonAutoChoLayHang", soDonAutoChoLayHang);
+        request.setAttribute("soDonDangGiao", soDonDangGiao);
+        request.setAttribute("soDonDaGiao", soDonDaGiao);
+        request.setAttribute("soDonDaThanhToan", soDonDaThanhToan);
+
+        request.getRequestDispatcher("/WEB-INF/views/pages/order-history.jsp")
+                .forward(request, response);
     }
-
-    NguoiDung nguoiDung = (NguoiDung) session.getAttribute("nguoiDung");
-    int maNguoiDung = nguoiDung.getMaNguoiDung();
-
-    // 4. Load đơn hàng
-    List<DonHang> dsDonHang = donHangDAO.getDanhSachDonHangTheoNguoiDung(maNguoiDung);
-    Map<Integer, List<ChiTietDonHang>> mapChiTiet = new HashMap<>();
-
-    for (DonHang donHang : dsDonHang) {
-        List<ChiTietDonHang> dsChiTiet =
-                donHangDAO.getChiTietDonHangTheoMaDonHang(donHang.getMaDonHang());
-        mapChiTiet.put(donHang.getMaDonHang(), dsChiTiet);
-    }
-
-    request.setAttribute("dsDonHang", dsDonHang);
-    request.setAttribute("mapChiTiet", mapChiTiet);
-    request.setAttribute("nguoiDung", nguoiDung);
-
-    // 5. Mapping trạng thái
-    Map<String, String> mapTrangThai = new HashMap<>();
-    mapTrangThai.put("cho_xac_nhan", "Chờ xác nhận");
-    mapTrangThai.put("da_xac_nhan", "Đang giao");
-    mapTrangThai.put("da_giao", "Hoàn thành");
-    mapTrangThai.put("da_huy", "Đã hủy");
-    mapTrangThai.put("tra_hang", "Trả hàng / Hoàn tiền");
-
-    request.setAttribute("mapTrangThai", mapTrangThai);
-
-    Map<String, String> mapThanhToan = new HashMap<>();
-    mapThanhToan.put("chua_thanh_toan", "Chưa thanh toán");
-    mapThanhToan.put("da_thanh_toan", "Đã thanh toán");
-
-    request.setAttribute("mapThanhToan", mapThanhToan);
-
-    // 👇 OPTIONAL: show số tiền vừa cộng (UI debug)
-    request.setAttribute("soDonDaThanhToan", soDonDaThanhToan);
-
-    request.getRequestDispatcher("/WEB-INF/views/pages/order-history.jsp")
-            .forward(request, response);
-}
 }

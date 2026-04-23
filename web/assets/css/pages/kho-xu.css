@@ -129,9 +129,8 @@
 }
 
 .xu-day-box.claimed {
-    background: linear-gradient(135deg, #111, #242424);
+    background: var(--color-gold);
     color: #fff;
-    border-color: #111;
 }
 
 .xu-day-plus {

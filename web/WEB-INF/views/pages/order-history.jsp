@@ -62,10 +62,14 @@
             </a>
             <a href="${pageContext.request.contextPath}/don-hang?tab=cho_xac_nhan"
                class="order-tab ${activeTab == 'cho_xac_nhan' ? 'active' : ''}">
-                Chờ giao hàng
+                Chờ xác nhận
             </a>
-            <a href="${pageContext.request.contextPath}/don-hang?tab=da_xac_nhan"
-               class="order-tab ${activeTab == 'da_xac_nhan' ? 'active' : ''}">
+                <a href="${pageContext.request.contextPath}/don-hang?tab=cho_lay_hang"
+               class="order-tab ${activeTab == 'cho_lay_hang' ? 'active' : ''}">
+                Chờ lấy hàng
+            </a>
+            <a href="${pageContext.request.contextPath}/don-hang?tab=dang_giao"
+               class="order-tab ${activeTab == 'dang_giao' ? 'active' : ''}">
                 Vận chuyển
             </a>
             <a href="${pageContext.request.contextPath}/don-hang?tab=da_giao"
@@ -90,7 +94,8 @@
                                value="${activeTab == 'tat_ca'
                                     || (activeTab == 'cho_thanh_toan' && donHang.trangThaiThanhToan == 'chua_thanh_toan')
                                     || (activeTab == 'cho_xac_nhan' && donHang.trangThaiDonHang == 'cho_xac_nhan')
-                                    || (activeTab == 'da_xac_nhan' && donHang.trangThaiDonHang == 'da_xac_nhan')
+                                    || (activeTab == 'cho_lay_hang' && donHang.trangThaiDonHang == 'cho_lay_hang')
+                                    || (activeTab == 'dang_giao' && donHang.trangThaiDonHang == 'dang_giao')
                                     || (activeTab == 'da_giao' && donHang.trangThaiDonHang == 'da_giao')
                                     || (activeTab == 'da_huy' && donHang.trangThaiDonHang == 'da_huy')
                                     || (activeTab == 'tra_hang' && false)}" />
