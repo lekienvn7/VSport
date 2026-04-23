@@ -139,9 +139,9 @@
                 <span>Kho Sản Phẩm</span>
             </a>
 
-            <a class="admin-sidebar-link" href="javascript:void(0)">
-                <span class="admin-sidebar-link-icon"><i data-lucide="phone"></i></span>
-                <span>Liên Hệ</span>
+            <a class="admin-sidebar-link" href="${pageContext.request.contextPath}/admin/don-hang">
+                <span class="admin-sidebar-link-icon"><i data-lucide="list-ordered"></i></span>
+                <span>Đơn Hàng</span>
             </a>
 
             <a class="admin-sidebar-link" href="javascript:void(0)">

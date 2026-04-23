@@ -29,6 +29,11 @@ public class DonHang {
     private Integer  maGiamGia;
     private String ghiChu;
     private Timestamp ngayDat;
+    
+    private String tenNguoiDung;
+    private String emailNguoiDung;
+
+
 
     public int getMaDonHang() {
         return maDonHang;
@@ -140,6 +145,22 @@ public class DonHang {
 
     public void setTongThanhToan(double tongThanhToan) {
         this.tongThanhToan = tongThanhToan;
+    }
+    
+    public String getTenNguoiDung() {
+    return tenNguoiDung;
+    }
+
+    public void setTenNguoiDung(String tenNguoiDung) {
+        this.tenNguoiDung = tenNguoiDung;
+    }
+
+    public String getEmailNguoiDung() {
+        return emailNguoiDung;
+    }
+
+    public void setEmailNguoiDung(String emailNguoiDung) {
+        this.emailNguoiDung = emailNguoiDung;
     }
 
     public String getPhuongThucThanhToan() {

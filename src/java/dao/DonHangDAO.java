@@ -1043,4 +1043,162 @@ public class DonHangDAO {
 
     return true;
 }
+    
+    public List<DonHang> getTatCaDonHangChoAdmin() {
+    List<DonHang> list = new ArrayList<>();
+
+    String sql = """
+        SELECT 
+            dh.ma_don_hang,
+            dh.ma_nguoi_dung,
+            nd.ho_ten AS ten_nguoi_dung,
+            nd.email,
+            dh.ho_ten_nguoi_nhan,
+            dh.so_dien_thoai_nguoi_nhan,
+            dh.dia_chi_giao_hang,
+            dh.tong_tien_hang,
+            dh.phi_van_chuyen,
+            dh.giam_gia,
+            dh.tong_thanh_toan,
+            dh.phuong_thuc_thanh_toan,
+            dh.trang_thai_thanh_toan,
+            dh.trang_thai_don_hang,
+            dh.ma_giam_gia,
+            mg.ma_code,
+            dh.ghi_chu,
+            dh.ngay_dat,
+            dh.ngay_xac_nhan,
+            dh.ngay_bat_dau_giao,
+            dh.ngay_giao_du_kien,
+            dh.ngay_giao_thanh_cong
+        FROM don_hang dh
+        LEFT JOIN nguoi_dung nd ON dh.ma_nguoi_dung = nd.ma_nguoi_dung
+        LEFT JOIN ma_giam_gia mg ON dh.ma_giam_gia = mg.ma_giam_gia
+        ORDER BY dh.ngay_dat DESC, dh.ma_don_hang DESC
+    """;
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            DonHang item = new DonHang();
+
+            item.setMaDonHang(rs.getInt("ma_don_hang"));
+            item.setMaNguoiDung(rs.getInt("ma_nguoi_dung"));
+
+            try {
+                item.setTenNguoiDung(rs.getString("ten_nguoi_dung"));
+            } catch (Exception ignored) {}
+
+            try {
+                item.setEmailNguoiDung(rs.getString("email"));
+            } catch (Exception ignored) {}
+
+            item.setHoTenNguoiNhan(rs.getString("ho_ten_nguoi_nhan"));
+            item.setSoDienThoaiNguoiNhan(rs.getString("so_dien_thoai_nguoi_nhan"));
+            item.setDiaChiGiaoHang(rs.getString("dia_chi_giao_hang"));
+            item.setTongTienHang(rs.getDouble("tong_tien_hang"));
+            item.setPhiVanChuyen(rs.getDouble("phi_van_chuyen"));
+            item.setGiamGia(rs.getDouble("giam_gia"));
+            item.setTongThanhToan(rs.getDouble("tong_thanh_toan"));
+            item.setPhuongThucThanhToan(rs.getString("phuong_thuc_thanh_toan"));
+            item.setTrangThaiThanhToan(rs.getString("trang_thai_thanh_toan"));
+            item.setTrangThaiDonHang(rs.getString("trang_thai_don_hang"));
+
+            int maGiamGia = rs.getInt("ma_giam_gia");
+            if (rs.wasNull()) {
+                item.setMaGiamGia(null);
+            } else {
+                item.setMaGiamGia(maGiamGia);
+            }
+
+            item.setMaCode(rs.getString("ma_code"));
+            item.setGhiChu(rs.getString("ghi_chu"));
+            item.setNgayDat(rs.getTimestamp("ngay_dat"));
+            item.setNgayXacNhan(rs.getTimestamp("ngay_xac_nhan"));
+            item.setNgayBatDauGiao(rs.getTimestamp("ngay_bat_dau_giao"));
+            item.setNgayGiaoDuKien(rs.getTimestamp("ngay_giao_du_kien"));
+            item.setNgayDaGiao(rs.getTimestamp("ngay_giao_thanh_cong"));
+
+            list.add(item);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+
+public List<DonHang> getLichSuDonHangChoAdmin() {
+    List<DonHang> list = new ArrayList<>();
+
+    String sql = """
+        SELECT 
+            dh.ma_don_hang,
+            dh.ma_nguoi_dung,
+            nd.ho_ten AS ten_nguoi_dung,
+            nd.email,
+            dh.ho_ten_nguoi_nhan,
+            dh.so_dien_thoai_nguoi_nhan,
+            dh.dia_chi_giao_hang,
+            dh.tong_thanh_toan,
+            dh.phuong_thuc_thanh_toan,
+            dh.trang_thai_thanh_toan,
+            dh.trang_thai_don_hang,
+            dh.ngay_dat,
+            dh.ngay_xac_nhan,
+            dh.ngay_bat_dau_giao,
+            dh.ngay_giao_thanh_cong
+        FROM don_hang dh
+        LEFT JOIN nguoi_dung nd ON dh.ma_nguoi_dung = nd.ma_nguoi_dung
+        WHERE dh.trang_thai_don_hang IN ('da_giao', 'da_huy', 'tra_hang')
+        ORDER BY 
+            CASE 
+                WHEN dh.ngay_giao_thanh_cong IS NOT NULL THEN dh.ngay_giao_thanh_cong
+                ELSE dh.ngay_dat
+            END DESC,
+            dh.ma_don_hang DESC
+    """;
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            DonHang item = new DonHang();
+
+            item.setMaDonHang(rs.getInt("ma_don_hang"));
+            item.setMaNguoiDung(rs.getInt("ma_nguoi_dung"));
+
+            try {
+                item.setTenNguoiDung(rs.getString("ten_nguoi_dung"));
+            } catch (Exception ignored) {}
+
+            try {
+                item.setEmailNguoiDung(rs.getString("email"));
+            } catch (Exception ignored) {}
+
+            item.setHoTenNguoiNhan(rs.getString("ho_ten_nguoi_nhan"));
+            item.setSoDienThoaiNguoiNhan(rs.getString("so_dien_thoai_nguoi_nhan"));
+            item.setDiaChiGiaoHang(rs.getString("dia_chi_giao_hang"));
+            item.setTongThanhToan(rs.getDouble("tong_thanh_toan"));
+            item.setPhuongThucThanhToan(rs.getString("phuong_thuc_thanh_toan"));
+            item.setTrangThaiThanhToan(rs.getString("trang_thai_thanh_toan"));
+            item.setTrangThaiDonHang(rs.getString("trang_thai_don_hang"));
+            item.setNgayDat(rs.getTimestamp("ngay_dat"));
+            item.setNgayXacNhan(rs.getTimestamp("ngay_xac_nhan"));
+            item.setNgayBatDauGiao(rs.getTimestamp("ngay_bat_dau_giao"));
+            item.setNgayDaGiao(rs.getTimestamp("ngay_giao_thanh_cong"));
+
+            list.add(item);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
 }
