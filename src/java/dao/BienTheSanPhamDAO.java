@@ -3,6 +3,8 @@ package dao;
 import model.BienTheSanPham;
 import utils.DBConnection;
 
+import model.SanPham;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -190,5 +192,92 @@ public class BienTheSanPhamDAO {
     }
 
     return bt;
+    
+    
+}
+    
+    private String xacDinhLoaiSizeApDung(SanPham sp) {
+    if (sp == null) return "ao";
+
+    String loaiSanPham = sp.getLoaiSanPham() != null
+            ? sp.getLoaiSanPham().trim().toLowerCase()
+            : "";
+
+    int maDanhMuc = sp.getMaDanhMuc();
+
+    if (loaiSanPham.contains("giay")) return "giay";
+    if (loaiSanPham.contains("gang")) return "gang";
+    if (loaiSanPham.contains("bong")) return "bong";
+
+    if (maDanhMuc == 2) return "giay"; // fallback
+    return "ao";
+}
+    
+    public List<BienTheSanPham> getBienTheTheoLoaiSizeByProductId(int maSanPham) {
+    List<BienTheSanPham> list = new ArrayList<>();
+
+    SanPhamDAO sanPhamDAO = new SanPhamDAO();
+    SanPham sp = sanPhamDAO.getById(maSanPham);
+    String loaiSizeApDung = xacDinhLoaiSizeApDung(sp);
+
+    String sql = """
+        SELECT
+            bt.ma_bien_the,
+            bt.ma_san_pham,
+            bt.ma_size,
+            bt.so_luong_ton,
+            bt.gia_rieng,
+            sz.ten_size,
+            sz.loai_size
+        FROM bien_the_san_pham bt
+        INNER JOIN size_san_pham sz ON bt.ma_size = sz.ma_size
+        WHERE bt.ma_san_pham = ?
+          AND sz.loai_size = ?
+        ORDER BY
+            CASE
+                WHEN sz.ten_size = 'XS' THEN 1
+                WHEN sz.ten_size = 'S' THEN 2
+                WHEN sz.ten_size = 'M' THEN 3
+                WHEN sz.ten_size = 'L' THEN 4
+                WHEN sz.ten_size = 'XL' THEN 5
+                WHEN sz.ten_size = '2XL' THEN 6
+                WHEN sz.ten_size LIKE 'Size %'
+                    THEN CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(sz.ten_size, ' (', 1), ' ', -1) AS UNSIGNED)
+                WHEN sz.ten_size REGEXP '^[0-9]+'
+                    THEN CAST(SUBSTRING_INDEX(sz.ten_size, ' ', 1) AS UNSIGNED)
+                ELSE 999
+            END ASC,
+            sz.ten_size ASC
+    """;
+
+    try (
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)
+    ) {
+        ps.setInt(1, maSanPham);
+        ps.setString(2, loaiSizeApDung);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            BienTheSanPham bt = new BienTheSanPham();
+            bt.setMaBienThe(rs.getInt("ma_bien_the"));
+            bt.setMaSanPham(rs.getInt("ma_san_pham"));
+            bt.setMaSize(rs.getInt("ma_size"));
+            bt.setSoLuongTon(rs.getInt("so_luong_ton"));
+            bt.setGiaRieng(rs.getDouble("gia_rieng"));
+            bt.setTenSize(rs.getString("ten_size"));
+
+            try {
+                bt.setLoaiSize(rs.getString("loai_size"));
+            } catch (Exception ignored) {}
+
+            list.add(bt);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
 }
 }

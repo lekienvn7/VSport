@@ -980,5 +980,122 @@ private void setParams(PreparedStatement ps, List<Object> params) throws Excepti
     return 0;
 }
     
+    public List<SanPham> getSanPhamGiayGangDaLoc(
+        int maDanhMuc,
+        String[] loaiList,
+        String[] thuongHieuList,
+        String[] sizeList,
+        String giaMin,
+        String giaMax,
+        String sort
+) {
+    List<SanPham> list = new ArrayList<>();
+    List<Object> params = new ArrayList<>();
+
+    StringBuilder sql = new StringBuilder("""
+        SELECT DISTINCT
+            sp.*,
+            th.ten_thuong_hieu,
+            dm.ten_danh_muc
+        FROM san_pham sp
+        LEFT JOIN thuong_hieu th ON sp.ma_thuong_hieu = th.ma_thuong_hieu
+        LEFT JOIN danh_muc dm ON sp.ma_danh_muc = dm.ma_danh_muc
+        WHERE sp.trang_thai = 'dang_ban'
+          AND sp.ma_danh_muc = ?
+    """);
+
+    params.add(maDanhMuc);
+
+    if (loaiList != null && loaiList.length > 0) {
+        sql.append(" AND sp.loai_san_pham IN (");
+        appendPlaceholders(sql, loaiList.length);
+        sql.append(") ");
+        for (String s : loaiList) {
+            params.add(s);
+        }
+    }
+
+    if (thuongHieuList != null && thuongHieuList.length > 0) {
+        sql.append(" AND sp.ma_thuong_hieu IN (");
+        appendPlaceholders(sql, thuongHieuList.length);
+        sql.append(") ");
+        for (String s : thuongHieuList) {
+            params.add(Integer.parseInt(s));
+        }
+    }
+
+    if (giaMin != null && !giaMin.trim().isEmpty()) {
+        sql.append(" AND sp.gia_san_pham >= ? ");
+        params.add(Double.parseDouble(giaMin));
+    }
+
+    if (giaMax != null && !giaMax.trim().isEmpty()) {
+        sql.append(" AND sp.gia_san_pham <= ? ");
+        params.add(Double.parseDouble(giaMax));
+    }
+
+    if (sizeList != null && sizeList.length > 0) {
+        sql.append("""
+            AND EXISTS (
+                SELECT 1
+                FROM bien_the_san_pham bt
+                WHERE bt.ma_san_pham = sp.ma_san_pham
+                  AND bt.so_luong_ton > 0
+                  AND bt.ma_size IN (
+        """);
+        appendPlaceholders(sql, sizeList.length);
+        sql.append(")) ");
+        for (String s : sizeList) {
+            params.add(Integer.parseInt(s));
+        }
+    }
+
+    if ("price_asc".equals(sort)) {
+        sql.append(" ORDER BY sp.gia_san_pham ASC ");
+    } else if ("price_desc".equals(sort)) {
+        sql.append(" ORDER BY sp.gia_san_pham DESC ");
+    } else if ("newest".equals(sort)) {
+        sql.append(" ORDER BY sp.ngay_tao DESC ");
+    } else if ("best_selling".equals(sort)) {
+        sql.append(" ORDER BY sp.da_ban DESC ");
+    } else {
+        sql.append(" ORDER BY sp.ma_san_pham DESC ");
+    }
+
+    try (
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql.toString())
+    ) {
+        setParams(ps, params);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            list.add(mapResultSetToSanPham(rs));
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+    
+    private String xacDinhLoaiSizeApDung(SanPham sp) {
+    if (sp == null) return "ao";
+
+    String loaiSanPham = sp.getLoaiSanPham() != null
+            ? sp.getLoaiSanPham().trim().toLowerCase()
+            : "";
+
+    int maDanhMuc = sp.getMaDanhMuc();
+
+    if (loaiSanPham.contains("giay")) return "giay";
+    if (loaiSanPham.contains("gang")) return "gang";
+    if (loaiSanPham.contains("bong")) return "bong";
+
+    if (maDanhMuc == 2) return "giay"; // fallback cho nhóm giày/găng hiện tại
+    return "ao";
+}   
+    
 }
 

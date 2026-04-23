@@ -62,8 +62,8 @@
         <script src="<%= request.getContextPath() %>/assets/js/components/collections.js"></script>
         
         <script>
-    window.contextPath = "${pageContext.request.contextPath}";
-</script>
+            window.contextPath = "${pageContext.request.contextPath}";
+        </script>
         <script src="${pageContext.request.contextPath}/assets/js/components/search-popup.js"></script>
     </body>
 </html>

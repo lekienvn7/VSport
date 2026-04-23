@@ -12,6 +12,9 @@ public class SizeSanPham {
     private int maSize;
     private String tenSize;
 
+    
+    private String loaiSize;
+
     public int getMaSize() {
         return maSize;
     }
@@ -26,5 +29,13 @@ public class SizeSanPham {
 
     public void setTenSize(String tenSize) {
         this.tenSize = tenSize;
+    }
+    
+    public String getLoaiSize() {
+        return loaiSize;
+    }
+
+    public void setLoaiSize(String loaiSize) {
+        this.loaiSize = loaiSize;
     }
 }

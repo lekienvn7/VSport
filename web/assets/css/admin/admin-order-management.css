@@ -432,7 +432,7 @@
     text-align: left;
     border-bottom: 1px solid var(--color-gray-200);
     vertical-align: middle;
-    font-family: var(--font-body);
+    font-family: 'Arial';
     font-size: var(--text-sm);
     color: var(--color-black);
 }
@@ -473,7 +473,7 @@
 
 .history-detail-user p {
     margin: 0 0 8px;
-    font-family: var(--font-body);
+    font-family: 'Arial';;
     font-size: var(--text-sm);
     color: var(--color-black);
 }

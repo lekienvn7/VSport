@@ -8,6 +8,9 @@ public class BienTheSanPham {
     private int soLuongTon;
     private Double giaRieng;
 
+    
+    private String loaiSize;
+
     // thêm
     private String tenSize;
     private double giaHienThi;
@@ -69,5 +72,13 @@ public class BienTheSanPham {
 
     public void setGiaHienThi(double giaHienThi) {
         this.giaHienThi = giaHienThi;
+    }
+    
+    public String getLoaiSize() {
+        return loaiSize;
+    }
+
+    public void setLoaiSize(String loaiSize) {
+        this.loaiSize = loaiSize;
     }
 }

@@ -26,7 +26,6 @@
 
                 <div class="admin-order-topbar">
                     <div class="admin-order-topbar-left">
-                        <span class="admin-order-topbar-label">Order Management</span>
                         <h1 class="admin-order-title">Quản Lý Đơn Hàng</h1>
                         <p class="admin-order-desc">
                             Duyệt đơn, theo dõi tiến trình theo thời gian thực và kiểm soát lịch sử đơn hàng hoàn thành hoặc đã hủy.

@@ -266,4 +266,20 @@ public NguoiDung getByPhoneExceptId(String soDienThoai, int maNguoiDung) {
 
     return null;
 }
+
+public int countAllUser() {
+    String sql = "SELECT COUNT(*) FROM nguoi_dung";
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        if (rs.next()) return rs.getInt(1);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return 0;
+}
 }

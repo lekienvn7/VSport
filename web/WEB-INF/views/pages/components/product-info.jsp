@@ -44,17 +44,6 @@
     int vsXu = (int) Math.round(spInfo.getGiaSanPham() / 1000.0);
 
     List<BienTheSanPham> dsBienThe = (List<BienTheSanPham>) request.getAttribute("dsBienThe");
-
-    String[] danhSachSize = {"XS", "S", "M", "L", "XL", "2XL"};
-    Map<String, BienTheSanPham> mapBienTheTheoSize = new HashMap<>();
-
-    if (dsBienThe != null) {
-        for (BienTheSanPham bt : dsBienThe) {
-            if (bt.getTenSize() != null) {
-                mapBienTheTheoSize.put(bt.getTenSize().trim().toUpperCase(), bt);
-            }
-        }
-    }
 %>
 
 
@@ -63,7 +52,7 @@
 
     <div class="right-header">
         <div class="pd-category-line">
-            Nam • <%= spInfo.getTenDanhMuc() != null ? spInfo.getTenDoiBong() : "Bóng đá" %>
+            Nam • <%= spInfo.getTenDanhMuc() != null ? spInfo.getTenDanhMuc() : "Bóng đá" %>
         </div>
 
             <div class="club-breadcrumb-detail">
@@ -72,9 +61,17 @@
                 <span class="club-detail-breadcrumb-divider">/</span>
                 <a href="${pageContext.request.contextPath}/trang_chu" class="club-detail-breadcrumb-home">Trang Chủ</a>
                 <span class="club-detail-breadcrumb-divider">/</span>
-                <a href="${pageContext.request.contextPath}/bong_da" class="club-detail-breadcrumb-current">
-                    <%= spInfo != null ? spInfo.getTenDoiBong() : "Bóng đá" %>
-                </a>
+                <div class="club-breadcrumb-detail">
+                    <div class="club-container">
+                        <a href="${backUrl}" class="club-detail-back-link">↩ Trở lại</a>
+                        <span class="club-detail-breadcrumb-divider">/</span>
+                        <a href="${pageContext.request.contextPath}/trang_chu" class="club-detail-breadcrumb-home">Trang Chủ</a>
+                        <span class="club-detail-breadcrumb-divider">/</span>
+                        <a href="${backUrl}" class="club-detail-breadcrumb-current">
+                            ${breadcrumbLabel}
+                        </a>
+                    </div>
+                </div>            
             </div>
         </div>
     </div>
@@ -118,22 +115,23 @@
     <div class="pd-size-title">Kích cỡ</div>
 
     <div class="pd-size-grid">
-        <% for (String size : danhSachSize) {
-            BienTheSanPham bt = mapBienTheTheoSize.get(size);
-            int tonKho = (bt != null) ? bt.getSoLuongTon() : 0;
-            String maBienThe = (bt != null) ? String.valueOf(bt.getMaBienThe()) : "";
-            boolean hetHang = (bt == null || tonKho <= 0);
-        %>
-            <button
-                type="button"
-                class="pd-size-btn <%= hetHang ? "out-of-stock" : "" %>"
-                data-ma-bien-the="<%= maBienThe %>"
-                data-ten-size="<%= size %>"
-                data-ton-kho="<%= tonKho %>">
-                <%= size %>
-            </button>
-        <% } %>
-    </div>
+    <% if (dsBienThe != null) {
+        for (BienTheSanPham bt : dsBienThe) {
+            String size = bt.getTenSize();
+            int tonKho = bt.getSoLuongTon();
+            boolean hetHang = tonKho <= 0;
+    %>
+        <button
+            type="button"
+            class="pd-size-btn <%= hetHang ? "out-of-stock" : "" %>"
+            data-ma-bien-the="<%= bt.getMaBienThe() %>"
+            data-ten-size="<%= size %>"
+            data-ton-kho="<%= tonKho %>">
+            <%= size %>
+        </button>
+    <%  }
+    } %>
+</div>
 
     <div id="pd-size-guide" style="margin-top: 18px; font-size: 18px; font-weight: 700; font-family: 'Arial';">
         Hãy chọn kích cỡ phù hợp

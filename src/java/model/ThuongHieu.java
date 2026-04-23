@@ -12,6 +12,9 @@ public class ThuongHieu {
     private int maThuongHieu;
     private String tenThuongHieu;
 
+    
+    private String slug;
+
     public int getMaThuongHieu() {
         return maThuongHieu;
     }
@@ -26,5 +29,13 @@ public class ThuongHieu {
 
     public void setTenThuongHieu(String tenThuongHieu) {
         this.tenThuongHieu = tenThuongHieu;
+    }
+    
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 }

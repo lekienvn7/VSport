@@ -1201,4 +1201,24 @@ public List<DonHang> getLichSuDonHangChoAdmin() {
 
     return list;
 }
+
+public int countDonHangDaGiao() {
+    String sql = """
+        SELECT COUNT(*) 
+        FROM don_hang
+        WHERE trang_thai_don_hang = 'da_giao'
+    """;
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        if (rs.next()) return rs.getInt(1);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return 0;
+}
 }

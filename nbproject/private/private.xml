@@ -201,6 +201,27 @@
             <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/controller/admin/VonShopServlet.java</file>
             <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/admin/wallet.jsp</file>
             <file>file:/D:/Code_files/VSPORT/VsportWeb/web/assets/css/admin/admin-capital.css</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/controller/admin/AdminDonHangServlet.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/controller/admin/AdminDuyetDonHangServlet.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/assets/css/admin/admin-order-management.css</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/assets/js/admin/admin-order-management.js</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/dao/DoanhThuDAO.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/dao/PhieuNhapDAO.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/dao/DashboardStatsDAO.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/admin/components/top-selling-product.jsp</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/admin/components/recent-transaction.jsp</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/controller/GiayGangServlet.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/pages/giay-gang-bong-da.jsp</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/controller/PhuKienServlet.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/pages/phu-kien.jsp</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/controller/InTheoYeuCauServlet.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/pages/in-theo-yeu-cau.jsp</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/src/java/controller/DatSanBongServlet.java</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/pages/dat-san-bong.jsp</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/common/giay_gang_product_nav.jsp</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/WEB-INF/views/pages/giay_gang_product.jsp</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/assets/css/pages/giay_gang_product.css</file>
+            <file>file:/D:/Code_files/VSPORT/VsportWeb/web/assets/js/pages/giay_gang_product.js</file>
         </group>
     </open-files>
 </project-private>

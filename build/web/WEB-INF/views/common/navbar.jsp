@@ -44,7 +44,7 @@ String lastPart = path.substring(path.lastIndexOf("/") + 1);
             </li>
 
             <li class="navbar-item has-mega-menu">
-                <a href="${pageContext.request.contextPath}/products?category=football" class="navbar-link">
+                <a href="${pageContext.request.contextPath}/giay_gang_bong_da" class="navbar-link">
                     GIÀY / GĂNG BÓNG ĐÁ 
                 </a>
 
@@ -58,7 +58,7 @@ String lastPart = path.substring(path.lastIndexOf("/") + 1);
             </li>
 
             <li class="navbar-item has-mega-menu">
-                <a href="${pageContext.request.contextPath}/products?category=football" class="navbar-link">
+                <a href="${pageContext.request.contextPath}/phu_kien" class="navbar-link">
                     PHỤ KIỆN BÓNG ĐÁ 
                 </a>
 
@@ -71,7 +71,7 @@ String lastPart = path.substring(path.lastIndexOf("/") + 1);
             </li>
 
             <li class="navbar-item has-mega-menu">
-                <a href="${pageContext.request.contextPath}/products?category=football" class="navbar-link">
+                <a href="${pageContext.request.contextPath}/in_theo_yeu_cau" class="navbar-link">
                     IN ÁO THEO YÊU CẦU
                 </a>
 
@@ -85,7 +85,7 @@ String lastPart = path.substring(path.lastIndexOf("/") + 1);
             </li>
 
             <li class="navbar-item has-mega-menu">
-                <a href="${pageContext.request.contextPath}/products?category=football" class="navbar-link">
+                <a href="${pageContext.request.contextPath}/dat_san_bong" class="navbar-link">
                     ĐẶT SÂN BÓNG
                 </a>
 
