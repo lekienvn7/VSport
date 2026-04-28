@@ -21,10 +21,13 @@ public class DonHangAutoUpdateListener implements ServletContextListener {
         scheduler.scheduleAtFixedRate(() -> {
             try {
                 DonHangDAO dao = new DonHangDAO();
-                dao.capNhatDonHangDaGiaoVaCongDaBan();
-                dao.capNhatThanhToanSauKhiHoanThanh();
+                int a = dao.tuDongChuyenChoLayHangSau2Phut();
+                int b = dao.capNhatDonHangDaGiaoVaCongDaBan();
+                int c = dao.capNhatThanhToanSauKhiHoanThanh();
 
-                System.out.println("Auto cập nhật đơn hàng chạy...");
+                if (a > 0 || b > 0 || c > 0) {
+                    System.out.println("Auto update: " + (a+b+c) + " đơn thay đổi");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

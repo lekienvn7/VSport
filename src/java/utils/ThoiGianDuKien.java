@@ -2,28 +2,34 @@ package utils;
 
 public class ThoiGianDuKien {
 
-    public static long parseToMillis(String thoiGianDuKien) {
-        if (thoiGianDuKien == null || thoiGianDuKien.trim().isEmpty()) {
-            return 0;
-        }
+    public static long parseToMillis(String text) {
+    if (text == null || text.isEmpty()) return 0;
 
-        String text = thoiGianDuKien.trim().toLowerCase();
+    text = text.toLowerCase();
 
-        int maxValue = laySoLonNhat(text);
-        if (maxValue <= 0) {
-            return 0;
-        }
+    long total = 0;
 
-        if (text.contains("phút")) {
-            return maxValue * 60L * 1000L;
-        }
+    // phút
+    total += extract(text, "phút") * 60L * 1000L;
 
-        if (text.contains("giờ")) {
-            return maxValue * 60L * 60L * 1000L;
-        }
+    // giờ
+    total += extract(text, "giờ") * 60L * 60L * 1000L;
 
-        if (text.contains("ngày")) {
-            return maxValue * 24L * 60L * 60L * 1000L;
+    // ngày
+    total += extract(text, "ngày") * 24L * 60L * 60L * 1000L;
+
+    return total;
+    }
+
+    private static int extract(String text, String unit) {
+        int index = text.indexOf(unit);
+        if (index == -1) return 0;
+
+        String sub = text.substring(0, index);
+        String[] nums = sub.split("[^0-9]+");
+
+        if (nums.length > 0) {
+            return Integer.parseInt(nums[nums.length - 1]);
         }
 
         return 0;
