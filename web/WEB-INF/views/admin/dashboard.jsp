@@ -23,7 +23,7 @@
                 <h3><fmt:formatNumber value="${tongDonHang}" type="number" groupingUsed="true" maxFractionDigits="0"/></h3>
                 <div class="admin-stat-change ${phanTramDonHang >= 0 ? 'positive' : 'negative'}">
                     <fmt:formatNumber value="${phanTramDonHang}" type="number" minFractionDigits="0" maxFractionDigits="1"/>%
-                    <span>So Với Tháng Trước</span>
+                    <span>So Với Tuần Trước</span>
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
                 </h3>
                 <div class="admin-stat-change ${phanTramDoanhThu >= 0 ? 'positive' : 'negative'}">
                     <fmt:formatNumber value="${phanTramDoanhThu}" type="number" minFractionDigits="0" maxFractionDigits="1"/>%
-                    <span>So Với Tháng Trước</span>
+                    <span>So Với Tuần Trước</span>
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
                 </h3>
                 <div class="admin-stat-change ${phanTramLoiNhuan >= 0 ? 'positive' : 'negative'}">
                     <fmt:formatNumber value="${phanTramLoiNhuan}" type="number" minFractionDigits="0" maxFractionDigits="1"/>%
-                    <span>So Với Tháng Trước</span>
+                    <span>So Với Tuần Trước</span>
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
                 <h3><fmt:formatNumber value="${tongThanhVien}" type="number" groupingUsed="true" maxFractionDigits="0"/></h3>
                 <div class="admin-stat-change ${phanTramThanhVien >= 0 ? 'positive' : 'negative'}">
                     <fmt:formatNumber value="${phanTramThanhVien}" type="number" minFractionDigits="0" maxFractionDigits="1"/>%
-                    <span>So Với Tháng Trước</span>
+                    <span>So Với Tuần Trước</span>
                 </div>
             </div>
         </section>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="admin-legend">
                         <span><i class="dot current"></i>Hiện Tại</span>
-                        <span><i class="dot last"></i>Tháng Trước</span>
+                        <span><i class="dot last"></i>Tuần Trước</span>
                     </div>
                 </div>
 

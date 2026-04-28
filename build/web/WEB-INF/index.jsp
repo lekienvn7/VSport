@@ -1,3 +1,0 @@
-<%
-    response.sendRedirect(request.getContextPath() + "/trang_chu");
-%>

@@ -50,7 +50,14 @@ String lastPart = path.substring(path.lastIndexOf("/") + 1);
 
                 <div class="mega-menu">
                     <div class="mega-menu-inner">
-
+                        <div class="mega-column">
+                            <a href="${pageContext.request.contextPath}/giay_gang_bong_da" class="mega-title">Giày bóng đá</a>
+                            <ul class="mega-submenu">
+                                <li><a href="${pageContext.request.contextPath}/giay_gang_bong_da?loai=giay-san-co-nhan-tao">Giày sân cỏ nhân tạo</a></li>
+                                <li><a href="${pageContext.request.contextPath}/giay_gang_bong_da?loai=giay-san-co-tu-nhien">Giày sân cỏ tự nhiên</a></li>
+                            </ul>
+                        </div>
+                          
                         
   
                     </div>

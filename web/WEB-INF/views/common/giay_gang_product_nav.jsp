@@ -51,8 +51,10 @@
                         
                      <a href="${pageContext.request.contextPath}/giay_gang_bong_da?loai=giay-san-co-tu-nhien"
                        class="club-filter-link <%= isGiayTuNhien ? "active" : "" %>">
-                        Giày sân cỏ nhân tạo
+                        Giày sân cỏ tự nhiên
                     </a>
+                        
+                        
 
                     <a href="${pageContext.request.contextPath}/giay_gang_bong_da?loai=gang-tay-thu-mon"
                        class="club-filter-link <%= isGang ? "active" : "" %>">
