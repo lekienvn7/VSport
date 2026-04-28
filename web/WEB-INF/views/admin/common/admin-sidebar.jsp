@@ -113,7 +113,7 @@
 
         <div class="admin-sidebar-search">
             <span class="admin-sidebar-search-icon"><i data-lucide="search" size="18"></i></span>
-            <input type="text" placeholder="Search here...">
+            <input class="admin-sidebar-input" type="text" placeholder="Tìm kiếm...">
         </div>
 
         <nav class="admin-sidebar-nav">
@@ -143,6 +143,17 @@
                 <span class="admin-sidebar-link-icon"><i data-lucide="list-ordered"></i></span>
                 <span>Đơn Hàng</span>
             </a>
+            
+            <a class="admin-sidebar-link" href="${pageContext.request.contextPath}/admin/don-hang">
+                <span class="admin-sidebar-link-icon"><i data-lucide="list-ordered"></i></span>
+                <span>Quản Lý</span>
+            </a>
+                
+            <div class="admin-sidebar-submenu">
+                <a class="admin-sidebar-sublink" href="${pageContext.request.contextPath}/admin/danh-muc">Danh Mục</a>
+                <a class="admin-sidebar-sublink" href="javascript:void(0)">Phiếu Nhập / Xuất</a>
+                <a class="admin-sidebar-sublink" href="javascript:void(0)">Báo Cáo</a>
+            </div>
 
             <a class="admin-sidebar-link" href="javascript:void(0)">
                 <span class="admin-sidebar-link-icon"><i data-lucide="file-text"></i></span>

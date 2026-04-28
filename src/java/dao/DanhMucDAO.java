@@ -40,4 +40,127 @@ public class DanhMucDAO {
 
         return list;
     }
+    
+    public DanhMuc getDanhMucById(int maDanhMuc) {
+        String sql = """
+            SELECT ma_danh_muc, ten_danh_muc, slug
+            FROM danh_muc
+            WHERE ma_danh_muc = ?
+        """;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, maDanhMuc);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    DanhMuc dm = new DanhMuc();
+                    dm.setMaDanhMuc(rs.getInt("ma_danh_muc"));
+                    dm.setTenDanhMuc(rs.getString("ten_danh_muc"));
+                    dm.setSlug(rs.getString("slug"));
+                    return dm;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public boolean themDanhMuc(DanhMuc danhMuc) {
+        String sql = """
+            INSERT INTO danh_muc (ten_danh_muc, slug)
+            VALUES (?, ?)
+        """;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, danhMuc.getTenDanhMuc());
+            ps.setString(2, danhMuc.getSlug());
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean suaDanhMuc(DanhMuc danhMuc) {
+        String sql = """
+            UPDATE danh_muc
+            SET ten_danh_muc = ?, slug = ?
+            WHERE ma_danh_muc = ?
+        """;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, danhMuc.getTenDanhMuc());
+            ps.setString(2, danhMuc.getSlug());
+            ps.setInt(3, danhMuc.getMaDanhMuc());
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean xoaDanhMuc(int maDanhMuc) {
+        String sql = """
+            DELETE FROM danh_muc
+            WHERE ma_danh_muc = ?
+        """;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, maDanhMuc);
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean isDanhMucDangCoSanPham(int maDanhMuc) {
+        String sql = """
+            SELECT COUNT(*) 
+            FROM san_pham 
+            WHERE ma_danh_muc = ?
+        """;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, maDanhMuc);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    private static class SQLIntegrityConstraintViolationException {
+
+        public SQLIntegrityConstraintViolationException() {
+        }
+    }
 }

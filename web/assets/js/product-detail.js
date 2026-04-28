@@ -131,12 +131,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const soLuong = soLuongInput ? soLuongInput.value.trim() : "1";
 
             if (!maSanPham) {
-                alert("Thiếu mã sản phẩm.");
+                toastr.warning("Thiếu mã sản phẩm.");
                 return;
             }
 
             if (!maBienThe) {
-                alert("Vui lòng chọn kích cỡ trước.");
+                toastr.warning("Vui lòng chọn kích cỡ trước.");
                 return;
             }
 
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 if (response.status === 401) {
-                    alert("Bạn cần đăng nhập để thêm giỏ hàng.");
+                    toastr.warning("Bạn cần đăng nhập để thêm giỏ hàng.");
                     return;
                 }
 
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             } catch (error) {
                 console.error("Lỗi thêm giỏ hàng:", error);
-                alert("Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.");
+                toastr.error("Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.");
             }
         });
     }

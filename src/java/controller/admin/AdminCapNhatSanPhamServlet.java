@@ -71,9 +71,17 @@ public class AdminCapNhatSanPhamServlet extends HttpServlet {
                     anhPhuArr
             );
 
-            response.getWriter().write("""
-                {"success":true,"message":"Cập nhật sản phẩm thành công."}
-            """);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+
+            String json = """
+            {
+                "success": true,
+                "message": "Cập nhật sản phẩm thành công."
+            }
+            """;
+
+            response.getWriter().write(json);
 
         } catch (Exception e) {
             e.printStackTrace();

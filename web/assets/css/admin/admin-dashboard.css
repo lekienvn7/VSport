@@ -76,6 +76,9 @@
     padding: 0 var(--space-2);
     margin-bottom: var(--space-3);
 }
+.admin-sidebar-input::placeholder {
+    font-family: var(--font-body);
+}
 
 .admin-sidebar-search-icon .lucide {
     color: var(--color-gray-200);

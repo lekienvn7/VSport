@@ -231,6 +231,7 @@
                                             <span></span>
                                         </label>
                                     </th>
+                                    <th>Mã Sản Phẩm</th>
                                     <th>Tên Sản Phẩm</th>
                                     <th>Danh Mục</th>
                                     <th>Tồn Kho</th>
@@ -256,6 +257,8 @@
                                                     <span></span>
                                                 </label>
                                             </td>
+                                            
+                                            <td>V$<%= sp.getMaSanPham() %></td>
 
                                             <td>
                                                 <div class="admin-product-cell-product">
@@ -265,6 +268,7 @@
                                                     <div class="admin-product-name"><%= sp.getTenSanPham() %></div>
                                                 </div>
                                             </td>
+                                            
 
                                             <td><%= sp.getTenDanhMuc() != null ? sp.getTenDanhMuc() : "-" %></td>
 

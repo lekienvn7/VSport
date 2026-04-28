@@ -1,3 +1,13 @@
+toastr.options = {
+    closeButton: true,
+    progressBar: true,
+    positionClass: "toast-top-right",
+    timeOut: "2500",
+    showDuration: "300",
+    hideDuration: "300",
+    preventDuplicates: true
+};
+
 document.addEventListener("DOMContentLoaded", function () {
     const popup = document.getElementById("addProductPopup");
     const overlay = document.getElementById("addProductPopupOverlay");
@@ -137,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.addEventListener("submit", async function (e) {
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     try {
         const formData = new FormData(form);
@@ -161,15 +172,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const data = JSON.parse(text);
 
         if (data.success) {
-            alert(data.message);
+            toastr.success(data.message);
             closePopup();
             window.location.reload();
         } else {
-            alert(data.message || "Có lỗi xảy ra.");
+            toastr.error(data.message || "Có lỗi xảy ra.");
         }
     } catch (error) {
         console.error(error);
-        alert("Không gửi được dữ liệu.");
+        toastr.error("Không gửi được dữ liệu.");
     }
 });
 
