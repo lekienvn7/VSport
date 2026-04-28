@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             label.textContent = "E-MAIL ADDRESS";
             dangNhapInput.placeholder = "E-mail";
-            dangNhapInput.type = "text";
+            dangNhapInput.type = "email";
         }
     }
 
