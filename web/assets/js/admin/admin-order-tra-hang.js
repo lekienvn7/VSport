@@ -1,3 +1,4 @@
+// Cấu hình toastr
 toastr.options = {
     closeButton: true,
     progressBar: true,
@@ -13,7 +14,7 @@ toastr.options = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Duyệt trả hàng
+    // Nút duyệt trả hàng
     document.querySelectorAll('.btn-duyet-tra-hang').forEach(btn => {
         btn.addEventListener('click', function () {
             const maTraHang = this.dataset.returnId;
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Từ chối trả hàng
+    // Nút từ chối trả hàng
     document.querySelectorAll('.btn-tu-choi-tra-hang').forEach(btn => {
         btn.addEventListener('click', function () {
             const maTraHang = this.dataset.returnId;
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // Gửi yêu cầu duyệt/từ chối đến server
     function xuLyTraHang(maTraHang, action) {
         fetch(window.contextPath + '/admin/tra-hang/duyet', {
             method: 'POST',
@@ -58,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(err => toastr.error(err.message));
     }
 
+    // Hiển thị modal xác nhận chung
     function showAdminConfirm(options) {
         const overlay = document.getElementById("adminConfirmOverlay");
         const titleEl = document.getElementById("adminConfirmTitle");
@@ -66,8 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const okBtn = document.getElementById("adminConfirmOk");
 
         if (!overlay || !titleEl || !messageEl || !cancelBtn || !okBtn) {
-            if (options && typeof options.onConfirm === "function")
+            // Nếu không có modal, thực hiện luôn callback
+            if (options && typeof options.onConfirm === "function") {
                 options.onConfirm();
+            }
             return;
         }
 
@@ -77,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const closeModal = function () {
             overlay.classList.remove("open");
+            // Hủy sự kiện để tránh trùng lặp
             okBtn.onclick = null;
             cancelBtn.onclick = null;
             overlay.onclick = null;
@@ -90,8 +96,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         okBtn.onclick = function () {
             closeModal();
-            if (typeof options.onConfirm === "function")
+            if (typeof options.onConfirm === "function") {
                 options.onConfirm();
+            }
         };
     }
 });

@@ -9,13 +9,9 @@
         <title>Quản lý trả hàng | Admin</title>
         <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logos/logo-header.png">
         <jsp:include page="/WEB-INF/views/common/head.jsp" />
-
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/admin-dashboard.css">
-
-
     </head>
     <body>
-
         <div class="admin-shell">
             <%@ include file="/WEB-INF/views/admin/common/admin-sidebar.jsp" %>
 
@@ -118,15 +114,13 @@
         </div>
 
         <script>
-            window.contextPath = "${pageContext.request.contextPath}";
+    window.contextPath = "${pageContext.request.contextPath}";
         </script>
         <script src="${pageContext.request.contextPath}/assets/js/admin/admin-dashboard.js"></script>
         <script src="https://unpkg.com/lucide@latest"></script>
         <script>lucide.createIcons();</script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
         <script src="${pageContext.request.contextPath}/assets/js/admin/admin-order-tra-hang.js"></script>
-
     </body>
 </html>
