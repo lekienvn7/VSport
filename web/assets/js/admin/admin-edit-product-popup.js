@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addVariantBtn = document.getElementById("addEditVariantRowBtn");
     const addSubImageBtn = document.getElementById("addEditSubImageBtn");
     const editGiaNiemYet = document.getElementById("editGiaNiemYet");
-    
+
     const editGiaNhapThem = document.getElementById("editGiaNhapThem");
     const editPreviewSoLuongNhapThem = document.getElementById("editPreviewSoLuongNhapThem");
     const editPreviewGiaNhapThem = document.getElementById("editPreviewGiaNhapThem");
@@ -40,78 +40,73 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function createVariantRow(item = null) {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = variantTemplate.innerHTML.trim();
-    const row = wrapper.firstElementChild;
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = variantTemplate.innerHTML.trim();
+        const row = wrapper.firstElementChild;
 
-    row.dataset.oldStock = "0";
-
-    if (item) {
-        row.querySelector('input[name="maBienThe"]').value = item.maBienThe || "";
-        row.querySelector('select[name="maSize"]').value = item.maSize || "";
-        row.querySelector('input[name="soLuongTon"]').value = item.soLuongTon || "";
-        row.querySelector('input[name="giaRieng"]').value = item.giaRieng ?? "";
-        row.dataset.oldStock = item.soLuongTon || 0;
-    }
-
-    return row;
-}
-    
-    function formatMoney(n) {
-    return Number(n || 0).toLocaleString("vi-VN");
-}
-
-function parseMoneyText(text) {
-    return Number(String(text || "").replace(/[^\d]/g, "")) || 0;
-}
-
-function getSoLuongCuTheoRow(row) {
-    return Number(row.dataset.oldStock || 0);
-}
-
-function updateEditCapitalPreview() {
-    if (!variantRows) return;
-
-    const rows = variantRows.querySelectorAll(".admin-variant-row");
-    const giaNiemYet = Number(editGiaNiemYet?.value || 0);
-    const giaNhapThem = Math.max(giaNiemYet - 100000, 0);
-    
-    if (editPreviewGiaNhapThem) {
-        editPreviewGiaNhapThem.innerText = formatMoney(giaNhapThem);
-    }
-
-    let tongSoLuongNhapThem = 0;
-
-    rows.forEach(row => {
-        const soLuongInput = row.querySelector('input[name="soLuongTon"]');
-        const soLuongMoi = Number(soLuongInput?.value || 0);
-        const soLuongCu = getSoLuongCuTheoRow(row);
-
-        if (soLuongMoi > soLuongCu) {
-            tongSoLuongNhapThem += (soLuongMoi - soLuongCu);
+        if (item) {
+            row.querySelector('input[name="maBienThe"]').value = item.maBienThe || "";
+            row.querySelector('select[name="maSize"]').value = item.maSize || "";
+            const soLuongInput = row.querySelector('input[name="soLuongTon"]');
+            soLuongInput.value = item.soLuongTon || "";
+            // Lưu giá trị tồn hiện tại làm mốc tối thiểu
+            soLuongInput.setAttribute('data-current', item.soLuongTon || 0);
+            row.dataset.oldStock = item.soLuongTon || 0;
+            row.querySelector('input[name="giaRieng"]').value = item.giaRieng ?? "";
+        } else {
+            // Dòng mới: không có ràng buộc, data-current = 0
+            const soLuongInput = row.querySelector('input[name="soLuongTon"]');
+            soLuongInput.setAttribute('data-current', 0);
+            row.dataset.oldStock = 0;
         }
-    });
-
-    const tongTienNhapThem = tongSoLuongNhapThem * giaNhapThem;
-    const vonHienTai = parseMoneyText(editPreviewVonHienTai?.innerText);
-    const vonSau = vonHienTai - tongTienNhapThem;
-
-    if (editPreviewSoLuongNhapThem) {
-        editPreviewSoLuongNhapThem.innerText = tongSoLuongNhapThem;
+        return row;
     }
 
-    if (editPreviewGiaNhapThem) {
-        editPreviewGiaNhapThem.innerText = formatMoney(giaNhapThem);
+    function formatMoney(n) {
+        return Number(n || 0).toLocaleString("vi-VN");
     }
 
-    if (editPreviewTongTienNhapThem) {
-        editPreviewTongTienNhapThem.innerText = formatMoney(tongTienNhapThem);
+    function parseMoneyText(text) {
+        return Number(String(text || "").replace(/[^\d]/g, "")) || 0;
     }
 
-    if (editPreviewVonSau) {
-        editPreviewVonSau.innerText = formatMoney(vonSau);
+    function getSoLuongCuTheoRow(row) {
+        return Number(row.dataset.oldStock || 0);
     }
-}
+
+    function updateEditCapitalPreview() {
+        if (!variantRows)
+            return;
+
+        const rows = variantRows.querySelectorAll(".admin-variant-row");
+        const giaNiemYet = Number(editGiaNiemYet?.value || 0);
+        const giaNhapThem = Math.max(giaNiemYet - 100000, 0);
+
+        if (editPreviewGiaNhapThem) {
+            editPreviewGiaNhapThem.innerText = formatMoney(giaNhapThem);
+        }
+
+        let tongSoLuongNhapThem = 0;
+        rows.forEach(row => {
+            const soLuongInput = row.querySelector('input[name="soLuongTon"]');
+            const soLuongMoi = Number(soLuongInput?.value || 0);
+            const soLuongCu = getSoLuongCuTheoRow(row);
+            if (soLuongMoi > soLuongCu) {
+                tongSoLuongNhapThem += (soLuongMoi - soLuongCu);
+            }
+        });
+
+        const tongTienNhapThem = tongSoLuongNhapThem * giaNhapThem;
+        const vonHienTai = parseMoneyText(editPreviewVonHienTai?.innerText);
+        const vonSau = vonHienTai - tongTienNhapThem;
+
+        if (editPreviewSoLuongNhapThem)
+            editPreviewSoLuongNhapThem.innerText = tongSoLuongNhapThem;
+        if (editPreviewTongTienNhapThem)
+            editPreviewTongTienNhapThem.innerText = formatMoney(tongTienNhapThem);
+        if (editPreviewVonSau)
+            editPreviewVonSau.innerText = formatMoney(vonSau);
+    }
 
     function createSubImageRow(item = null) {
         const wrapper = document.createElement("div");
@@ -122,52 +117,43 @@ function updateEditCapitalPreview() {
             row.querySelector('input[name="maAnh"]').value = item.maAnh || "";
             row.querySelector('input[name="anhPhu"]').value = item.duongDanAnh || "";
         }
-
         return row;
     }
-    
-    toastr.options = {
-    closeButton: true,
-    progressBar: true,
-    positionClass: "toast-top-right",
-    timeOut: "2500"
-};
 
+    // Toastr config
+    toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        timeOut: "2500"
+    };
+
+    // Mở popup sửa sản phẩm
     document.querySelectorAll(".open-edit-product-btn").forEach(btn => {
         btn.addEventListener("click", async function () {
             const maSanPham = this.dataset.maSanPham;
-            if (!maSanPham) return;
+            if (!maSanPham)
+                return;
 
             try {
                 const url = `${contextPath}/admin/san-pham/chi-tiet-json?maSanPham=${encodeURIComponent(maSanPham)}`;
-                console.log("Fetching:", url);
-                
-
                 const response = await fetch(url, {
                     method: "GET",
-                    headers: {
-                        "Accept": "application/json"
-                    }
+                    headers: {"Accept": "application/json"}
                 });
 
                 if (!response.ok) {
                     const text = await response.text();
-                    console.error("Response error:", response.status, text);
-                    throw new Error("HTTP " + response.status);
+                    throw new Error("HTTP " + response.status + ": " + text);
                 }
 
                 const data = await response.json();
-                console.log("Edit data:", data);
-
                 if (!data.success) {
                     toastr.error(data.message || "Không lấy được sản phẩm.");
                     return;
                 }
 
                 const sp = data.sanPham;
-                
-                
-
                 document.getElementById("editMaSanPham").value = sp.maSanPham || "";
                 document.getElementById("editTenSanPham").value = sp.tenSanPham || "";
                 document.getElementById("editMaDanhMuc").value = sp.maDanhMuc || "";
@@ -183,22 +169,19 @@ function updateEditCapitalPreview() {
 
                 variantRows.innerHTML = "";
                 if (data.bienThe && data.bienThe.length > 0) {
-                    data.bienThe.forEach(item => {
-                        variantRows.appendChild(createVariantRow(item));
-                    });
+                    data.bienThe.forEach(item => variantRows.appendChild(createVariantRow(item)));
                 } else {
                     variantRows.appendChild(createVariantRow());
                 }
 
                 subImageRows.innerHTML = "";
                 if (data.anhPhu && data.anhPhu.length > 0) {
-                    data.anhPhu.forEach(item => {
-                        subImageRows.appendChild(createSubImageRow(item));
-                    });
+                    data.anhPhu.forEach(item => subImageRows.appendChild(createSubImageRow(item)));
                 } else {
                     subImageRows.appendChild(createSubImageRow());
                 }
 
+                updateEditCapitalPreview();
                 openPopup();
             } catch (e) {
                 console.error("Không thể load dữ liệu sản phẩm:", e);
@@ -209,6 +192,7 @@ function updateEditCapitalPreview() {
 
     addVariantBtn?.addEventListener("click", function () {
         variantRows.appendChild(createVariantRow());
+        updateEditCapitalPreview();
     });
 
     addSubImageBtn?.addEventListener("click", function () {
@@ -220,6 +204,7 @@ function updateEditCapitalPreview() {
             const rows = variantRows.querySelectorAll(".admin-variant-row");
             if (rows.length > 1) {
                 e.target.closest(".admin-variant-row").remove();
+                updateEditCapitalPreview();
             }
         }
     });
@@ -233,43 +218,65 @@ function updateEditCapitalPreview() {
         }
     });
 
+    // === KIỂM SOÁT SỐ LƯỢNG KHI RỜI KHỎI Ô NHẬP (BLUR) ===
+    form.addEventListener('blur', function (e) {
+        const input = e.target;
+        if (!input.classList.contains('js-variant-qty'))
+            return;
+
+        const currentValue = parseInt(input.getAttribute('data-current'), 10);
+        if (isNaN(currentValue))
+            return; // variant mới không có ràng buộc
+
+        let newValue = parseInt(input.value, 10);
+        if (isNaN(newValue) || newValue < 0)
+            newValue = 0;
+
+        if (newValue < currentValue) {
+            // Reset về giá trị cũ
+            input.value = currentValue;
+            toastr.warning('Không thể giảm số lượng tồn. Chỉ được phép tăng lên.', 'Cảnh báo');
+        }
+
+        // Dù có thay đổi hay không, cập nhật preview (vì có thể số lượng khác đã thay đổi)
+        updateEditCapitalPreview();
+    }, true); // Sử dụng capture để đảm bảo bắt được blur từ các input động
+
+    // Cập nhật preview khi thay đổi giá
+    editGiaNiemYet?.addEventListener('input', updateEditCapitalPreview);
+    editGiaNhapThem?.addEventListener('input', updateEditCapitalPreview);
+
+    // Submit form
     form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+        e.preventDefault();
+        try {
+            const formData = new FormData(form);
+            const payload = new URLSearchParams();
+            for (const [key, value] of formData.entries()) {
+                payload.append(key, value);
+            }
 
-    try {
-        const formData = new FormData(form);
-        const payload = new URLSearchParams();
+            const response = await fetch(form.action, {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
+                body: payload.toString()
+            });
 
-        for (const [key, value] of formData.entries()) {
-            payload.append(key, value);
-            console.log(key, "=", value);
+            const text = await response.text();
+            const data = JSON.parse(text);
+
+            if (data.success) {
+                toastr.success(data.message || "Cập nhật thành công.");
+                closePopup();
+                window.location.reload();
+            } else {
+                toastr.error(data.message || "Có lỗi khi cập nhật.");
+            }
+        } catch (e) {
+            console.error("Submit update error:", e);
+            toastr.error("Không gửi được dữ liệu cập nhật.");
         }
-
-        const response = await fetch(form.action, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-            },
-            body: payload.toString()
-        });
-
-        const text = await response.text();
-        console.log("RAW RESPONSE:", text);
-
-        const data = JSON.parse(text);
-
-        if (data.success) {
-            toastr.success(data.message || "Cập nhật thành công.");
-            closePopup();
-            window.location.reload();
-        } else {
-            toastr.error(data.message || "Có lỗi khi cập nhật.");
-        }
-    } catch (e) {
-        console.error("Submit update error:", e);
-        toastr.error("Không gửi được dữ liệu cập nhật.");
-    }
-});
+    });
 
     closeBtn?.addEventListener("click", closePopup);
     cancelBtn?.addEventListener("click", closePopup);

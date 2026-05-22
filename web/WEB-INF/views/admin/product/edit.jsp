@@ -139,6 +139,7 @@
     </form>
 </div>
 
+<!-- Template cho variant -->
 <script type="text/template" id="editVariantTemplate">
     <div class="admin-variant-row">
         <input type="hidden" name="maBienThe" value="">
@@ -147,12 +148,13 @@
                 <option value="${size.maSize}">${size.tenSize}</option>
             </c:forEach>
         </select>
-        <input type="number" name="soLuongTon" min="0" placeholder="Số lượng" required>
+        <input type="number" name="soLuongTon" class="js-variant-qty" min="0" placeholder="Số lượng" required>
         <input type="number" name="giaRieng" min="0" step="1000" placeholder="Giá riêng size (nếu có)">
         <button type="button" class="remove-variant-btn">Xóa</button>
     </div>
 </script>
 
+<!-- Template cho ảnh phụ -->
 <script type="text/template" id="editSubImageTemplate">
     <div class="admin-sub-image-row">
         <input type="hidden" name="maAnh" value="">
