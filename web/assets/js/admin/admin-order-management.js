@@ -283,6 +283,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
     }
 
+
+
     updateCountdowns();
     setInterval(updateCountdowns, 1000);
 });
+

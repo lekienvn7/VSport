@@ -1,6 +1,7 @@
 package controller.admin;
 
 import dao.DonHangDAO;
+import dao.TraHangDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,61 +9,134 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "AdminDuyetDonHangServlet", urlPatterns = {"/admin/don-hang/duyet"})
 public class AdminDuyetDonHangServlet extends HttpServlet {
 
     private final DonHangDAO donHangDAO = new DonHangDAO();
+    private final TraHangDAO traHangDAO = new TraHangDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/plain;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
 
-        String maDonHangRaw = request.getParameter("maDonHang");
         String action = request.getParameter("action");
 
-        if (maDonHangRaw == null || maDonHangRaw.trim().isEmpty()) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Thiếu mã đơn hàng");
+        if (action == null || action.isBlank()) {
+            sendJson(response, false, "Thiếu action");
             return;
         }
 
-        int maDonHang;
+        switch (action) {
+            case "duyet_don" ->
+                xuLyDuyetDon(request, response);
+            case "xac_nhan_thanh_toan" ->
+                xuLyXacNhanThanhToan(request, response);
+            case "duyet_tra_hang" ->
+                xuLyDuyetTraHang(request, response);
+            case "tu_choi_tra_hang" ->
+                xuLyTuChoiTraHang(request, response);
+            default ->
+                sendJson(response, false, "Action không hợp lệ: " + action);
+        }
+    }
 
+    // =========================================================
+    // ĐƠN HÀNG
+    // =========================================================
+    private void xuLyDuyetDon(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        int maDonHang = parseMaDonHang(request, response);
+        if (maDonHang < 0) {
+            return;
+        }
+
+        boolean ok = donHangDAO.capNhatTrangThaiDaXacNhan(maDonHang);
+        sendJson(response, ok, ok ? "Duyệt đơn thành công" : "Không thể duyệt đơn hoặc đơn không còn ở trạng thái chờ xác nhận");
+    }
+
+    private void xuLyXacNhanThanhToan(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        int maDonHang = parseMaDonHang(request, response);
+        if (maDonHang < 0) {
+            return;
+        }
+
+        boolean ok = donHangDAO.xacNhanThanhToanChuyenKhoan(maDonHang);
+        sendJson(response, ok, ok ? "Xác nhận thanh toán thành công" : "Không thể xác nhận thanh toán");
+    }
+
+    // =========================================================
+    // TRẢ HÀNG
+    // =========================================================
+    private void xuLyDuyetTraHang(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        int maTraHang = parseMaTraHang(request, response);
+        if (maTraHang < 0) {
+            return;
+        }
+
+        boolean ok = traHangDAO.duyetTraHang(maTraHang);
+        sendJson(response, ok, ok ? "Duyệt trả hàng thành công" : "Không thể duyệt hoặc yêu cầu không còn ở trạng thái chờ xử lý");
+    }
+
+    private void xuLyTuChoiTraHang(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        int maTraHang = parseMaTraHang(request, response);
+        if (maTraHang < 0) {
+            return;
+        }
+
+        boolean ok = traHangDAO.tuChoiTraHang(maTraHang);
+        sendJson(response, ok, ok ? "Từ chối trả hàng thành công" : "Từ chối thất bại");
+    }
+
+    // =========================================================
+    // UTILS
+    // =========================================================
+    private int parseMaDonHang(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        String raw = request.getParameter("maDonHang");
+        if (raw == null || raw.isBlank()) {
+            sendJson(response, false, "Thiếu mã đơn hàng");
+            return -1;
+        }
         try {
-            maDonHang = Integer.parseInt(maDonHangRaw.trim());
+            return Integer.parseInt(raw.trim());
         } catch (NumberFormatException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write("Mã đơn hàng không hợp lệ");
+            sendJson(response, false, "Mã đơn hàng không hợp lệ");
+            return -1;
+        }
+    }
+
+    private int parseMaTraHang(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        String raw = request.getParameter("maTraHang");
+        if (raw == null || raw.isBlank()) {
+            sendJson(response, false, "Thiếu mã trả hàng");
+            return -1;
+        }
+        try {
+            return Integer.parseInt(raw.trim());
+        } catch (NumberFormatException e) {
+            sendJson(response, false, "Mã trả hàng không hợp lệ");
+            return -1;
+        }
+    }
+
+    private void sendJson(HttpServletResponse response, boolean success, String message)
+            throws IOException {
+        if (response.isCommitted()) {
             return;
         }
-
-        boolean ok;
-        String successMessage;
-        String errorMessage;
-
-        if ("xac_nhan_thanh_toan".equals(action)) {
-
-            ok = donHangDAO.xacNhanThanhToanChuyenKhoan(maDonHang);
-            successMessage = "Xác nhận thanh toán thành công";
-            errorMessage = "Không thể xác nhận thanh toán";
-
-        } else {
-
-            ok = donHangDAO.capNhatTrangThaiDaXacNhan(maDonHang);
-            successMessage = "Duyệt đơn thành công";
-            errorMessage = "Không thể duyệt đơn hoặc đơn không còn ở trạng thái chờ xác nhận";
-        }
-
-        if (ok) {
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write(successMessage);
-        } else {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().write(errorMessage);
+        String escaped = message.replace("\\", "\\\\").replace("\"", "\\\"");
+        String json = String.format("{\"success\":%b,\"message\":\"%s\"}", success, escaped);
+        try (PrintWriter writer = response.getWriter()) {
+            writer.write(json);
         }
     }
 }

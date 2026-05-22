@@ -1,0 +1,317 @@
+/* CSS riêng cho trang trả hàng */
+.admin-returns-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: var(--space-5);
+}
+
+.admin-returns-shell {
+    width: 100%;
+}
+
+.admin-returns-topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+}
+
+.admin-returns-title {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-heading);
+    font-size: var(--heading-font-size);
+    color: var(--text-heading);
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.admin-returns-desc {
+    margin: 0;
+    max-width: 760px;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--text-body);
+    line-height: 1.7;
+}
+
+.admin-returns-section {
+    margin-bottom: var(--space-6);
+}
+
+.admin-returns-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.admin-returns-section-head h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: var(--h1-font-size);
+    color: var(--text-heading);
+    text-transform: uppercase;
+}
+
+.admin-returns-list {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.admin-return-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-left: 5px solid var(--color-red);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-4);
+}
+
+.admin-return-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+}
+
+.admin-return-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.admin-return-code {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--color-black);
+}
+
+.admin-return-user {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 var(--space-3);
+    background: var(--color-gray-100);
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-black);
+}
+
+.admin-return-date {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+}
+
+.admin-return-badges {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.admin-order-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0 var(--space-3);
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.badge-cho_xu_ly {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.badge-da_hoan {
+    background: #ecfdf3;
+    color: var(--color-green);
+}
+
+.badge-tu_choi {
+    background: var(--color-gray-100);
+    color: var(--color-gray-800);
+}
+
+.admin-return-card-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.admin-return-info-box {
+    background: var(--color-off-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+}
+
+.admin-return-info-box h3 {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    color: var(--color-black);
+    text-transform: uppercase;
+}
+
+.admin-return-info-box p {
+    margin: 0 0 10px;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-gray-800);
+    line-height: 1.6;
+}
+
+.admin-order-money {
+    font-family: var(--font-heading);
+    color: var(--color-red);
+}
+
+.admin-return-actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-top: var(--space-4);
+}
+
+.admin-order-btn {
+    min-height: 44px;
+    padding: 0 var(--space-4);
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-transform: uppercase;
+}
+
+.admin-order-btn-primary {
+    background: var(--color-red);
+    color: var(--color-white);
+}
+
+.admin-order-btn-primary:hover {
+    background: var(--color-red-hover);
+}
+
+.admin-order-btn-dark {
+    background: var(--color-black);
+    color: var(--color-white);
+}
+
+.admin-order-btn-dark:hover {
+    background: var(--color-black-soft);
+}
+
+/* Confirm modal */
+.admin-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease;
+    z-index: 9998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-confirm-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.admin-confirm-modal {
+    width: min(460px, calc(100vw - 24px));
+    background: var(--color-white);
+    border-radius: 22px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.96);
+    transition: 0.25s ease;
+}
+
+.admin-confirm-overlay.open .admin-confirm-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.admin-confirm-modal h3 {
+    margin: 0;
+    padding: 20px 22px;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-black);
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.admin-confirm-modal p {
+    margin: 0;
+    padding: 20px 22px 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-gray-600);
+}
+
+.admin-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 0 22px 22px;
+    margin-top: 20px;
+}
+
+.admin-confirm-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.admin-confirm-btn.cancel {
+    background: var(--color-gray-100);
+    color: var(--color-black);
+}
+
+.admin-confirm-btn.cancel:hover {
+    background: var(--color-gray-200);
+}
+
+.admin-confirm-btn.confirm {
+    background: var(--color-red);
+    color: var(--color-white);
+}
+
+.admin-confirm-btn.confirm:hover {
+    background: var(--color-red-hover);
+}
+
+@media (max-width: 768px) {
+    .admin-returns-page {
+        padding: var(--space-3);
+    }
+}

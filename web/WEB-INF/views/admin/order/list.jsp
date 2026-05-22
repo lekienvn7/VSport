@@ -7,7 +7,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Quản lý đơn hàng | Admin</title>
-        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logos/logo.png">
+        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/images/logos/logo-header.png">
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/base/reset.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/base/variables.css">
@@ -54,7 +54,7 @@
 
                             <div class="admin-order-list">
                                 <c:forEach var="donHang" items="${dsDonHang}">
-                                    <c:if test="${donHang.trangThaiDonHang != 'da_giao' && donHang.trangThaiDonHang != 'da_huy' && donHang.trangThaiDonHang != 'tra_hang'}">
+                                    <c:if test="${donHang.trangThaiDonHang != 'da_giao' && donHang.trangThaiDonHang != 'da_huy' && donHang.trangThaiDonHang != 'da_tra_hang'&& donHang.trangThaiDonHang != 'cho_tra_hang'}">
                                         <div class="admin-order-card"
                                              data-order-id="${donHang.maDonHang}"
                                              data-order-status="${donHang.trangThaiDonHang}"

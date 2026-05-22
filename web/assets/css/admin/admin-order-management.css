@@ -626,6 +626,8 @@
     background: var(--color-red-hover);
 }
 
+
+
 @media (max-width: 1200px) {
     .admin-order-card-body {
         grid-template-columns: 1fr;

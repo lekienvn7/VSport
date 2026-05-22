@@ -1056,10 +1056,10 @@ public class MaGiamGiaDAO {
     }
 
     public void capNhatMaHetHan() {
-        System.out.println("🔥 [VoucherJob] Start capNhatMaHetHan at " + new java.util.Date());
+        System.out.println("[VoucherJob] Start capNhatMaHetHan at " + new java.util.Date());
 
         String sql = """
-        UPDATE doi_xu_ma_giam_gia d
+        UPDATE doi_xu_ma_giam_gia AND d
         INNER JOIN ma_giam_gia m
             ON d.ma_giam_gia = m.ma_giam_gia
         SET d.trang_thai = 'het_han'
@@ -1080,6 +1080,24 @@ public class MaGiamGiaDAO {
         }
 
         System.out.println("🏁 [VoucherJob] End capNhatMaHetHan at " + new java.util.Date());
+    }
+
+    public void capNhatMaGiamGiaHetHan() {
+        String sql = """
+        UPDATE ma_giam_gia  
+        SET trang_thai = 'het_han'
+        WHERE ngay_ket_thuc IS NOT NULL
+          AND ngay_ket_thuc < NOW()
+          AND trang_thai = 'hoat_dong'
+    """;
+
+        try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // =========================
