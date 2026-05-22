@@ -6,12 +6,17 @@ public class TraHang {
 
     private int maTraHang;
     private int maDonHang;
-    private String lyDo; // doi_y, sai_size, hang_hong, hang_that_lac, khac
+    private String lyDo; // het_nhu_cau, hang_hong, hang_that_lac
     private double soTienHoan;
     private String trangThai; // cho_xu_ly, da_hoan, tu_choi
     private Timestamp ngayYeuCau;
     private Timestamp ngayHoan;
     private String ghiChu;
+
+    // Dùng để hiển thị bên admin, không lưu DB
+    private String tenKhachHang;
+    private double tongTienDonHang;
+    private boolean hoanTonKho;
 
     public TraHang() {
     }
@@ -89,8 +94,31 @@ public class TraHang {
         this.ghiChu = ghiChu;
     }
 
-    // Kiểm tra có hoàn tồn kho không
+    public String getTenKhachHang() {
+        return tenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
+
+    public double getTongTienDonHang() {
+        return tongTienDonHang;
+    }
+
+    public void setTongTienDonHang(double tongTienDonHang) {
+        this.tongTienDonHang = tongTienDonHang;
+    }
+
+    public void setHoanTonKho(boolean hoanTonKho) {
+        this.hoanTonKho = hoanTonKho;
+    }
+
+    // Tính từ lyDo — không lưu DB
     public boolean isHoanTonKho() {
+        if (lyDo == null) {
+            return true;
+        }
         return !lyDo.equals("hang_hong") && !lyDo.equals("hang_that_lac");
     }
 }

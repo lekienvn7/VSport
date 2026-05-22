@@ -1,6 +1,7 @@
 package controller.admin;
 
 import dao.DonHangDAO;
+import dao.TraHangDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ChiTietDonHang;
 import model.DonHang;
+import model.TraHang;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,19 +25,22 @@ public class AdminDonHangServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int soDonAutoChoLayHang = donHangDAO.tuDongChuyenChoLayHangSau2Phut();
-        int soDonDangGiao = donHangDAO.tuDongChuyenDangGiaoSau2PhutLayHang();
-        int soDonDaGiao = donHangDAO.capNhatDonHangDaGiaoVaCongDaBan();
-        int soDonDaThanhToan = donHangDAO.capNhatThanhToanSauKhiHoanThanh();
+        // Tự động chuyển trạng thái đơn hàng
+//        int soDonAutoChoLayHang = donHangDAO.tuDongChuyenChoLayHangSau2Phut();
+//        int soDonDangGiao = donHangDAO.tuDongChuyenDangGiaoSau2PhutLayHang();
+//        int soDonDaGiao = donHangDAO.capNhatDonHangDaGiaoVaCongDaBan();
+//        int soDonDaThanhToan = donHangDAO.capNhatThanhToanSauKhiHoanThanh();
+//
+//        System.out.println("[ADMIN] Auto -> cho_lay_hang: " + soDonAutoChoLayHang);
+//        System.out.println("[ADMIN] Auto -> dang_giao: " + soDonDangGiao);
+//        System.out.println("[ADMIN] Auto -> da_giao: " + soDonDaGiao);
+//        System.out.println("[ADMIN] Auto -> da_thanh_toan: " + soDonDaThanhToan);
 
-        System.out.println("[ADMIN] Auto -> cho_lay_hang: " + soDonAutoChoLayHang);
-        System.out.println("[ADMIN] Auto -> dang_giao: " + soDonDangGiao);
-        System.out.println("[ADMIN] Auto -> da_giao: " + soDonDaGiao);
-        System.out.println("[ADMIN] Auto -> da_thanh_toan: " + soDonDaThanhToan);
-
+        // Lấy danh sách đơn hàng
         List<DonHang> dsDonHang = donHangDAO.getTatCaDonHangChoAdmin();
         List<DonHang> dsLichSuDonHang = donHangDAO.getLichSuDonHangChoAdmin();
 
+        // Chi tiết đơn hàng
         Map<Integer, List<ChiTietDonHang>> mapChiTiet = new HashMap<>();
         for (DonHang donHang : dsDonHang) {
             mapChiTiet.put(
@@ -52,29 +57,30 @@ public class AdminDonHangServlet extends HttpServlet {
             );
         }
 
+        // Map trạng thái & thanh toán
         Map<String, String> mapTrangThai = new HashMap<>();
         mapTrangThai.put("cho_xac_nhan", "Chờ xác nhận");
         mapTrangThai.put("cho_lay_hang", "Chờ lấy hàng");
         mapTrangThai.put("dang_giao", "Đang giao");
         mapTrangThai.put("da_giao", "Đã giao");
         mapTrangThai.put("da_huy", "Đã hủy");
-        mapTrangThai.put("tra_hang", "Trả hàng");
+        mapTrangThai.put("cho_tra_hang", "Chờ trả hàng");
+        mapTrangThai.put("da_tra_hang", "Đã trả hàng");
 
         Map<String, String> mapThanhToan = new HashMap<>();
         mapThanhToan.put("chua_thanh_toan", "Chưa thanh toán");
         mapThanhToan.put("da_thanh_toan", "Đã thanh toán");
 
+        // Đếm đơn đang xử lý
         int soDonDangXuLy = 0;
-
         for (DonHang dh : dsDonHang) {
             String ttDon = dh.getTrangThaiDonHang();
-
-            if (!"da_giao".equals(ttDon)
-                    && !"da_huy".equals(ttDon)) {
+            if (!"da_giao".equals(ttDon) && !"da_huy".equals(ttDon) && !"da_tra_hang".equals(ttDon)) {
                 soDonDangXuLy++;
             }
         }
 
+        // Set attributes
         request.setAttribute("soDonDangXuLy", soDonDangXuLy);
         request.setAttribute("dsDonHang", dsDonHang);
         request.setAttribute("dsLichSuDonHang", dsLichSuDonHang);
@@ -82,6 +88,7 @@ public class AdminDonHangServlet extends HttpServlet {
         request.setAttribute("mapChiTietLichSu", mapChiTietLichSu);
         request.setAttribute("mapTrangThai", mapTrangThai);
         request.setAttribute("mapThanhToan", mapThanhToan);
+        
 
         request.getRequestDispatcher("/WEB-INF/views/admin/order/list.jsp")
                 .forward(request, response);

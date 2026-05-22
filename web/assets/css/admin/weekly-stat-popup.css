@@ -20,7 +20,8 @@
     width: 540px;
     max-width: calc(100vw - 32px);
     max-height: 82vh;
-    background: var(--color-white);
+    background: var(--bg-main);
+    color: var(--text-heading);
     border-radius: 26px;
     padding: 28px;
     position: relative;
@@ -50,7 +51,7 @@
     font-size: 34px;
     line-height: 1;
     cursor: pointer;
-    color: var(--color-black);
+    color: var(--text-heading);
 }
 
 .weekly-stat-head p {
@@ -62,7 +63,7 @@
 .weekly-stat-head h2 {
     font-size: 30px;
     margin-bottom: 24px;
-    color: var(--color-black);
+    color: var(--text-heading);
 }
 
 .weekly-stat-list {
@@ -72,19 +73,19 @@
 }
 
 .weekly-stat-item {
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid var(--text-highlight);
     border-radius: 18px;
     padding: 16px 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    background: var(--color-white);
+    background: var(--bg-card);
 }
 
 .weekly-stat-info strong {
     font-size: 18px;
-    color: var(--color-black);
+    color: var(--text-heading);
 }
 
 .weekly-stat-info span {
@@ -117,7 +118,7 @@
 }
 
 .weekly-stat-item.current-week {
-    background: var(--color-white);
+    background: var(--bg-card);
     border: 2px solid var(--color-red);
     box-shadow: 0 12px 30px rgba(225, 29, 72, 0.14);
     position: relative;
@@ -128,7 +129,7 @@
     position: absolute;
     top: -12px;
     right: 22px;
-    background: var(--color-red);
+    background: var(--bg-button);
     color: var(--color-white);
     font-family: var(--font-body);
     text-transform: uppercase;
@@ -139,7 +140,7 @@
 }
 
 .weekly-stat-item.current-week .weekly-stat-info strong {
-    color: var(--color-black);
+    color: var(--text-heading);
 }
 
 .weekly-stat-item.current-week .weekly-stat-info span {

@@ -5,8 +5,8 @@
 .admin-body {
     margin: 0;
     padding: 0;
-    background: var(--color-off-white);
-    color: var(--color-black);
+    background: none;
+    color: var(--text-heading);
     font-family: var(--font-body);
 }
 
@@ -373,21 +373,24 @@
     margin-bottom: var(--space-4);
 }
 
-.admin-topbar-title {
-    font-size: var(--text-3xl);
+.admin-topbar-left h1{
+    font-size: var(--heading-font-size);
+    color: var(--text-heading);
     margin: 0;
 }
 
-.admin-topbar-desc {
+.admin-topbar-left p {
     font-size: var(--text-sm);
-    color: var(--color-gray-600);
+    color: var(--text-normal);
 }
 
 .admin-topbar-select {
-    border: 1px solid var(--color-gray-200);
-    border-radius: var(--radius-sm);
+    border: 1px solid var(--text-highlight);
+    border-radius: 18px;
     padding: 6px 10px;
-    background: var(--color-white);
+    background: var(--bg-card);
+    color: var(--text-highlight);
+    cursor: pointer;
 }
 
 .admin-topbar-right {
@@ -396,12 +399,14 @@
     gap: var(--space-2);
 }
 
-.admin-topbar-icon-btn {
+.admin-icon-btn {
     width: 40px;
     height: 40px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-gray-200);
-    background: var(--color-white);
+    color: var(--text-normal);
+    
+    &:hover {
+        color: var(--text-highlight);
+    }
 }
 
 /* =========================
@@ -415,15 +420,16 @@
 }
 
 .admin-stat-card {
-    background: var(--color-white);
+    background: var(--bg-card);
     padding: var(--space-3);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid var(--text-highlight);
+    color: var(--text-heading);
 }
 
 .admin-stat-card--highlight {
-    background: var(--color-black);
+    background: var(--bg-card);
     color: var(--color-white);
 }
 
@@ -467,10 +473,10 @@
 }
 
 .admin-panel {
-    background: var(--color-white);
+    background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: var(--space-3);
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid var(--text-highlight);
     box-shadow: var(--shadow-sm);
 }
 
@@ -486,7 +492,7 @@
 
 .admin-panel-link {
     font-size: var(--text-sm);
-    color: var(--color-red);
+    color: var(--text-highlight);
 }
 
 /* =========================
@@ -525,12 +531,13 @@
 
 .admin-placeholder-sub {
     font-size: var(--text-xs);
-    color: var(--color-gray-600);
+    color: var(--text-normal);
 }
 
 .admin-topbar-left h1 {
     font-family: var(--font-heading);
     font-size: 40px;
+    color: var(--text-heading);
     font-weight: 600;
 }
 
@@ -545,12 +552,12 @@
     border: none;
     background: none;
     cursor: pointer;
-    
-    transition: color 0.25 ease; 
+
+    transition: color 0.25 ease;
 }
 
 .admin-topbar-right .admin-icon-btn:hover {
-    color: var(--color-red);
+    color: var(--text-highlight);
 }
 
 .admin-topbar-right .admin-icon-btn .lucide {
@@ -590,15 +597,15 @@
     flex-direction: column;
     gap: 6px;
     padding: 14px 16px;
-    background: var(--color-white);
-    border: 1px solid var(--color-gray-200);
+    background: var(--bg-card);
+    border: 1px solid var(--text-highlight);
     border-radius: var(--radius-md);
     transition: all 0.2s ease;
 }
 
 .admin-dashboard-order-item:hover,
 .admin-dashboard-product-item:hover {
-    border-color: var(--color-red);
+    border-color: var(--text-heading);
     box-shadow: var(--shadow-sm);
 }
 
@@ -613,7 +620,7 @@
     font-family: var(--font-heading);
     font-size: 15px;
     font-weight: 700;
-    color: var(--color-black);
+    color: var(--text-heading);
 }
 
 .admin-dashboard-order-status {
@@ -631,7 +638,7 @@
     font-family: 'Arial';
     font-size: 14px;
     font-weight: 600;
-    color: var(--color-black);
+    color: var(--text-heading);
     line-height: 1.45;
 }
 

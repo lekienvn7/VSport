@@ -436,25 +436,18 @@
             </div>
         </div>
 
-
-
-
-
         <script src="${pageContext.request.contextPath}/assets/js/pages/order-history.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/components/tra-hang-popup.js"></script>
-
-
-
+        
+        <%-- 1. CSS Toastr --%>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-        <%-- jQuery bắt buộc cho Toastr --%>
+        <%-- 2. jQuery (chỉ 1 lần) --%>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-        <%-- Toastr JS --%>
+        <%-- 3. Toastr JS --%>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+        <%-- 4. Config Toastr --%>
         <script>
             toastr.options = {
                 closeButton: true,
@@ -470,6 +463,9 @@
                 hideMethod: "fadeOut"
             };
         </script>
+
+        <%-- 5. Tra hang popup (PHẢI sau toastr) --%>
+        <script src="${pageContext.request.contextPath}/assets/js/components/tra-hang-popup.js"></script>
 
     </body>
 </html>

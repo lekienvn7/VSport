@@ -7,7 +7,7 @@
 .admin-product-page {
     width: 100%;
     min-height: 100vh;
-    background: var(--color-off-white);
+    background: none;
     padding: 24px;
     box-sizing: border-box;
 }
@@ -37,18 +37,18 @@
 .admin-product-top-search input {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--color-gray-200);
-    background: var(--color-white);
+    border: 1px solid var(--text-highlight);
+    background: var(--bg-card);
     border-radius: 8px;
     padding: 0 38px 0 14px;
     font-family: var(--font-body);
     font-size: 15px;
-    color: var(--color-black);
+    color: var(--text-heading);
     outline: none;
 }
 
 .admin-product-top-search input::placeholder {
-    color: var(--color-gray-400);
+    color: var(--text-normal);
 }
 
 .admin-product-top-search button {
@@ -61,7 +61,7 @@
     border: none;
     background: transparent;
     padding: 0;
-    color: var(--color-gray-600);
+    color: var(--text-heading);
     cursor: pointer;
 }
 
@@ -82,7 +82,7 @@
     height: 26px;
     border: none;
     background: transparent;
-    color: var(--color-black);
+    color: var(--text-heading);
     cursor: pointer;
     padding: 0;
 }
@@ -107,7 +107,7 @@
     text-transform: uppercase;
     font-size: 34px;
     font-weight: 400;
-    color: var(--color-black);
+    color: var(--text-heading);
     letter-spacing: -0.3px;
     line-height: 1.1;
 }
@@ -130,32 +130,23 @@
     text-decoration: none;
     font-family: var(--font-body);
     font-size: 15px;
-    border: 1px solid var(--color-gray-200);
     cursor: pointer;
+    background: var(--bg-card);
     transition: var(--transition-fast);
     white-space: nowrap;
 }
 
 .admin-product-btn-light {
-    background: var(--color-white);
-    color: var(--color-black);
-}
-
-.admin-product-btn-light:hover {
-    border-color: var(--color-red);
-    color: var(--color-red);
+    background: var(--bg-button);
+    color: var(--text-heading);
 }
 
 .admin-product-btn-primary {
-    background: var(--color-red);
+    background: var(--bg-card);
     color: var(--color-white);
-    border-color: var(--color-red);
+    border: 1px solid var(--text-highlight);
 }
 
-.admin-product-btn-primary:hover {
-    background: var(--color-red-hover);
-    border-color: var(--color-red-hover);
-}
 
 .admin-product-btn-icon {
     font-size: 11px;
@@ -164,8 +155,8 @@
 
 /* ===== CARD ===== */
 .admin-product-card {
-    background: var(--color-white);
-    border: 1px solid var(--color-gray-200);
+    background: var(--bg-card);
+    border: 1px solid var(--text-highlight);
     border-radius: 14px;
     padding: 14px;
     box-shadow: var(--shadow-sm);
@@ -192,13 +183,13 @@
 .admin-product-filter-search input {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--color-gray-200);
-    background: var(--color-white);
+    border: 1px solid var(--text-highlight);
+    background: var(--bg-card);
     border-radius: 8px;
     padding: 0 38px 0 12px;
     font-family: var(--font-body-2);
     font-size: 10px;
-    color: var(--color-black);
+    color: var(--text-heading);
     outline: none;
 }
 
@@ -216,7 +207,7 @@
     border: none;
     background: transparent;
     padding: 0;
-    color: var(--color-gray-600);
+    color: var(--text-heading);
     cursor: pointer;
 }
 
@@ -240,9 +231,9 @@
     align-items: center;
     gap: 8px;
     padding: 0 12px;
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid var(--text-highlight);
     border-radius: 8px;
-    background: var(--color-white);
+    background: var(--bg-card);
 }
 
 .admin-product-filter-date-icon {
@@ -251,7 +242,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-gray-600);
+    color: var(--text-highlight);
     flex-shrink: 0;
 }
 
@@ -266,7 +257,7 @@
     background: transparent;
     font-family: var(--font-body-2);
     font-size: 10px;
-    color: var(--color-black);
+    color: var(--text-heading);
     min-width: 0;
 }
 
@@ -281,23 +272,17 @@
     min-width: 90px;
     max-width: 150px;
     height: 38px;
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid var(--text-highlight);
     border-radius: 8px;
-    background: var(--color-white);
+    background: var(--bg-card);
     padding: 0 32px 0 12px;
     font-family: var(--font-body);
     font-size: 16px;
-    color: var(--color-black);
+    color: var(--text-highlight);
     outline: none;
     cursor: pointer;
 }
 
-.admin-product-select:focus,
-.admin-product-date-input:focus,
-.admin-product-filter-search input:focus,
-.admin-product-top-search input:focus {
-    border-color: var(--color-red);
-}
 
 /* ===== TABLE ===== */
 .admin-product-table-wrap {
@@ -314,14 +299,13 @@
 }
 
 .admin-product-table thead th {
-    background: #f7f7f7;
-    color: var(--color-gray-600);
+    background: var(--bg-main);
+    color: var(--text-heading);
     font-family: var(--font-body);
     font-size: 15px;
     font-weight: 400;
     padding: 13px 14px;
     text-align: left;
-    border-bottom: 1px solid var(--color-gray-200);
     white-space: nowrap;
 }
 
@@ -335,10 +319,10 @@
 
 .admin-product-table tbody td {
     padding: 15px 14px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--text-normal);
     vertical-align: middle;
     font-family: var(--font-body);
-    color: var(--color-black);
+    color: var(--text-normal);
 }
 
 .admin-product-table tbody tr:hover {
@@ -371,16 +355,15 @@
 .admin-product-checkbox span {
     width: 15px;
     height: 15px;
-    border: 1.5px solid #d8d8d8;
+    border: 1.5px solid var(--text-highlight);
     border-radius: 4px;
-    background: var(--color-white);
+    background: var(--bg-card);
     box-sizing: border-box;
     transition: var(--transition-fast);
 }
 
 .admin-product-checkbox input:checked + span {
-    background: var(--color-red);
-    border-color: var(--color-red);
+    background: var(--text-highlight);
     box-shadow: inset 0 0 0 3px var(--color-white);
 }
 
@@ -410,13 +393,13 @@
 .admin-product-name {
     font-family: var(--font-heading);
     font-size: 18px;
-    color: var(--color-gray-800);
+    color: var(--text-highlight);
     line-height: 1.4;
 }
 
 /* ===== STOCK ===== */
 .stock-normal {
-    color: var(--color-black);
+    color: var(--text-heading);
 }
 
 .stock-low {
@@ -437,13 +420,14 @@
     border-radius: 999px;
     padding: 0 12px;
     font-family: var(--font-body);
+    background: var(--bg-card);
     font-size: 15px;
     white-space: nowrap;
     border: 1px solid transparent;
 }
 
 .admin-product-status-badge.published {
-    background: var(--color-red-soft);
+    background: var(--bg-card);
     color: var(--color-red);
     border-color: rgba(225, 29, 72, 0.14);
 }
@@ -467,7 +451,7 @@
     padding: 0 8px;
     border: none;
     background: transparent;
-    color: var(--color-black);
+    color: var(--text-heading);
     font-family: var(--font-heading);
     font-size: 14px;
     cursor: pointer;
@@ -475,16 +459,13 @@
     transition: var(--transition-fast);
 }
 
-.admin-product-dots-btn:hover {
-    background: #f7f7f7;
-}
 
 .admin-product-action-menu {
     position: absolute;
     top: calc(100% + 6px);
     right: 0;
     min-width: 124px;
-    background: var(--color-white);
+    background: var(--bg-main);
     border: 1px solid var(--color-gray-200);
     border-radius: 10px;
     box-shadow: var(--shadow-sm);
@@ -504,13 +485,10 @@
     text-decoration: none;
     font-family: var(--font-heading);
     font-size: 14px;
-    color: var(--color-black);
+    color: var(--text-heading);
     transition: var(--transition-fast);
 }
 
-.admin-product-action-menu a:hover {
-    background: #f8f8f8;
-}
 
 .admin-product-action-menu a.danger {
     color: var(--color-red);
@@ -541,7 +519,7 @@
 .admin-product-result-text {
     font-family: var(--font-body-2);
     font-size: 9px;
-    color: var(--color-black);
+    color: var(--text-heading);
 }
 
 .admin-product-page-size {
@@ -549,11 +527,11 @@
     height: 32px;
     border: 1px solid var(--color-gray-200);
     border-radius: 8px;
-    background: var(--color-white);
+    background: var(--bg-card);
     padding: 0 10px;
     font-family: var(--font-body-2);
     font-size: 9px;
-    color: var(--color-black);
+    color: var(--text-heading);
     outline: none;
     cursor: pointer;
 }
@@ -572,8 +550,8 @@
     padding: 0 12px;
     border: 1px solid var(--color-gray-200);
     border-radius: 8px;
-    background: var(--color-white);
-    color: var(--color-black);
+    background: var(--bg-card);
+    color: var(--text-heading);
     text-decoration: none;
     display: inline-flex;
     align-items: center;

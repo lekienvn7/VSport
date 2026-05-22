@@ -90,6 +90,37 @@
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/CapNhatSoLuongGioHangServlet.java</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/pages/cart.css</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/listener/DonHangAutoUpdateListener.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/websocket/OrderSocket.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/model/ThongKeTuan.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminWeeklyStatsServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/dashboard.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminDashboardServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/pages/ma-giam-gia.js</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/pages/components/product-recommend.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/common/admin-layout-start.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/common/admin-sidebar.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/utils/DBConnection.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminDonHangServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminDuyetDonHangServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/admin/admin-weekly-order-chart.js</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/order/list.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/order/detail.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/admin/admin-order-management.js</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-order-management.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/dao/ThongKeVonShopDAO.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/dao/VonShopDAO.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/order/order-tra-hang.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminDuyetTraHangServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminTraHangServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/admin/admin-order-tra-hang.js</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-order-tra-hang.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/KhoXuServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/NhanXuHangNgayServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/SanPhamServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/XoaKhoiGioHangServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminDanhMucServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminProductListServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminQuaTangServlet.java</file>
         </group>
     </open-files>
 </project-private>

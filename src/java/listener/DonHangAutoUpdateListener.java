@@ -35,6 +35,8 @@ public class DonHangAutoUpdateListener implements ServletContextListener {
 
                 // 🧨 thêm cái này
                 maGiamGiaDAO.capNhatMaHetHan();
+                
+                maGiamGiaDAO.capNhatMaGiamGiaHetHan();
 
                 if (a > 0 || b > 0 || c > 0 || d > 0) {
                     System.out.println(

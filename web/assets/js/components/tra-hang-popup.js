@@ -1,99 +1,108 @@
 // /assets/js/components/tra-hang-popup.js
 document.addEventListener('DOMContentLoaded', function () {
     (function () {
-        console.log('=== Khởi tạo modal trả hàng ===');
-
         const modal = document.getElementById('traHangModal');
         if (!modal || modal.dataset.initialized === 'true') return;
         modal.dataset.initialized = 'true';
 
-        const closeBtn = document.getElementById('closeTraHangModal');
-        const cancelBtn = document.getElementById('cancelTraHang');
-        const form = document.getElementById('traHangForm');
-        const btnTaoYeuCau = document.getElementById('btnTaoYeuCau');
+        const closeBtn       = document.getElementById('closeTraHangModal');
+        const cancelBtn      = document.getElementById('cancelTraHang');
+        const form           = document.getElementById('traHangForm');
+        const btnTaoYeuCau   = document.getElementById('btnTaoYeuCau');
         const maDonHangInput = document.getElementById('maDonHangTraHang');
-        const lyDoSelect = document.getElementById('lyDoTraHang');
-        const soTienInput = document.getElementById('soTienHoan');
-        const soTienDisplay = document.getElementById('soTienHoanDisplay');
-        const ghiChuInput = document.getElementById('ghiChuTraHang');
+        const lyDoSelect     = document.getElementById('lyDoTraHang');
+        const soTienInput    = document.getElementById('soTienHoan');
+        const soTienDisplay  = document.getElementById('soTienHoanDisplay');
+        const ghiChuInput    = document.getElementById('ghiChuTraHang');
 
-        if (!closeBtn || !cancelBtn || !form || !btnTaoYeuCau || !maDonHangInput || !lyDoSelect || !soTienInput || !soTienDisplay || !ghiChuInput) {
-            console.error('❌ Thiếu elements');
+        if (!closeBtn || !cancelBtn || !form || !btnTaoYeuCau ||
+            !maDonHangInput || !lyDoSelect || !soTienInput || !soTienDisplay || !ghiChuInput) {
+            console.error('❌ Thiếu elements trong traHangModal');
             return;
         }
 
-        console.log('✅ Tất cả elements OK');
+        // -------------------------------------------------------
+        // Helpers
+        // -------------------------------------------------------
 
-        // Format tiền VNĐ
         function formatCurrency(amount) {
             if (!amount) return '0 ₫';
             return new Intl.NumberFormat('vi-VN').format(amount) + ' ₫';
         }
 
-        // Kiểm tra form hợp lệ (chỉ cần chọn lý do)
+        function setLoading(isLoading) {
+            btnTaoYeuCau.disabled = isLoading;
+            btnTaoYeuCau.textContent = isLoading ? 'Đang xử lý...' : 'Tạo yêu cầu';
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+        }
+
+        // -------------------------------------------------------
+        // Validate
+        // -------------------------------------------------------
+
         function checkFormValidity() {
-            const lyDo = lyDoSelect.value;
-            btnTaoYeuCau.disabled = !lyDo;
+            btnTaoYeuCau.disabled = !lyDoSelect.value;
         }
 
         lyDoSelect.addEventListener('change', checkFormValidity);
 
-        // Hàm mở modal
+        // -------------------------------------------------------
+        // Mở modal (gọi từ bên ngoài)
+        // -------------------------------------------------------
+
         window.openTraHangModal = function (maDonHang, tongTien) {
-            console.log('🚀 Mở modal cho đơn:', maDonHang, 'Tổng tiền:', tongTien);
-            maDonHangInput.value = maDonHang;
             form.reset();
             maDonHangInput.value = maDonHang;
-
-            // Set tổng tiền
-            soTienInput.value = tongTien || 0;
-            soTienDisplay.value = formatCurrency(tongTien);
-
-            btnTaoYeuCau.disabled = true; // Phải chọn lý do mới enable
+            soTienInput.value    = tongTien || 0;
+            soTienDisplay.value  = formatCurrency(tongTien);
+            btnTaoYeuCau.disabled = true;
             modal.classList.add('show');
         };
 
-        // Bắt sự kiện click nút trả hàng
+        // -------------------------------------------------------
+        // Bắt click nút trả hàng (event delegation)
+        // -------------------------------------------------------
+
         document.addEventListener('click', function (e) {
             const btn = e.target.closest('.btn-tra-hang');
-            if (btn) {
-                e.preventDefault();
-                e.stopPropagation();
-                const maDonHang = btn.getAttribute('data-ma-don-hang');
-                const tongTien = btn.getAttribute('data-tong-tien');
-                if (maDonHang) {
-                    window.openTraHangModal(maDonHang, tongTien);
-                }
-            }
+            if (!btn) return;
+            e.preventDefault();
+            e.stopPropagation();
+            const maDonHang = btn.getAttribute('data-ma-don-hang');
+            const tongTien  = btn.getAttribute('data-tong-tien');
+            if (maDonHang) window.openTraHangModal(maDonHang, tongTien);
         });
 
+        // -------------------------------------------------------
         // Đóng modal
-        function closeModal() {
-            modal.classList.remove('show');
-        }
+        // -------------------------------------------------------
 
         closeBtn.addEventListener('click', closeModal);
         cancelBtn.addEventListener('click', closeModal);
         modal.addEventListener('click', function (e) {
             if (e.target === modal) closeModal();
         });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+        });
 
-        // Gửi form
+        // -------------------------------------------------------
+        // Submit
+        // -------------------------------------------------------
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const maDonHang = maDonHangInput.value;
             const lyDo = lyDoSelect.value;
-            const soTienHoan = soTienInput.value;
-            const ghiChu = ghiChuInput.value;
-
             if (!lyDo) {
                 toastr.warning('Vui lòng chọn lý do trả hàng.');
                 return;
             }
 
-            btnTaoYeuCau.disabled = true;
-            btnTaoYeuCau.textContent = 'Đang xử lý...';
+            setLoading(true);
 
             const url = (window.contextPath || '') + '/tra-hang';
 
@@ -104,43 +113,77 @@ document.addEventListener('DOMContentLoaded', function () {
                     'X-Requested-With': 'XMLHttpRequest'
                 },
                 body: new URLSearchParams({
-                    action: 'yeu_cau',
-                    maDonHang: maDonHang,
-                    lyDo: lyDo,
-                    soTienHoan: soTienHoan,
-                    ghiChu: ghiChu
+                    action    : 'yeu_cau',
+                    maDonHang : maDonHangInput.value,
+                    lyDo      : lyDo,
+                    soTienHoan: soTienInput.value,
+                    ghiChu    : ghiChuInput.value
                 })
             })
-            .then(response => {
-                if (!response.ok) {
-                    // Thử parse JSON từ response lỗi để lấy message
-                    return response.json().then(err => {
-                        throw new Error(err.message || 'Lỗi máy chủ');
-                    }).catch(() => {
-                        throw new Error('Lỗi máy chủ (HTTP ' + response.status + ')');
-                    });
-                }
-                return response.json();
+            .then(function (res) {
+                if (!res.ok) throw new Error('Lỗi máy chủ (HTTP ' + res.status + ')');
+                return res.json();
             })
-            .then(data => {
+            .then(function (data) {
                 if (data.success) {
-                    toastr.success(data.message || 'Yêu cầu trả hàng đã được gửi thành công!');
+                    toastr.success(data.message || 'Yêu cầu trả hàng đã được gửi!');
                     closeModal();
-                    setTimeout(() => location.reload(), 1500);
+                    setTimeout(function () { location.reload(); }, 1500);
                 } else {
                     toastr.error(data.message || 'Không thể tạo yêu cầu.');
                 }
             })
-            .catch(error => {
-                console.error('Lỗi:', error);
-                toastr.error(error.message || 'Đã xảy ra lỗi không xác định.');
+            .catch(function (err) {
+                console.error('Lỗi tra hàng:', err);
+                toastr.error(err.message || 'Đã xảy ra lỗi không xác định.');
             })
-            .finally(() => {
-                btnTaoYeuCau.disabled = false;
-                btnTaoYeuCau.textContent = 'Tạo yêu cầu';
+            .finally(function () {
+                setLoading(false);
             });
         });
-
-        console.log('✅ Modal trả hàng sẵn sàng');
     })();
 });
+
+// ================================================================
+// Hàm dùng bên ADMIN để duyệt / từ chối (gọi từ trang admin)
+// ================================================================
+
+window.adminDuyetTraHang = function (maTraHang, callback) {
+    _adminActionTraHang('duyet', maTraHang, callback);
+};
+
+window.adminTuChoiTraHang = function (maTraHang, callback) {
+    _adminActionTraHang('tu_choi', maTraHang, callback);
+};
+
+function _adminActionTraHang(action, maTraHang, callback) {
+    const url = (window.contextPath || '') + '/tra-hang';
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: new URLSearchParams({ action: action, maTraHang: maTraHang })
+    })
+    .then(function (res) {
+        if (!res.ok) throw new Error('Lỗi máy chủ (HTTP ' + res.status + ')');
+        return res.json();
+    })
+    .then(function (data) {
+        if (data.success) {
+            toastr.success(data.message);
+            if (typeof callback === 'function') callback(true);
+            else setTimeout(function () { location.reload(); }, 1200);
+        } else {
+            toastr.error(data.message || 'Thao tác thất bại');
+            if (typeof callback === 'function') callback(false);
+        }
+    })
+    .catch(function (err) {
+        console.error('Admin tra hang error:', err);
+        toastr.error(err.message || 'Lỗi không xác định');
+        if (typeof callback === 'function') callback(false);
+    });
+}

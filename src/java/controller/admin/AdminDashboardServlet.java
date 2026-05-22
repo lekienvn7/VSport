@@ -86,6 +86,11 @@ public class AdminDashboardServlet extends HttpServlet {
         double phanTramLoiNhuan = tinhPhanTramLoiNhuan(loiNhuanTuanNay, loiNhuanTuanTruoc);
         double phanTramThanhVien = tinhPhanTramThayDoi(thanhVienMoiTuanNay, thanhVienMoiTuanTruoc);
 
+        System.out.println("=== DEBUG DON HANG ===");
+        System.out.println("Tuần này: " + donHangTuanNay);
+        System.out.println("Tuần trước: " + donHangTuanTruoc);
+        System.out.println("% = " + phanTramDonHang);
+
         String moTaLoiNhuan = moTaBienDongLoiNhuan(loiNhuanTuanNay, loiNhuanTuanTruoc, tongLoiNhuan);
         String loaiBienDongLoiNhuan = loaiBienDongLoiNhuan(loiNhuanTuanNay, loiNhuanTuanTruoc);
 

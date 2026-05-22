@@ -13,7 +13,7 @@
     background: linear-gradient(135deg, #0f0f12 0%, #1d1f27 100%);
     border-radius: 28px;
     padding: 36px 38px;
-    color: #fff;
+    color: var(--text-highlight);
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.14);
 }
 
@@ -44,7 +44,8 @@
 }
 
 .admin-capital-history-section {
-    background: #fff;
+    background: var(--bg-card);
+    border: 1px solid var(--text-highlight);
     border-radius: 24px;
     padding: 24px;
     box-shadow: 0 16px 40px rgba(0,0,0,0.05);
@@ -56,7 +57,7 @@
     text-transform: uppercase;
     font-size: 28px;
     font-weight: 900;
-    color: #111;
+    color: var(--text-heading);
 }
 
 .admin-capital-history-table-wrap {
@@ -76,21 +77,21 @@
 .admin-capital-history-table thead th {
     text-align: left;
     padding: 16px 14px;
-    background: #fafafa;
+    background: var(--bg-main);
     border-bottom: 1px solid #ececec;
     font-family: var(--font-body);
     font-size: 18px;
     font-weight: 800;
-    color: #666;
+    color: var(--text-heading);
 }
 
 
 .admin-capital-history-table tbody td {
     padding: 12px 14px;
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom: 1px solid var(--text-normal);
     font-family: var(--font-body);
     font-size: 18px;
-    color: #111;
+    color: var(--text-normal);
     vertical-align: middle;
 
     white-space: nowrap;
