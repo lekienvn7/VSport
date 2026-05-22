@@ -236,6 +236,8 @@
             </script>
         </c:if>
 
+
+
         <script src="https://unpkg.com/lucide@latest"></script>
         <script>
                 lucide.createIcons();
@@ -273,5 +275,15 @@
                 hideMethod: "fadeOut"
             };
         </script>
+
+        <c:if test="${not empty toastWarning}">
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    toastr.warning("${toastWarning}");
+                });
+            </script>
+
+            <c:remove var="toastWarning" scope="session"/>
+        </c:if>
     </body>
 </html>

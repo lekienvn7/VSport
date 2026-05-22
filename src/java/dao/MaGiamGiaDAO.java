@@ -1055,6 +1055,33 @@ public class MaGiamGiaDAO {
         return false;
     }
 
+    public void capNhatMaHetHan() {
+        System.out.println("🔥 [VoucherJob] Start capNhatMaHetHan at " + new java.util.Date());
+
+        String sql = """
+        UPDATE doi_xu_ma_giam_gia d
+        INNER JOIN ma_giam_gia m
+            ON d.ma_giam_gia = m.ma_giam_gia
+        SET d.trang_thai = 'het_han'
+        WHERE d.trang_thai = 'hoat_dong'
+          AND m.ngay_ket_thuc IS NOT NULL
+          AND m.ngay_ket_thuc < NOW()
+    """;
+
+        try (Connection conn = getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            int rows = ps.executeUpdate();
+
+            System.out.println("✔ [VoucherJob] Updated rows = " + rows);
+
+        } catch (Exception e) {
+            System.err.println("❌ [VoucherJob] ERROR while updating expired vouchers");
+            e.printStackTrace();
+        }
+
+        System.out.println("🏁 [VoucherJob] End capNhatMaHetHan at " + new java.util.Date());
+    }
+
     // =========================
     // CHECK CODE EXISTS
     // =========================
@@ -1084,4 +1111,5 @@ public class MaGiamGiaDAO {
 
         return false;
     }
+
 }

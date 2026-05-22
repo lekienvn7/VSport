@@ -132,63 +132,60 @@ public class DashboardWeeklyStatsDAO {
     }
 
     private List<ThongKeTuan> getLoiNhuanTheoTuan() {
-
         String sql = """
-        WITH RECURSIVE ds_tuan AS (
-
-            -- Tuần hiện tại
-            SELECT
-                DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) AS tu_ngay,
-                DATE_ADD(
-                    DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY),
-                    INTERVAL 6 DAY
-                ) AS den_ngay,
-                1 AS stt
-
-            UNION ALL
-
-            -- Các tuần trước
-            SELECT
-                DATE_SUB(tu_ngay, INTERVAL 7 DAY),
-                DATE_SUB(den_ngay, INTERVAL 7 DAY),
-                stt + 1
-            FROM ds_tuan
-            WHERE stt < 8
-        )
-
+    WITH RECURSIVE ds_tuan AS (
+        -- Tuần hiện tại
         SELECT
-            YEARWEEK(ds.tu_ngay, 1) AS ma_tuan,
-            WEEK(ds.tu_ngay, 1) AS so_tuan,
-
-            ds.tu_ngay,
-            ds.den_ngay,
-
-            (
-                IFNULL(SUM(dh.tong_thanh_toan), 0)
-                -
-                IFNULL(SUM(ct.so_luong * bt.gia_nhap), 0)
-            ) AS gia_tri
-
-        FROM ds_tuan ds
-
-        LEFT JOIN don_hang dh
-            ON DATE(dh.ngay_dat)
-                BETWEEN ds.tu_ngay AND ds.den_ngay
-            AND dh.trang_thai_don_hang = 'da_giao'
-
-        LEFT JOIN chi_tiet_don_hang ct
-            ON dh.ma_don_hang = ct.ma_don_hang
-
-        LEFT JOIN bien_the_san_pham bt
-            ON ct.ma_bien_the = bt.ma_bien_the
-
-        GROUP BY
-            ma_tuan,
-            so_tuan,
-            ds.tu_ngay,
-            ds.den_ngay
-
-        ORDER BY ds.tu_ngay ASC
+            DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) AS tu_ngay,
+            DATE_ADD(
+                DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY),
+                INTERVAL 6 DAY
+            ) AS den_ngay,
+            1 AS stt,
+            YEARWEEK(
+                DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY),
+                1
+            ) AS ma_tuan
+        UNION ALL
+        -- Các tuần trước
+        SELECT
+            DATE_SUB(tu_ngay, INTERVAL 7 DAY),
+            DATE_SUB(den_ngay, INTERVAL 7 DAY),
+            stt + 1,
+            YEARWEEK(DATE_SUB(tu_ngay, INTERVAL 7 DAY), 1)
+        FROM ds_tuan
+        WHERE stt < 8
+    ),
+    doanh_thu AS (
+        SELECT
+            YEARWEEK(dh.ngay_dat, 1) AS ma_tuan,
+            SUM(dh.tong_thanh_toan) AS tong_doanh_thu
+        FROM don_hang dh
+        WHERE dh.trang_thai_don_hang = 'da_giao'
+          AND dh.ngay_dat >= (SELECT MIN(tu_ngay) FROM ds_tuan)
+        GROUP BY YEARWEEK(dh.ngay_dat, 1)
+    ),
+    gia_von AS (
+        SELECT
+            YEARWEEK(dh.ngay_dat, 1) AS ma_tuan,
+            SUM(ct.so_luong * bt.gia_nhap) AS tong_gia_von
+        FROM don_hang dh
+        JOIN chi_tiet_don_hang ct ON dh.ma_don_hang = ct.ma_don_hang
+        JOIN bien_the_san_pham bt ON ct.ma_bien_the = bt.ma_bien_the
+        WHERE dh.trang_thai_don_hang = 'da_giao'
+          AND dh.ngay_dat >= (SELECT MIN(tu_ngay) FROM ds_tuan)
+        GROUP BY YEARWEEK(dh.ngay_dat, 1)
+    )
+    SELECT
+        ds.ma_tuan,
+        WEEK(ds.tu_ngay, 1) AS so_tuan,
+        ds.tu_ngay,
+        ds.den_ngay,
+        COALESCE(dt.tong_doanh_thu, 0) - COALESCE(gv.tong_gia_von, 0) AS gia_tri
+    FROM ds_tuan ds
+    LEFT JOIN doanh_thu dt ON ds.ma_tuan = dt.ma_tuan
+    LEFT JOIN gia_von gv ON ds.ma_tuan = gv.ma_tuan
+    ORDER BY ds.tu_ngay ASC
     """;
 
         return queryWeeklyStats(sql);

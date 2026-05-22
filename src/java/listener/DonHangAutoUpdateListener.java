@@ -1,6 +1,7 @@
 package listener;
 
 import dao.DonHangDAO;
+import dao.MaGiamGiaDAO;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
@@ -16,26 +17,31 @@ public class DonHangAutoUpdateListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+
         scheduler = Executors.newSingleThreadScheduledExecutor();
+        System.out.println("Listener STARTED - DonHangAutoUpdateListener is running");
 
         scheduler.scheduleAtFixedRate(() -> {
             try {
-                DonHangDAO dao = new DonHangDAO();
+                System.out.println("⏱ Scheduler tick: " + new java.util.Date());
+                DonHangDAO donHangDAO = new DonHangDAO();
+                MaGiamGiaDAO maGiamGiaDAO = new MaGiamGiaDAO();
 
-                int a = dao.tuDongChuyenChoLayHangSau2Phut();
-                int b = dao.tuDongChuyenDangGiaoSau2PhutLayHang();
-                int c = dao.capNhatDonHangDaGiaoVaCongDaBan();
-                int d = dao.capNhatThanhToanSauKhiHoanThanh();
+                // auto update đơn hàng
+                int a = donHangDAO.tuDongChuyenChoLayHangSau2Phut();
+                int b = donHangDAO.tuDongChuyenDangGiaoSau2PhutLayHang();
+                int c = donHangDAO.capNhatDonHangDaGiaoVaCongDaBan();
+                int d = donHangDAO.capNhatThanhToanSauKhiHoanThanh();
+
+                // 🧨 thêm cái này
+                maGiamGiaDAO.capNhatMaHetHan();
 
                 if (a > 0 || b > 0 || c > 0 || d > 0) {
                     System.out.println(
                             "Auto update: "
                             + (a + b + c + d)
                             + " đơn thay đổi"
-                            + " | cho_lay_hang=" + a
-                            + " | dang_giao=" + b
-                            + " | da_giao=" + c
-                            + " | thanh_toan=" + d
+                            + " | voucher_checked=true"
                     );
                 }
 

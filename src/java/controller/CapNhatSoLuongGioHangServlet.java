@@ -41,6 +41,11 @@ public class CapNhatSoLuongGioHangServlet extends HttpServlet {
 
             if (soLuong > tonKho) {
                 soLuong = tonKho;
+
+                request.getSession().setAttribute(
+                        "toastWarning",
+                        "Số lượng vượt quá tồn kho. Đã cập nhật về mức tối đa."
+                );
             }
 
             boolean ok = gioHangDAO.capNhatSoLuongTheoMaGioHang(maGioHang, soLuong);
