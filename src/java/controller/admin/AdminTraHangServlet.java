@@ -25,10 +25,19 @@ public class AdminTraHangServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<TraHang> dsYeuCauTraHang = traHangDAO.getYeuCauTheoTrangThai("cho_xu_ly"); // hoặc getYeuCauTheoTrangThai("cho_xu_ly")
-        
+        System.out.println(">>> AdminTraHangServlet được gọi");
+        List<TraHang> dsYeuCauTraHang = traHangDAO.getYeuCauTheoTrangThai("cho_xu_ly");
+        System.out.println(">>> Số yêu cầu tìm thấy: " + (dsYeuCauTraHang != null ? dsYeuCauTraHang.size() : 0));
+
         request.setAttribute("dsYeuCauTraHang", dsYeuCauTraHang); // quan trọng
+
+        Map<String, String> mapTrangThai = new HashMap<>();
         
+        mapTrangThai.put("cho_xu_ly", "Chờ duyệt");
+        mapTrangThai.put("da_hoan", "Đã hoàn");
+        mapTrangThai.put("tu_choi", "Từ chối");
+        request.setAttribute("mapTrangThaiTraHang", mapTrangThai);
+
         request.getRequestDispatcher("/WEB-INF/views/admin/order/order-tra-hang.jsp")
                 .forward(request, response);
     }

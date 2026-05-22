@@ -20,6 +20,7 @@ input {
 
 body {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

@@ -235,7 +235,7 @@ public class TraHangDAO {
     }
 
     public List<TraHang> getYeuCauTheoTrangThai(String trangThai) {
-        String sql = "SELECT t.*, d.tong_tien_don_hang, nd.ho_ten AS ten_khach_hang FROM tra_hang_hoan_tien t JOIN don_hang d ON t.ma_don_hang = d.ma_don_hang JOIN nguoi_dung nd ON d.ma_nguoi_dung = nd.ma_nguoi_dung WHERE t.trang_thai = ? ORDER BY t.ngay_yeu_cau DESC";
+        String sql = "SELECT * FROM tra_hang_hoan_tien WHERE trang_thai = ? ORDER BY ngay_yeu_cau DESC";
 
         List<TraHang> list = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
