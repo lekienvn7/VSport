@@ -35,4 +35,12 @@ public class DBConnection {
             try { conn.close(); } catch (SQLException e) { e.printStackTrace(); }
         }
     }
+
+    public static void closeQuietly(AutoCloseable... resources) {
+        for (AutoCloseable r : resources) {
+            if (r != null) {
+                try { r.close(); } catch (Exception ignored) {}
+            }
+        }
+    }
 }
