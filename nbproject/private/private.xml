@@ -109,11 +109,6 @@
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-order-management.css</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/dao/ThongKeVonShopDAO.java</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/dao/VonShopDAO.java</file>
-            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/order/order-tra-hang.jsp</file>
-            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminDuyetTraHangServlet.java</file>
-            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminTraHangServlet.java</file>
-            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/admin/admin-order-tra-hang.js</file>
-            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-order-tra-hang.css</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/KhoXuServlet.java</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/NhanXuHangNgayServlet.java</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/SanPhamServlet.java</file>
@@ -121,6 +116,21 @@
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminDanhMucServlet.java</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminProductListServlet.java</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminQuaTangServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-dashboard.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/common/admin-header.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/weekly-stat-popup.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-weekly-revenue-chart.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-capital.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/base/reset.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-danh-muc.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-product-list.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/admin/AdminDuyetTraHangServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/order/order-tra-hang.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/admin/admin-order-tra-hang.js</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/product/edit.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-add-product-popup.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/admin/admin-edit-product-popup.js</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/product/list.jsp</file>
         </group>
     </open-files>
 </project-private>
