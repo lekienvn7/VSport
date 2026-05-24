@@ -156,7 +156,7 @@
 
 <!-- Nút AI -->
 <div class="ai-search-fab" id="aiSearchFab">
-    <i data-lucide="sparkles"></i>
+    <i data-lucide="scan-search"></i>
 </div>
 
 <!-- Overlay popup -->
@@ -180,7 +180,7 @@
 <script>
 (function() {
     // ==================== API CONFIG ====================
-    const ROBOFLOW_API_KEY = 'W213sLhSgw6nbwOjxtf0'; // Thay bằng API key thực tế
+    const ROBOFLOW_API_KEY = 'W213sLhSgw6nbwOjxtf0';
     const WORKFLOW_URL = 'https://detect.roboflow.com/infer/workflows/ls-workspace-rcwad/football-jersey-recognition-api-1779651254921';
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -259,7 +259,7 @@
             reader.readAsDataURL(file);
         }
 
-        // ==================== GỬI ẢNH LÊN ROBOFLOW WORKFLOW ====================
+        // ==================== GỬI ẢNH LÊN ROBOFLOW ====================
         async function analyzeJersey(file) {
             statusText.innerHTML = '<span class="loading-spinner"></span> Đang xử lý...';
             submitBtn.disabled = true;
@@ -284,9 +284,9 @@
                 }
 
                 const data = await response.json();
-                console.log('Roboflow raw response:', data);
+                console.log('Roboflow raw response:', JSON.stringify(data, null, 2));
 
-                // Hỗ trợ cả hai dạng: mảng trực tiếp hoặc { outputs: [...] }
+                // Hỗ trợ nhiều dạng response
                 let outputs = [];
                 if (Array.isArray(data)) {
                     outputs = data;
@@ -298,26 +298,42 @@
                     throw new Error('Không có kết quả từ AI');
                 }
 
-                // Lấy phần tử đầu tiên
                 const firstOutput = outputs[0];
+                console.log('First output:', firstOutput);
 
-                // Trích xuất giá trị, xử lý cả dạng string trực tiếp hoặc object { value: ... }
-                function extractValue(field) {
-                    if (typeof firstOutput[field] === 'object' && firstOutput[field] !== null) {
-                        return firstOutput[field].value ?? String(firstOutput[field]);
+                // Hàm trích xuất giá trị an toàn
+                function extractValue(obj, key) {
+                    if (!obj) return '';
+                    let val = obj[key];
+                    if (val === undefined || val === null) return '';
+                    // Nếu là object có thuộc tính 'value'
+                    if (typeof val === 'object' && val !== null) {
+                        return val.value ?? String(val);
                     }
-                    return firstOutput[field] ?? '';
+                    return String(val);
                 }
 
-                const team = String(extractValue('team') || '').trim();
-                const brand = String(extractValue('brand') || '').trim();
-                const jerseyTypeVi = String(extractValue('jersey_type_vi') || '').trim();
+                let team = extractValue(firstOutput, 'team');
+                let brand = extractValue(firstOutput, 'brand');
+                let jerseyTypeVi = extractValue(firstOutput, 'jersey_type_vi'); // ưu tiên tiếng Việt
 
-                console.log('Extracted:', { team, brand, jerseyTypeVi });
+                // Nếu không có jersey_type_vi, thử lấy jersey_type (tiếng Anh)
+                if (!jerseyTypeVi) {
+                    const jerseyTypeEn = extractValue(firstOutput, 'jersey_type') || extractValue(firstOutput, 'type');
+                    // Map nhanh từ Anh sang Việt nếu cần
+                    const mapType = {
+                        'home': 'sân nhà',
+                        'away': 'sân khách',
+                        'third': 'thứ ba',
+                        'gk': 'thủ môn',
+                        'goalkeeper': 'thủ môn'
+                    };
+                    jerseyTypeVi = mapType[jerseyTypeEn.toLowerCase()] || jerseyTypeEn;
+                }
 
                 // Tạo search query
                 const searchQuery = [team, brand, jerseyTypeVi]
-                    .filter(v => v && v !== 'unknown')
+                    .filter(v => v && v !== 'unknown' && v !== '')
                     .join(' ');
 
                 if (searchQuery) {
