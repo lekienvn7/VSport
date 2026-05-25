@@ -31,6 +31,9 @@
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
             <%@ include file="/WEB-INF/views/common/navbar.jsp" %>
         </div>
+        
+        <jsp:include page="/WEB-INF/views/common/ai-search-button.jsp" />
+        
 <div class="voucher-page">
     <div class="voucher-container">
 

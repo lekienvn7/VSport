@@ -149,6 +149,8 @@
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
             <%@ include file="/WEB-INF/views/common/navbar.jsp" %>
         </div>
+        
+        <jsp:include page="/WEB-INF/views/common/ai-search-button.jsp" />
 
         <section class="profile-hero">
             <video class="profile-hero-bg" autoplay muted loop playsinline>

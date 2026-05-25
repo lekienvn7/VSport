@@ -131,6 +131,14 @@
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-add-product-popup.css</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/admin/admin-edit-product-popup.js</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/admin/product/list.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/css/admin/admin-qua-tang.css</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/ProductDetailServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/assets/js/components/search-popup.js</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/common/ai-search-button.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/model/SanPham.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/dao/PhieuNhapDAO.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/dao/DanhGiaDAO.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/GiayGangServlet.java</file>
         </group>
     </open-files>
 </project-private>

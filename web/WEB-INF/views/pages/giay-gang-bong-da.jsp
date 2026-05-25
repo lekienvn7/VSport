@@ -27,6 +27,8 @@
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
         <%@ include file="/WEB-INF/views/common/navbar.jsp" %>
     </div>
+    
+    <jsp:include page="/WEB-INF/views/common/ai-search-button.jsp" />
 
     <jsp:include page="/WEB-INF/views/pages/giay_gang_product.jsp" />
     <jsp:include page="/WEB-INF/views/pages/components/filter-popup.jsp" />
