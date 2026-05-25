@@ -139,6 +139,16 @@
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/dao/PhieuNhapDAO.java</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/dao/DanhGiaDAO.java</file>
             <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/controller/GiayGangServlet.java</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/pages/club_jersey.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/pages/football.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/pages/giay_gang_product.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/pages/giay-gang-bong-da.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/pages/dat-san-bong.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/pages/football-sections/club_products.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/profile/profile.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/views/pages/kho-xu.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/web/WEB-INF/index.jsp</file>
+            <file>file:/D:/02_PERSONAL/Study/2026_ThucHanhWeb-Lksport/source_code/LksportWeb/src/java/utils/PasswordUtil.java</file>
         </group>
     </open-files>
 </project-private>

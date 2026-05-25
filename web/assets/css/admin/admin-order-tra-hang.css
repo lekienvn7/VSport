@@ -62,9 +62,9 @@
 }
 
 .admin-return-card {
-    background: var(--color-white);
-    border: 1px solid var(--color-gray-200);
-    border-left: 5px solid var(--color-red);
+    background: var(--bg-card);
+    border: 1px solid var(--text-highlight);
+    border-left: 5px solid var(--text-highlight);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     padding: var(--space-4);
@@ -89,7 +89,7 @@
 .admin-return-code {
     font-family: var(--font-heading);
     font-size: var(--text-xl);
-    color: var(--color-black);
+    color: var(--text-highlight);
 }
 
 .admin-return-user {
@@ -98,17 +98,17 @@
     justify-content: center;
     min-height: 36px;
     padding: 0 var(--space-3);
-    background: var(--color-gray-100);
+    background: var(--text-highlight);
     border-radius: 999px;
     font-family: var(--font-body);
     font-size: var(--text-sm);
-    color: var(--color-black);
+    color: var(--text-heading);
 }
 
 .admin-return-date {
     font-family: var(--font-body);
     font-size: var(--text-sm);
-    color: var(--color-gray-600);
+    color: var(--text-normal);
 }
 
 .admin-return-badges {
@@ -132,18 +132,15 @@
 }
 
 .badge-cho_xu_ly {
-    background: #fef2f2;
     color: #dc2626;
 }
 
 .badge-da_hoan {
-    background: #ecfdf3;
     color: var(--color-green);
 }
 
 .badge-tu_choi {
-    background: var(--color-gray-100);
-    color: var(--color-gray-800);
+    color: var(--text-normal);
 }
 
 .admin-return-card-body {
@@ -201,22 +198,17 @@
 }
 
 .admin-order-btn-primary {
-    background: var(--color-red);
+    background: var(--text-highlight);
     color: var(--color-white);
 }
 
-.admin-order-btn-primary:hover {
-    background: var(--color-red-hover);
-}
 
 .admin-order-btn-dark {
-    background: var(--color-black);
+    background: var(--bg-card);
+    border: 1px solid var(--text-highlight);
     color: var(--color-white);
 }
 
-.admin-order-btn-dark:hover {
-    background: var(--color-black-soft);
-}
 
 /* Confirm modal */
 .admin-confirm-overlay {
